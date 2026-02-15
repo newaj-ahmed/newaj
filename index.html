@@ -1,260 +1,240 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Newaj Ahmed | Official Website</title>
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
-    
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Newaj Ahmed | Information Hub</title>
 
-    <style>
-        :root {
-            --primary-color: #00f2fe;
-            --secondary-color: #4facfe;
-            --accent-color: #f093fb;
-            --bg-dark: #0f172a;
-            --card-bg: rgba(30, 41, 59, 0.7);
-        }
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Outfit', sans-serif;
-        }
+<style>
 
-        body {
-            background-color: var(--bg-dark);
-            background-image: 
-                radial-gradient(at 0% 0%, rgba(79, 172, 254, 0.15) 0px, transparent 50%),
-                radial-gradient(at 100% 100%, rgba(240, 147, 251, 0.15) 0px, transparent 50%);
-            color: #ffffff;
-            line-height: 1.6;
-            overflow-x: hidden;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
+:root{
+--primary:#00f2fe;
+--secondary:#4facfe;
+--accent:#f093fb;
+--bg:#0f172a;
+}
 
-        /* Animated Background Shape */
-        .blob {
-            position: fixed;
-            width: 500px;
-            height: 500px;
-            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
-            filter: blur(80px);
-            border-radius: 50%;
-            z-index: -1;
-            opacity: 0.1;
-            animation: move 20s infinite alternate;
-        }
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Outfit',sans-serif;
+}
 
-        @keyframes move {
-            from { transform: translate(-20%, -20%); }
-            to { transform: translate(20%, 20%); }
-        }
+body{
+background:linear-gradient(120deg,#0f172a,#1e293b);
+color:white;
+}
 
-        .container {
-            max-width: 900px;
-            width: 90%;
-            margin: 60px 0;
-            animation: fadeIn 1.2s ease-out;
-        }
+/* NOTICE */
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+.notice{
+background:linear-gradient(45deg,#ff416c,#ff4b2b);
+text-align:center;
+padding:10px;
+font-weight:bold;
+}
 
-        /* Header Section */
-        header {
-            text-align: center;
-            margin-bottom: 50px;
-        }
+/* Popup Banner */
 
-        .profile-wrapper {
-            position: relative;
-            display: inline-block;
-            margin-bottom: 25px;
-        }
+.popup{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.9);
+display:flex;
+justify-content:center;
+align-items:center;
+z-index:999;
+}
 
-        .profile-img {
-            width: 180px;
-            height: 180px;
-            border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
-            object-fit: cover;
-            border: 5px solid rgba(255, 255, 255, 0.1);
-            transition: 0.5s;
-            background: #1e293b;
-        }
+.popup-content{
+position:relative;
+}
 
-        .profile-wrapper:hover .profile-img {
-            border-radius: 50%;
-            transform: scale(1.05);
-            border-color: var(--primary-color);
-        }
+.popup img{
+width:80%;
+max-width:500px;
+border-radius:10px;
+}
 
-        h1 {
-            font-size: 3.5rem;
-            font-family: 'Playfair Display', serif;
-            background: linear-gradient(to right, #fff, var(--primary-color));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 10px;
-        }
+.close-btn{
+position:absolute;
+top:-10px;
+right:-10px;
+background:red;
+color:white;
+border:none;
+padding:5px 10px;
+cursor:pointer;
+border-radius:50%;
+}
 
-        .location-tag {
-            color: var(--accent-color);
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            font-size: 0.9rem;
-        }
+/* Container */
 
-        /* Content Sections */
-        .glass-card {
-            background: var(--card-bg);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 24px;
-            padding: 40px;
-            margin-bottom: 30px;
-            transition: 0.3s;
-        }
+.container{
+width:90%;
+max-width:1000px;
+margin:auto;
+padding:40px 0;
+}
 
-        .glass-card:hover {
-            border-color: rgba(255, 255, 255, 0.3);
-            transform: translateY(-5px);
-        }
+.header{
+text-align:center;
+margin-bottom:40px;
+}
 
-        h2 {
-            font-size: 1.8rem;
-            margin-bottom: 20px;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            color: var(--primary-color);
-        }
+h1{
+font-size:3rem;
+background:linear-gradient(to right,#fff,var(--primary));
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+}
 
-        .details-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-        }
+.section{
+background:rgba(255,255,255,0.05);
+padding:30px;
+border-radius:20px;
+margin-bottom:25px;
+border:1px solid rgba(255,255,255,0.1);
+}
 
-        .detail-box {
-            background: rgba(0, 0, 0, 0.2);
-            padding: 20px;
-            border-radius: 15px;
-        }
+.section h2{
+color:var(--primary);
+margin-bottom:15px;
+}
 
-        .detail-box i {
-            font-size: 1.5rem;
-            color: var(--accent-color);
-            margin-bottom: 10px;
-        }
+ul{
+padding-left:20px;
+}
 
-        .detail-box h4 {
-            font-size: 0.8rem;
-            color: #94a3b8;
-            text-transform: uppercase;
-        }
+.contact-btn{
+display:inline-block;
+margin-top:20px;
+background:linear-gradient(45deg,#4facfe,#00f2fe);
+color:#0f172a;
+padding:15px 35px;
+border-radius:40px;
+text-decoration:none;
+font-weight:700;
+}
 
-        .detail-box p {
-            font-size: 1.1rem;
-            font-weight: 600;
-        }
+footer{
+text-align:center;
+padding:20px;
+color:#94a3b8;
+}
 
-        /* Button Styling */
-        .btn-container {
-            text-align: center;
-            margin-top: 40px;
-        }
+</style>
 
-        .contact-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 12px;
-            background: linear-gradient(45deg, var(--secondary-color), var(--primary-color));
-            color: #0f172a;
-            padding: 18px 45px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 800;
-            font-size: 1.1rem;
-            transition: 0.4s;
-            box-shadow: 0 10px 30px rgba(79, 172, 254, 0.3);
-        }
-
-        .contact-btn:hover {
-            transform: scale(1.05) translateY(-3px);
-            box-shadow: 0 15px 40px rgba(79, 172, 254, 0.5);
-            filter: brightness(1.1);
-        }
-
-        footer {
-            margin-top: auto;
-            padding: 40px;
-            color: #64748b;
-            font-size: 0.9rem;
-        }
-
-        /* Responsive */
-        @media (max-width: 600px) {
-            h1 { font-size: 2.5rem; }
-            .container { padding: 15px; }
-        }
-    </style>
 </head>
+
 <body>
 
-    <div class="blob"></div>
+<!-- IMPORTANT NOTICE -->
 
-    <div class="container">
-        <header>
-            <div class="profile-wrapper">
-                <img src="profile.jpg" alt="Newaj Ahmed" class="profile-img">
-            </div>
-            <p class="location-tag"><i class="fas fa-map-marker-alt"></i> Hojai, Assam</p>
-            <h1>Newaj Ahmed</h1>
-        </header>
+<div class="notice">
+IMPORTANT NOTICE: Please read all information carefully before proceeding.
+</div>
 
-        <section class="glass-card">
-            <h2><i class="fas fa-user-circle"></i> About Me</h2>
-            <p>Welcome to my official space! I am a passionate individual based in <b>Hojai, Assam</b>. I focus on creating impactful solutions and exploring the latest in technology. I believe in continuous learning and building things that matter.</p>
-        </section>
+<!-- POPUP BANNER -->
 
-        <section class="glass-card">
-            <h2><i class="fas fa-id-card"></i> Contact Details</h2>
-            <div class="details-grid">
-                <div class="detail-box">
-                    <i class="fas fa-envelope"></i>
-                    <h4>Email Address</h4>
-                    <p>newaja35@gmail.com</p>
-                </div>
-                <div class="detail-box">
-                    <i class="fas fa-map-marked-alt"></i>
-                    <h4>Current Location</h4>
-                    <p>Hojai, Assam, India</p>
-                </div>
-            </div>
-        </section>
+<div class="popup" id="popup">
+<div class="popup-content">
+<button class="close-btn" onclick="closePopup()">X</button>
+<img src="banner.jpg">
+</div>
+</div>
 
-        <div class="btn-container">
-            <a href="https://docs.google.com/forms/d/e/1FAIpQLSfTpGFtyaiPr5ONq3cVyT8EHa0t-jTb-9xb-lnQlnGHMP6-Lg/viewform?usp=publish-editor" target="_blank" class="contact-btn">
-                <i class="fas fa-paper-plane"></i> GET IN TOUCH
-            </a>
-        </div>
-    </div>
+<div class="container">
 
-    <footer>
-        &copy; 2024 Newaj Ahmed. Built with Passion.
-    </footer>
+<div class="header">
+<h1>Newaj Ahmed</h1>
+<p>Hojai, Assam, India</p>
+</div>
+
+<div class="section">
+<h2>About Me</h2>
+<p>I don't know about myself</p>
+</div>
+
+<div class="section">
+<h2>Basic Website Planning Guide</h2>
+<ul>
+<li>Decide the purpose of your website</li>
+<li>Choose your target audience</li>
+<li>Plan the structure</li>
+<li>Select colour theme</li>
+<li>Create layout design</li>
+<li>Test before publishing</li>
+</ul>
+</div>
+
+<div class="section">
+<h2>How to Learn Website Development</h2>
+<ul>
+<li>Start with HTML</li>
+<li>Learn CSS</li>
+<li>Practice daily</li>
+<li>Learn JavaScript basics</li>
+<li>Create small projects</li>
+<li>Host using GitHub Pages</li>
+</ul>
+</div>
+
+<div class="section">
+<h2>Ishan Uday Scholarship Information</h2>
+<ul>
+<li>Only for North Eastern students</li>
+<li>Family income less than ₹4.5 lakh</li>
+<li>For first year degree students</li>
+<li>Apply through NSP</li>
+<li>Amount given through DBT</li>
+</ul>
+</div>
+
+<div class="section">
+<h2>Skills</h2>
+<ul>
+<li>Basic Computer Knowledge</li>
+<li>Nothings </li>
+<li>Problem Solving</li>
+</ul>
+</div>
+
+<div class="section">
+<h2>Email ID</h2>
+<p>newaja35@gmail.com</p>
+</div>
+
+<div class="section" style="text-align:center;">
+<h2>Contact</h2>
+
+<a href="https://docs.google.com/forms/d/e/1FAIpQLSfTpGFtyaiPr5ONq3cVyT8EHa0t-jTb-9xb-lnQlnGHMP6-Lg/viewform?usp=publish-editor"
+target="_blank"
+class="contact-btn">
+GET IN TOUCH
+</a>
+
+</div>
+
+</div>
+
+<footer>
+© 2026 Newaj Ahmed
+</footer>
+
+<script>
+
+function closePopup(){
+document.getElementById("popup").style.display="none";
+}
+
+</script>
 
 </body>
 </html>

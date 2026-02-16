@@ -3,238 +3,81 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Newaj Ahmed | Information Hub</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
-
-<style>
-
-:root{
---primary:#00f2fe;
---secondary:#4facfe;
---accent:#f093fb;
---bg:#0f172a;
-}
-
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:'Outfit',sans-serif;
-}
-
-body{
-background:linear-gradient(120deg,#0f172a,#1e293b);
-color:white;
-}
-
-/* NOTICE */
-
-.notice{
-background:linear-gradient(45deg,#ff416c,#ff4b2b);
-text-align:center;
-padding:10px;
-font-weight:bold;
-}
-
-/* Popup Banner */
-
-.popup{
-position:fixed;
-top:0;
-left:0;
-width:100%;
-height:100%;
-background:rgba(0,0,0,0.9);
-display:flex;
-justify-content:center;
-align-items:center;
-z-index:999;
-}
-
-.popup-content{
-position:relative;
-}
-
-.popup img{
-width:80%;
-max-width:500px;
-border-radius:10px;
-}
-
-.close-btn{
-position:absolute;
-top:-10px;
-right:-10px;
-background:red;
-color:white;
-border:none;
-padding:5px 10px;
-cursor:pointer;
-border-radius:50%;
-}
-
-/* Container */
-
-.container{
-width:90%;
-max-width:1000px;
-margin:auto;
-padding:40px 0;
-}
-
-.header{
-text-align:center;
-margin-bottom:40px;
-}
-
-h1{
-font-size:3rem;
-background:linear-gradient(to right,#fff,var(--primary));
--webkit-background-clip:text;
--webkit-text-fill-color:transparent;
-}
-
-.section{
-background:rgba(255,255,255,0.05);
-padding:30px;
-border-radius:20px;
-margin-bottom:25px;
-border:1px solid rgba(255,255,255,0.1);
-}
-
-.section h2{
-color:var(--primary);
-margin-bottom:15px;
-}
-
-ul{
-padding-left:20px;
-}
-
-.contact-btn{
-display:inline-block;
-margin-top:20px;
-background:linear-gradient(45deg,#4facfe,#00f2fe);
-color:#0f172a;
-padding:15px 35px;
-border-radius:40px;
-text-decoration:none;
-font-weight:700;
-}
-
-footer{
-text-align:center;
-padding:20px;
-color:#94a3b8;
-}
-
-</style>
-
+<title>Newaj Ahmed</title>
+<link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<!-- IMPORTANT NOTICE -->
+<header>
 
-<div class="notice">
-IMPORTANT NOTICE: Please read all information carefully before proceeding.
+<div class="logo">
+<h2>Newaj Ahmed</h2>
 </div>
 
-<!-- POPUP BANNER -->
-
-<div class="popup" id="popup">
-<div class="popup-content">
-<button class="close-btn" onclick="closePopup()">X</button>
-<img src="banner.jpg">
-</div>
+<div class="menu-btn" onclick="toggleMenu()">
+☰
 </div>
 
-<div class="container">
+<nav id="navLinks">
+<ul>
+<li><a href="#">Home</a></li>
+<li><a href="#about">About</a></li>
+<li><a href="#gallery">Gallery</a></li>
+<li><a href="#services">Services</a></li>
+<li><a href="#contact">Contact</a></li>
+</ul>
+</nav>
 
-<div class="header">
-<h1>Newaj Ahmed</h1>
-<p>Hojai, Assam, India</p>
+<div class="notice-section">
+<button onclick="toggleNotice()">Important NOTICE</button>
+<div id="noticeBox"></div>
 </div>
 
-<div class="section">
+</header>
+
+<section class="hero">
+<h2>Welcome to My Website</h2>
+<p>This is my personal website</p>
+</section>
+
+<section id="about">
 <h2>About Me</h2>
-<p>I don't know about myself</p>
-</div>
+<p>I am Newaj Ahmed, a student from Hojai, Assam.</p>
+</section>
 
-<div class="section">
-<h2>Basic Website Planning Guide</h2>
-<ul>
-<li>Decide the purpose of your website</li>
-<li>Choose your target audience</li>
-<li>Plan the structure</li>
-<li>Select colour theme</li>
-<li>Create layout design</li>
-<li>Test before publishing</li>
-</ul>
+<section id="gallery">
+<h2>Gallery</h2>
+<div class="gallery-box">
+<img src="https://via.placeholder.com/150">
+<img src="https://via.placeholder.com/150">
+<img src="https://via.placeholder.com/150">
 </div>
+</section>
 
-<div class="section">
-<h2>How to Learn Website Development</h2>
-<ul>
-<li>Start with HTML</li>
-<li>Learn CSS</li>
-<li>Practice daily</li>
-<li>Learn JavaScript basics</li>
-<li>Create small projects</li>
-<li>Host using GitHub Pages</li>
-</ul>
-</div>
+<section id="services">
+<h2>Services</h2>
+<p>Services will be updated soon.</p>
+</section>
 
-<div class="section">
-<h2>Ishan Uday Scholarship Information</h2>
-<ul>
-<li>Only for North Eastern students</li>
-<li>Family income less than ₹4.5 lakh</li>
-<li>For first year degree students</li>
-<li>Apply through NSP</li>
-<li>Amount given through DBT</li>
-</ul>
-</div>
-
-<div class="section">
-<h2>Skills</h2>
-<ul>
-<li>Basic Computer Knowledge</li>
-<li>Nothings </li>
-<li>Problem Solving</li>
-</ul>
-</div>
-
-<div class="section">
-<h2>Email ID</h2>
-<p>newaja35@gmail.com</p>
-</div>
-
-<div class="section" style="text-align:center;">
+<section id="contact">
 <h2>Contact</h2>
-
-<a href="https://docs.google.com/forms/d/e/1FAIpQLSfTpGFtyaiPr5ONq3cVyT8EHa0t-jTb-9xb-lnQlnGHMP6-Lg/viewform?usp=publish-editor"
-target="_blank"
-class="contact-btn">
-GET IN TOUCH
-</a>
-
-</div>
-
-</div>
+<form>
+<input type="text" placeholder="Enter Name"><br><br>
+<input type="email" placeholder="Enter Email"><br><br>
+<textarea placeholder="Message"></textarea><br><br>
+<button type="submit">Submit</button>
+</form>
+</section>
 
 <footer>
-© 2026 Newaj Ahmed
+<h3>Get Touch In</h3>
+<a href="https://docs.google.com/forms/d/e/1FAIpQLSfTpGFtyaiPr5ONq3cVyT8EHa0t-jTb-9xb-lnQlnGHMP6-Lg/viewform?usp=header" target="_blank">
+Click Here to Contact
+</a>
 </footer>
 
-<script>
-
-function closePopup(){
-document.getElementById("popup").style.display="none";
-}
-
-</script>
+<script src="script.js"></script>
 
 </body>
 </html>

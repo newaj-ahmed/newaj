@@ -32,7 +32,7 @@ loadDegree();
 
 function loadUPSC(){
 
-fetch("https://script.google.com/macros/s/AKfycbzKA6wm04fjWNXjAcTf5SIzvApixOeqRJ1W5qljSWsQkaGpNXm7vyveK0n8g30snhO5QQ/exec")
+fetch("https://script.google.com/macros/s/AKfycbwSYQVNy_5Re6Yil-U_pX3ZlXE47vXTrBaROvNXue4HTDEQKHPQeGeRyU6hR8MBf26Bww/exec")
 .then(res => res.json())
 .then(data => {
 
@@ -51,7 +51,7 @@ document.getElementById("upscBox").innerHTML=html;
 
 function loadDegree(){
 
-fetch("https://script.google.com/macros/s/AKfycbzKA6wm04fjWNXjAcTf5SIzvApixOeqRJ1W5qljSWsQkaGpNXm7vyveK0n8g30snhO5QQ/exec")
+fetch("https://script.google.com/macros/s/AKfycbwSYQVNy_5Re6Yil-U_pX3ZlXE47vXTrBaROvNXue4HTDEQKHPQeGeRyU6hR8MBf26Bww/exec")
 .then(res => res.json())
 .then(data => {
 

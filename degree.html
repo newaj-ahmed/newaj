@@ -1,32 +1,61 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Degree Notices</title>
 <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<header>
-<div class="logo">
-<h2>Degree Notices</h2>
-</div>
+<header class="header">
+<h2 style="margin:auto;">Degree Notices</h2>
 </header>
 
-<section>
-<div id="degreeBox" style="padding:30px; text-align:center;"></div>
+<section style="text-align:center; padding:40px;" id="authBox2">
+
+<h3>Dear Newaj, Please enter your password</h3>
+<br>
+<input type="password" id="degreePass" placeholder="Enter Password" style="padding:10px; width:200px;">
+<br><br>
+<button onclick="checkDegree()" class="touch-btn">Submit</button>
+
 </section>
 
-<footer>
+<section id="degreeContent" style="display:none; padding:20px;">
+
+<div class="notice-card">
+<a href="https://drive.google.com/file/d/1RVXMC1EgeVn8Js9jtzr37IM4YV48ubWf/view?usp=sharing" target="_blank">
+<h3>Final Paper list of 4th Semester</h3>
+<p>Click to view the paper list</p>
+</a>
+</div>
+
+<br>
+
+<div class="notice-card">
+<a href="https://namce.ajmalgroupofcolleges.org/departments.php" target="_blank">
+<h3>Previous Years Questions</h3>
+<p>Click to view questions</p>
+</a>
+</div>
+
+</section>
+
+<footer style="text-align:center; padding:20px;">
 <a href="index.html">← Back to Home</a>
 </footer>
 
-<script src="script.js"></script>
-
 <script>
-loadDegree();
+function checkDegree(){
+var p=document.getElementById("degreePass").value;
+
+if(p=="Newaj@12"){
+document.getElementById("degreeContent").style.display="block";
+document.getElementById("authBox2").style.display="none";
+}else{
+alert("Wrong Password");
+}
+}
 </script>
 
 </body>

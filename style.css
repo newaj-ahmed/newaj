@@ -10,16 +10,16 @@ background:#f4f6f9;
 }
 
 /* Header */
-header{
+.header{
 background:#111;
-color:#fff;
-padding:15px 50px;
+color:white;
+padding:15px 40px;
 display:flex;
 justify-content:space-between;
 align-items:center;
+flex-wrap:wrap;
 }
 
-/* Logo */
 .logo h2{
 letter-spacing:2px;
 }
@@ -38,114 +38,88 @@ nav ul li a{
 color:white;
 text-decoration:none;
 font-weight:bold;
-transition:0.3s;
 }
 
-nav ul li a:hover{
-color:#00bcd4;
-}
-
-/* Menu Button */
 .menu-btn{
 display:none;
 font-size:24px;
 cursor:pointer;
 }
 
-/* UPSC and Degree Area */
+/* Notice Buttons */
 .notice-area{
 display:flex;
-justify-content:space-between;
-padding:40px 80px;
-background:#e9ecef;
+justify-content:center;
+gap:20px;
+padding:30px;
+flex-wrap:wrap;
 }
 
-/* Buttons */
 .upsc-btn{
-padding:15px 35px;
-font-size:20px;
+padding:15px 40px;
+font-size:18px;
 background:linear-gradient(45deg,#007bff,#00c6ff);
-color:white;
 border:none;
+color:white;
 border-radius:30px;
 cursor:pointer;
 }
 
 .degree-btn{
-padding:15px 35px;
-font-size:20px;
+padding:15px 40px;
+font-size:18px;
 background:linear-gradient(45deg,#ff5722,#ff9800);
-color:white;
 border:none;
+color:white;
 border-radius:30px;
 cursor:pointer;
 }
 
-/* Notice Box */
-#upscBox, #degreeBox{
-display:none;
-position:absolute;
-background:white;
-color:black;
-padding:10px;
-margin-top:10px;
-width:200px;
-border:1px solid black;
-z-index:1;
-}
-
+/* Hero */
 .hero{
 text-align:center;
 padding:60px;
-background:linear-gradient(to right, #007bff, #00bcd4);
+background:linear-gradient(to right,#007bff,#00c6ff);
 color:white;
 }
 
+/* Sections */
 section{
 padding:40px;
 text-align:center;
 }
 
-.gallery-box{
-display:flex;
-justify-content:center;
-gap:15px;
-}
-
-.gallery-box img{
-width:150px;
-height:150px;
-border-radius:10px;
-box-shadow:0 0 10px grey;
-}
-
-footer{
+/* Footer */
+.footer{
 background:#111;
 color:white;
 text-align:center;
 padding:20px;
 }
 
-footer a{
-color:#00bcd4;
-text-decoration:none;
+.social-icons i{
+font-size:22px;
+margin:0 10px;
+color:white;
 }
 
-/* Mobile View */
+.touch-btn{
+display:inline-block;
+padding:10px 20px;
+background:#00c6ff;
+color:white;
+text-decoration:none;
+border-radius:20px;
+}
+
+/* Mobile */
 @media(max-width:768px){
 
 nav ul{
 flex-direction:column;
 display:none;
 background:#111;
-position:absolute;
-top:60px;
-right:0;
-width:150px;
-}
-
-nav ul li{
-margin:10px;
+width:100%;
 }
 
 .menu-btn{

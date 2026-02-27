@@ -5,25 +5,27 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Newaj Ahmed</title>
 <link rel="stylesheet" href="style.css">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
 </head>
 
 <body>
 
-<header>
+<header class="header">
 
 <div class="logo">
 <h2>Newaj Ahmed</h2>
 </div>
 
 <div class="menu-btn" onclick="toggleMenu()">
-☰
+<i class="fas fa-bars"></i>
 </div>
 
 <nav id="navLinks">
 <ul>
 <li><a href="#">Home</a></li>
 <li><a href="#about">About</a></li>
-<li><a href="#gallery">Gallery</a></li>
 <li><a href="#services">Services</a></li>
 <li><a href="#contact">Contact</a></li>
 </ul>
@@ -33,13 +35,13 @@
 
 <section class="notice-area">
 
-<div class="notice-left">
+<div class="notice-box">
 <a href="upsc.html">
 <button class="upsc-btn">UPSC</button>
 </a>
 </div>
 
-<div class="notice-right">
+<div class="notice-box">
 <a href="degree.html">
 <button class="degree-btn">Degree</button>
 </a>
@@ -48,39 +50,56 @@
 </section>
 
 <section class="hero">
-<h2>Welcome to My Website</h2>
-<p>This is my personal website</p>
+<h1>Welcome to My Personal Website</h1>
+<p>Stay updated with latest UPSC & Degree notices</p>
 </section>
 
-<section id="about">
+<section id="about" class="about">
 <h2>About Me</h2>
-<p>I am Newaj Ahmed, a student from Hojai, Assam.</p>
+<p>I am Newaj Ahmed from Hojai, Assam</p>
 </section>
 
-<section id="gallery">
-<h2>Gallery</h2>
-<div class="gallery-box">
-<img src="images/photo1.jpg">
-<img src="images/photo2.jpg">
-<img src="images/photo3.jpg">
-</div>
-</section>
-
-<section id="services">
+<section id="services" class="services">
 <h2>Services</h2>
-<p>Services will be updated soon.</p>
+<p>Academic updates and important notices available here</p>
 </section>
 
-<section id="contact">
+<section id="contact" class="contact">
 <h2>Contact</h2>
-<p>For any queries please use the Get Touch option below.</p>
+<p>Please use Get Touch option below</p>
 </section>
 
-<footer>
-<h3>Get Touch In</h3>
-<a href="https://docs.google.com/forms/d/e/1FAIpQLSfTpGFtyaiPr5ONq3cVyT8EHa0t-jTb-9xb-lnQlnGHMP6-Lg/viewform?usp=header" target="_blank">
-Click Here to Contact
+<footer class="footer">
+
+<h3>Connect With Me</h3>
+<p>Newaj Ahmed | Hojai, Assam</p>
+
+<div class="social-icons">
+
+<a href="https://wa.me/919387127176" target="_blank">
+<i class="fab fa-whatsapp"></i>
 </a>
+
+<a href="https://x.com/newaj_ahmed16" target="_blank">
+<i class="fab fa-twitter"></i>
+</a>
+
+<a href="https://instagram.com/yuki.4u_" target="_blank">
+<i class="fab fa-instagram"></i>
+</a>
+
+<a href="https://facebook.com/NewajAhmed" target="_blank">
+<i class="fab fa-facebook"></i>
+</a>
+
+</div>
+
+<br>
+
+<a class="touch-btn" href="https://docs.google.com/forms/d/e/1FAIpQLSfTpGFtyaiPr5ONq3cVyT8EHa0t-jTb-9xb-lnQlnGHMP6-Lg/viewform?usp=header" target="_blank">
+Get Touch In
+</a>
+
 </footer>
 
 <script src="script.js"></script>

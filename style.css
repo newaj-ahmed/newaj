@@ -10,6 +10,7 @@ background:#f4f6f9;
 }
 
 /* Header */
+
 .header{
 background:#111;
 color:white;
@@ -25,6 +26,7 @@ letter-spacing:2px;
 }
 
 /* Menu */
+
 nav ul{
 list-style:none;
 display:flex;
@@ -46,7 +48,8 @@ font-size:24px;
 cursor:pointer;
 }
 
-/* Notice Buttons */
+/* UPSC & Degree Buttons */
+
 .notice-area{
 display:flex;
 justify-content:center;
@@ -75,7 +78,8 @@ border-radius:30px;
 cursor:pointer;
 }
 
-/* Hero */
+/* Hero Section */
+
 .hero{
 text-align:center;
 padding:60px;
@@ -84,12 +88,39 @@ color:white;
 }
 
 /* Sections */
+
 section{
 padding:40px;
 text-align:center;
 }
 
+/* Donation Button Section */
+
+.donation-section{
+text-align:center;
+padding:40px;
+background:#f5f5f5;
+}
+
+.donate-big-btn{
+display:inline-block;
+padding:18px 50px;
+font-size:22px;
+font-weight:bold;
+color:white;
+text-decoration:none;
+background:linear-gradient(45deg,#ff416c,#ff4b2b);
+border-radius:40px;
+box-shadow:0 5px 15px rgba(0,0,0,0.3);
+transition:0.3s;
+}
+
+.donate-big-btn:hover{
+transform:scale(1.05);
+}
+
 /* Footer */
+
 .footer{
 background:#111;
 color:white;
@@ -112,7 +143,8 @@ text-decoration:none;
 border-radius:20px;
 }
 
-/* Mobile */
+/* Mobile Responsive */
+
 @media(max-width:768px){
 
 nav ul{
@@ -122,12 +154,20 @@ background:#111;
 width:100%;
 }
 
+nav ul li{
+margin:10px 0;
+}
+
 .menu-btn{
 display:block;
 }
 
 .notice-area{
 padding:20px;
+}
+
+.hero{
+padding:40px;
 }
 
 }

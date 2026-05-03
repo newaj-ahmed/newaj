@@ -52,7 +52,7 @@ function markAllAbsent() {
   loadStudents();
 }
 
-// SAVE NEW
+// SAVE
 function saveAttendance() {
   let date = new Date().toISOString().split("T")[0];
 
@@ -94,7 +94,7 @@ function updateAttendance() {
   alert("Updated");
 }
 
-// REPORT
+// GENERATE + DOWNLOAD EXCEL
 function generateReport() {
   let stats = {};
   let total = 0;
@@ -116,18 +116,25 @@ function generateReport() {
     }
   }
 
-  let div = document.getElementById("report");
-  div.innerHTML = "";
+  let csv = "Name,Attendance %,Present Days,Total Classes\r\n";
 
   for (let name in stats) {
-    let percent = ((stats[name] / total) * 100).toFixed(1);
-    div.innerHTML += `
-      <div class="report-row">
-        <span>${name}</span>
-        <span>${percent}%</span>
-      </div>
-    `;
+    let percent = total ? ((stats[name] / total) * 100).toFixed(1) : 0;
+    csv += `${name},${percent}%,${stats[name]},${total}\r\n`;
   }
+
+  let blob = new Blob([csv], { type: "text/csv" });
+  let a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+
+  // AUTO FILE NAME
+  const now = new Date();
+  const month = now.toLocaleString("default", { month: "long" });
+  const year = now.getFullYear();
+
+  a.download = `attendance_${month}_${year}.csv`;
+
+  a.click();
 }
 
 // INIT

@@ -1,32 +1,34 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Attendance System</title>
+  <title>Political Department Attendance</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
 <div class="container">
 
-  <h2>Attendance System</h2>
+  <h1>POLITICAL DEPARTMENT ATTENDANCE</h1>
 
-  <input type="date" id="date">
-  <button onclick="loadAttendance()">Load</button>
+  <div class="top-bar">
+    <input type="date" id="date">
+    <button onclick="loadAttendance()">Load</button>
+  </div>
 
   <div class="top-actions">
-    <button onclick="markAllPresent()">Mark All Present</button>
-    <button onclick="markAllAbsent()">Mark All Absent</button>
+    <button class="green" onclick="markAllPresent()">Mark All Present</button>
+    <button class="red" onclick="markAllAbsent()">Mark All Absent</button>
   </div>
 
   <div id="students"></div>
 
   <div class="actions">
-    <button onclick="saveAttendance()">Save</button>
-    <button onclick="updateAttendance()">Update</button>
+    <button class="blue" onclick="saveAttendance()">Save</button>
+    <button class="orange" onclick="updateAttendance()">Update</button>
   </div>
 
-  <h3>Monthly Report</h3>
-  <button onclick="generateReport()">Generate & Download Excel</button>
+  <h2>Monthly Report</h2>
+  <button class="purple" onclick="generateReport()">Generate & Download Excel</button>
 
 </div>
 

@@ -1,3 +1,5 @@
+alert("JS Loaded");
+
 const students = [
 "Abdul Kasem","Wahid Barbuya","Afzal Hussain","Alomgir Mandol",
 "Arif Arman","Gautam Kumar","Iqbal Hussain","Kunal Hasnu",
@@ -34,19 +36,18 @@ function loadStudents() {
   });
 }
 
-// MARK SINGLE
+// MARK
 function mark(name, status) {
   attendance[name] = status;
   loadStudents();
 }
 
-// MARK ALL PRESENT
+// MARK ALL
 function markAllPresent() {
   students.forEach(name => attendance[name] = "P");
   loadStudents();
 }
 
-// MARK ALL ABSENT
 function markAllAbsent() {
   students.forEach(name => attendance[name] = "A");
   loadStudents();
@@ -57,7 +58,7 @@ function saveAttendance() {
   let date = new Date().toISOString().split("T")[0];
 
   if (localStorage.getItem(date)) {
-    alert("Already saved for today");
+    alert("Already saved");
     return;
   }
 
@@ -68,6 +69,11 @@ function saveAttendance() {
 // LOAD
 function loadAttendance() {
   let date = document.getElementById("date").value;
+
+  if (!date) {
+    alert("Select date first");
+    return;
+  }
 
   let data = localStorage.getItem(date);
 
@@ -94,13 +100,17 @@ function updateAttendance() {
   alert("Updated");
 }
 
-// GENERATE + DOWNLOAD EXCEL
+// GENERATE EXCEL
 function generateReport() {
+  alert("Generating...");
+
   let stats = {};
   let total = 0;
   let currentMonth = new Date().getMonth();
 
-  for (let key in localStorage) {
+  for (let i = 0; i < localStorage.length; i++) {
+    let key = localStorage.key(i);
+
     if (!key.includes("-")) continue;
 
     let d = new Date(key);
@@ -116,25 +126,33 @@ function generateReport() {
     }
   }
 
+  if (total === 0) {
+    alert("No data found");
+    return;
+  }
+
   let csv = "Name,Attendance %,Present Days,Total Classes\r\n";
 
   for (let name in stats) {
-    let percent = total ? ((stats[name] / total) * 100).toFixed(1) : 0;
+    let percent = ((stats[name] / total) * 100).toFixed(1);
     csv += `${name},${percent}%,${stats[name]},${total}\r\n`;
   }
 
-  let blob = new Blob([csv], { type: "text/csv" });
-  let a = document.createElement("a");
-  a.href = URL.createObjectURL(blob);
+  let blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
+  let url = URL.createObjectURL(blob);
 
-  // AUTO FILE NAME
+  let link = document.createElement("a");
+  link.href = url;
+
   const now = new Date();
   const month = now.toLocaleString("default", { month: "long" });
   const year = now.getFullYear();
 
-  a.download = `attendance_${month}_${year}.csv`;
+  link.download = `attendance_${month}_${year}.csv`;
 
-  a.click();
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
 }
 
 // INIT

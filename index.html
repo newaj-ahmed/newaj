@@ -1,122 +1,36 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html>
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Newaj Ahmed</title>
-
-<link rel="stylesheet" href="style.css">
-
-<link rel="stylesheet"
-href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-
+  <title>Attendance System</title>
+  <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
-<header class="header">
+<div class="container">
 
-<div class="logo">
-<h2>Newaj Ahmed</h2>
-</div>
+  <h2>Attendance System</h2>
 
-<div class="menu-btn" onclick="toggleMenu()">
-<i class="fas fa-bars"></i>
-</div>
+  <input type="date" id="date">
+  <button onclick="loadAttendance()">Load</button>
 
-<nav id="navLinks">
-<ul>
-<li><a href="#">Home</a></li>
-<li><a href="#about">About</a></li>
-<li><a href="#services">Services</a></li>
-<li><a href="#contact">Contact</a></li>
-</ul>
-</nav>
+  <div class="top-actions">
+    <button onclick="markAllPresent()">Mark All Present</button>
+    <button onclick="markAllAbsent()">Mark All Absent</button>
+  </div>
 
-</header>
+  <div id="students"></div>
 
-<section class="notice-area">
+  <div class="actions">
+    <button onclick="saveAttendance()">Save</button>
+    <button onclick="updateAttendance()">Update</button>
+  </div>
 
-<div class="notice-box">
-<a href="upsc.html">
-<button class="upsc-btn">UPSC</button>
-</a>
-</div>
-
-<div class="notice-box">
-<a href="degree.html">
-<button class="degree-btn">Degree</button>
-</a>
-</div>
-
-</section>
-
-<section class="hero">
-<h1>Welcome to the HUB of People</h1>
-<p>Let us sacrifice our today so that our children can have a better tomorrow. ...</p>
-</section>
-
-<section id="about" class="about">
-<h2>About Me</h2>
-<p>I am Newaj Ahmed from Hojai, Assam</p>
-</section>
-
-<section id="services" class="services">
-<h2>Services</h2>
-<p>We will update soon....</p>
-</section>
-
-<section id="contact" class="contact">
-<h2>Contact</h2>
-<p>Please use Get Touch option below or you can directly click on the below whatsapp bottom</p>
-</section>
-
-<section class="donation-section">
-
-<a href="donate.html" class="donate-big-btn">
-💝 A Gift to Your Brother
-</a>
-
-</section>
-
-<footer class="footer">
-
-<h3>Connect With Me</h3>
-<p>Newaj Ahmed | Hojai, Assam</p>
-
-<div class="social-icons">
-
-<a href="https://wa.me/919387127176" target="_blank">
-<i class="fab fa-whatsapp"></i>
-</a>
-
-<a href="https://x.com/newajahmed16" target="_blank">
-<i class="fab fa-twitter"></i>
-</a>
-
-<a href="https://instagram.com/newaj_ahmad" target="_blank">
-<i class="fab fa-instagram"></i>
-</a>
-
-<a href="https://facebook.com/NewajAhmed" target="_blank">
-<i class="fab fa-facebook"></i>
-</a>
+  <h3>Monthly Report</h3>
+  <button onclick="generateReport()">Generate</button>
+  <div id="report"></div>
 
 </div>
 
-<br>
-
-<a class="touch-btn"
-href="https://docs.google.com/forms/d/e/1FAIpQLSfTpGFtyaiPr5ONq3cVyT8EHa0t-jTb-9xb-lnQlnGHMP6-Lg/viewform?usp=header"
-target="_blank">
-Get Touch In
-</a>
-
-</footer>
-
-<script src="script.js"></script>
-
+<script src="app.js"></script>
 </body>
-
 </html>

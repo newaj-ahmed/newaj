@@ -8,7 +8,7 @@ body{
     font-family:Arial, sans-serif;
     background:#f4f7fb;
     color:#222;
-    line-height:1.6;
+    line-height:1.7;
 }
 
 /* HERO SECTION */
@@ -16,73 +16,63 @@ body{
 .hero{
     background:linear-gradient(135deg,#0f172a,#1e3a8a,#2563eb);
     color:white;
-    padding:70px 20px;
     text-align:center;
+    padding:90px 20px;
 }
 
 .overlay{
-    max-width:1100px;
+    max-width:1200px;
     margin:auto;
 }
 
 .hero h1{
-    font-size:60px;
+    font-size:70px;
+    letter-spacing:5px;
     margin-bottom:20px;
-    letter-spacing:4px;
-    font-weight:bold;
     color:#facc15;
+    font-weight:bold;
 }
 
 .hero h2{
-    font-size:40px;
-    margin-bottom:10px;
-    color:#ffffff;
+    font-size:42px;
+    margin-bottom:15px;
 }
 
 .hero h3{
-    font-size:24px;
-    margin-bottom:10px;
+    font-size:25px;
+    margin-bottom:12px;
     color:#dbeafe;
 }
 
 .affiliated{
-    margin-top:15px;
-    font-size:20px;
-    color:#fcd34d;
-    font-weight:bold;
-}
-
-.intro{
     margin-top:25px;
-    font-size:18px;
-    text-align:justify;
-    background:rgba(255,255,255,0.1);
-    padding:20px;
-    border-radius:12px;
+    font-size:24px;
+    font-weight:bold;
+    color:#fde047;
 }
 
 /* ABOUT SECTION */
 
 .about{
-    max-width:1200px;
-    margin:50px auto;
+    max-width:1250px;
+    margin:70px auto;
     padding:20px;
 }
 
 .about h2{
     text-align:center;
-    font-size:40px;
+    font-size:48px;
+    margin-bottom:40px;
     color:#1e3a8a;
-    margin-bottom:30px;
 }
 
 .about p{
     background:white;
-    padding:25px;
-    margin-bottom:20px;
-    border-left:8px solid #2563eb;
-    border-radius:10px;
-    box-shadow:0 4px 10px rgba(0,0,0,0.1);
+    padding:28px;
+    margin-bottom:25px;
+    border-radius:18px;
+    border-left:10px solid #2563eb;
+    box-shadow:0 5px 15px rgba(0,0,0,0.1);
     font-size:18px;
     text-align:justify;
 }
@@ -90,186 +80,445 @@ body{
 /* OBJECTIVES */
 
 .objectives{
-    background:#e0f2fe;
-    padding:60px 20px;
+    background:#dbeafe;
+    padding:80px 20px;
 }
 
 .objectives h2{
     text-align:center;
-    font-size:42px;
-    margin-bottom:40px;
+    font-size:48px;
+    margin-bottom:50px;
     color:#0f172a;
 }
 
-.objective-list{
+.objective-container{
     display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-    gap:25px;
-    max-width:1200px;
+    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+    gap:30px;
+    max-width:1300px;
     margin:auto;
 }
 
 .objective-card{
-    background:white;
-    padding:30px;
-    border-radius:18px;
+    padding:35px;
+    border-radius:20px;
     text-align:center;
-    box-shadow:0 4px 12px rgba(0,0,0,0.1);
+    color:white;
     transition:0.3s;
+    box-shadow:0 6px 18px rgba(0,0,0,0.15);
 }
 
 .objective-card:hover{
-    transform:translateY(-8px);
+    transform:translateY(-10px);
 }
 
+/* DIFFERENT COLORS */
+
 .objective-card:nth-child(1){
-    background:#fef3c7;
+    background:linear-gradient(135deg,#ef4444,#f97316);
 }
 
 .objective-card:nth-child(2){
-    background:#dcfce7;
+    background:linear-gradient(135deg,#3b82f6,#6366f1);
 }
 
 .objective-card:nth-child(3){
-    background:#dbeafe;
+    background:linear-gradient(135deg,#22c55e,#14b8a6);
 }
 
 .objective-card:nth-child(4){
-    background:#fce7f3;
+    background:linear-gradient(135deg,#ec4899,#a855f7);
 }
 
 .objective-card h3{
-    margin-bottom:15px;
-    font-size:26px;
-    color:#1e293b;
-}
-
-.objective-card p{
-    font-size:17px;
-    color:#334155;
-}
-
-/* STUDENT SECTION */
-
-.students-section{
-    padding:60px 20px;
-}
-
-.students-section h2{
-    text-align:center;
-    font-size:45px;
-    color:#1d4ed8;
+    font-size:30px;
     margin-bottom:20px;
 }
 
-.student-note{
-    text-align:center;
-    margin-bottom:40px;
+.objective-card p{
     font-size:18px;
-    color:#555;
 }
 
-#student-container{
+/* IMPORTANCE */
+
+.importance{
+    max-width:1250px;
+    margin:70px auto;
+    padding:20px;
+}
+
+.importance h2{
+    text-align:center;
+    font-size:48px;
+    margin-bottom:40px;
+    color:#1d4ed8;
+}
+
+.importance p{
+    background:white;
+    padding:28px;
+    margin-bottom:25px;
+    border-radius:18px;
+    border-left:10px solid #0ea5e9;
+    box-shadow:0 5px 15px rgba(0,0,0,0.1);
+    font-size:18px;
+    text-align:justify;
+}
+
+/* STUDENT BUTTON SECTION */
+
+.student-button-section{
+    background:#0f172a;
+    color:white;
+    text-align:center;
+    padding:90px 20px;
+}
+
+.student-button-section h2{
+    font-size:50px;
+    margin-bottom:25px;
+    color:#facc15;
+}
+
+.student-button-section p{
+    max-width:1000px;
+    margin:auto;
+    font-size:20px;
+    margin-bottom:45px;
+}
+
+.student-btn{
+    display:inline-block;
+    padding:18px 50px;
+    background:#facc15;
+    color:#111827;
+    text-decoration:none;
+    border-radius:14px;
+    font-size:25px;
+    font-weight:bold;
+    transition:0.3s;
+}
+
+.student-btn:hover{
+    background:white;
+    transform:scale(1.05);
+}
+
+/* PREVIEW SECTION */
+
+.preview{
+    padding:80px 20px;
+}
+
+.preview h2{
+    text-align:center;
+    font-size:48px;
+    margin-bottom:50px;
+    color:#1e3a8a;
+}
+
+.preview-grid{
     display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
     gap:30px;
     max-width:1300px;
+    margin:auto;
+}
+
+.preview-card{
+    padding:40px;
+    border-radius:20px;
+    color:white;
+    text-align:center;
+    box-shadow:0 6px 18px rgba(0,0,0,0.15);
+    transition:0.3s;
+}
+
+.preview-card:hover{
+    transform:translateY(-10px);
+}
+
+.preview-card:nth-child(1){
+    background:linear-gradient(135deg,#2563eb,#06b6d4);
+}
+
+.preview-card:nth-child(2){
+    background:linear-gradient(135deg,#9333ea,#ec4899);
+}
+
+.preview-card:nth-child(3){
+    background:linear-gradient(135deg,#22c55e,#84cc16);
+}
+
+.preview-card:nth-child(4){
+    background:linear-gradient(135deg,#f97316,#ef4444);
+}
+
+.preview-card h3{
+    font-size:34px;
+    margin-bottom:18px;
+}
+
+.preview-card p{
+    font-size:19px;
+}
+
+/* FOOTER */
+
+footer{
+    background:#111827;
+    color:white;
+    text-align:center;
+    padding:60px 20px;
+}
+
+footer h2{
+    font-size:38px;
+    margin-bottom:25px;
+    color:#facc15;
+}
+
+footer p{
+    margin-bottom:12px;
+    font-size:19px;
+}
+
+/* STUDENTS PAGE */
+
+.students-page{
+    padding:70px 20px;
+}
+
+.class-title{
+    text-align:center;
+    font-size:48px;
+    margin-bottom:45px;
+    margin-top:40px;
+    color:#1e3a8a;
+}
+
+/* STUDENT GRID */
+
+.student-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(270px,1fr));
+    gap:30px;
+    max-width:1350px;
     margin:auto;
 }
 
 /* STUDENT CARD */
 
 .student-card{
-    padding:25px;
-    border-radius:20px;
+    padding:28px;
+    border-radius:22px;
+    text-align:center;
     color:white;
-    box-shadow:0 5px 15px rgba(0,0,0,0.15);
+    box-shadow:0 6px 18px rgba(0,0,0,0.15);
     transition:0.3s;
 }
 
 .student-card:hover{
-    transform:scale(1.03);
+    transform:translateY(-8px);
 }
 
+/* COLORFUL CARDS */
+
 .student-card:nth-child(6n+1){
-    background:linear-gradient(135deg,#ef4444,#f97316);
+    background:linear-gradient(135deg,#2563eb,#06b6d4);
 }
 
 .student-card:nth-child(6n+2){
-    background:linear-gradient(135deg,#22c55e,#14b8a6);
+    background:linear-gradient(135deg,#9333ea,#ec4899);
 }
 
 .student-card:nth-child(6n+3){
-    background:linear-gradient(135deg,#3b82f6,#6366f1);
+    background:linear-gradient(135deg,#22c55e,#84cc16);
 }
 
 .student-card:nth-child(6n+4){
-    background:linear-gradient(135deg,#ec4899,#a855f7);
+    background:linear-gradient(135deg,#f97316,#ef4444);
 }
 
 .student-card:nth-child(6n+5){
-    background:linear-gradient(135deg,#f59e0b,#eab308);
+    background:linear-gradient(135deg,#0f766e,#14b8a6);
 }
 
 .student-card:nth-child(6n+6){
-    background:linear-gradient(135deg,#06b6d4,#0ea5e9);
+    background:linear-gradient(135deg,#7c3aed,#3b82f6);
 }
+
+/* PHOTO BOX */
+
+.photo-box{
+    width:140px;
+    height:140px;
+    background:white;
+    color:#111827;
+    margin:auto;
+    margin-bottom:22px;
+    border-radius:18px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:24px;
+    font-weight:bold;
+    overflow:hidden;
+}
+
+/* IMAGE */
+
+.photo-box img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    border-radius:18px;
+}
+
+/* TEXT */
 
 .student-card h3{
     font-size:30px;
-    margin-bottom:15px;
+    margin-bottom:18px;
 }
 
 .student-card p{
     font-size:18px;
-    margin-bottom:10px;
+    margin-bottom:12px;
 }
 
-/* FOOTER */
+/* RESPONSIVE DESIGN */
 
-footer{
-    background:#0f172a;
-    color:white;
-    text-align:center;
-    padding:40px 20px;
-    margin-top:60px;
-}
-
-footer h3{
-    font-size:30px;
-    margin-bottom:20px;
-    color:#facc15;
-}
-
-footer p{
-    margin-bottom:10px;
-    font-size:17px;
-}
-
-/* RESPONSIVE */
-
-@media(max-width:768px){
+@media(max-width:992px){
 
     .hero h1{
-        font-size:40px;
+        font-size:55px;
     }
 
     .hero h2{
-        font-size:30px;
+        font-size:34px;
     }
 
     .hero h3{
+        font-size:22px;
+    }
+
+    .about h2,
+    .objectives h2,
+    .importance h2,
+    .preview h2,
+    .student-button-section h2,
+    .class-title{
+        font-size:38px;
+    }
+
+}
+
+@media(max-width:768px){
+
+    .hero{
+        padding:70px 15px;
+    }
+
+    .hero h1{
+        font-size:42px;
+    }
+
+    .hero h2{
+        font-size:28px;
+    }
+
+    .hero h3{
+        font-size:19px;
+    }
+
+    .affiliated{
         font-size:20px;
     }
 
     .about h2,
     .objectives h2,
-    .students-section h2{
+    .importance h2,
+    .preview h2,
+    .student-button-section h2,
+    .class-title{
         font-size:32px;
     }
 
-    .intro,
-    .about p{
+    .about p,
+    .importance p{
+        font-size:16px;
+        padding:22px;
+    }
+
+    .objective-card h3,
+    .preview-card h3{
+        font-size:26px;
+    }
+
+    .objective-card p,
+    .preview-card p{
+        font-size:16px;
+    }
+
+    .student-button-section p{
+        font-size:17px;
+    }
+
+    .student-btn{
+        font-size:20px;
+        padding:16px 35px;
+    }
+
+    .student-card h3{
+        font-size:25px;
+    }
+
+    .student-card p{
+        font-size:16px;
+    }
+
+    .photo-box{
+        width:120px;
+        height:120px;
+        font-size:20px;
+    }
+
+}
+
+@media(max-width:480px){
+
+    .hero h1{
+        font-size:35px;
+    }
+
+    .hero h2{
+        font-size:24px;
+    }
+
+    .hero h3{
+        font-size:17px;
+    }
+
+    .about h2,
+    .objectives h2,
+    .importance h2,
+    .preview h2,
+    .student-button-section h2,
+    .class-title{
+        font-size:28px;
+    }
+
+    .about p,
+    .importance p{
+        font-size:15px;
+    }
+
+    footer h2{
+        font-size:30px;
+    }
+
+    footer p{
         font-size:16px;
     }
 

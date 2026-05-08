@@ -1,9 +1,11 @@
 const sheetID = "1yIQaKBp2GaV9zrEmDPveItWF2zZM9X5aIzLysT2KhLw";
 
-const url = `https://opensheet.elk.sh/${sheetID}/Form Responses 1`;
+const url = `https://opensheet.elk.sh/${sheetID}/Form_Responses`;
 
 fetch(url)
+
   .then(response => response.json())
+
   .then(data => {
 
     const container = document.getElementById("student-container");
@@ -19,14 +21,16 @@ fetch(url)
       const studentClass = student["Class"] || "Unknown Class";
 
       if (!groupedStudents[studentClass]) {
+
         groupedStudents[studentClass] = [];
+
       }
 
       groupedStudents[studentClass].push(student);
 
     });
 
-    // CREATE CLASSWISE SECTIONS
+    // CREATE CLASSWISE STUDENT SECTION
 
     for (const className in groupedStudents) {
 
@@ -45,7 +49,7 @@ fetch(url)
 
       container.appendChild(classTitle);
 
-      // STUDENT GRID
+      // CLASS GRID
 
       const classGrid = document.createElement("div");
 

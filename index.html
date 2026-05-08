@@ -1,37 +1,247 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-  <title>Political Department Attendance</title>
-  <link rel="stylesheet" href="style.css">
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Internship Project</title>
+
+    <link rel="stylesheet" href="style.css">
+
 </head>
+
 <body>
 
-<div class="container">
+    <!-- HEADER SECTION -->
 
-  <h1>POLITICAL DEPARTMENT ATTENDANCE</h1>
+    <header class="hero">
 
-  <div class="top-bar">
-    <input type="date" id="date">
-    <button onclick="loadAttendance()">Load</button>
-  </div>
+        <div class="overlay">
 
-  <div class="top-actions">
-    <button class="green" onclick="markAllPresent()">Mark All Present</button>
-    <button class="red" onclick="markAllAbsent()">Mark All Absent</button>
-  </div>
+            <h1>INTERNSHIP</h1>
 
-  <div id="students"></div>
+            <h2>Newaj Ahmed</h2>
 
-  <div class="actions">
-    <button class="blue" onclick="saveAttendance()">Save</button>
-    <button class="orange" onclick="updateAttendance()">Update</button>
-  </div>
+            <h3>FYUGP - 5th Semester</h3>
 
-  <h2>Monthly Report</h2>
-  <button class="purple" onclick="generateReport()">Generate & Download Excel</button>
+            <h3>Political Science Department</h3>
 
-</div>
+            <h3>Nazir Ajmal Memorial College of Education</h3>
 
-<script src="app.js"></script>
+            <p class="affiliated">
+                Affiliated to Gauhati University
+            </p>
+
+        </div>
+
+    </header>
+
+    <!-- ABOUT INTERNSHIP -->
+
+    <section class="about">
+
+        <h2>About the Internship Project</h2>
+
+        <p class="intro">
+            This internship project has been developed under the Department of
+            Political Science as part of academic internship activities.
+            Political Science is one of the most important social sciences which
+            studies the structure and functioning of the state, government,
+            constitution, democracy, public administration, political behavior,
+            citizenship, rights, duties, justice, equality, liberty, and
+            international relations.
+        </p>
+
+        <p class="intro">
+            The main objective of this internship project is to create awareness
+            about political institutions, democratic values, leadership,
+            governance, constitutional principles, and responsible citizenship.
+            Through this internship, an attempt has been made to understand the
+            relationship between citizens and the state along with the importance
+            of participation in democratic processes.
+        </p>
+
+        <p class="intro">
+            Political Science helps students understand the functioning of
+            Parliament, Judiciary, Executive, Election Commission, political
+            parties, public policies, and international organizations.
+            It also develops critical thinking, leadership qualities,
+            social responsibility, decision-making ability, and awareness
+            regarding national and global political issues.
+        </p>
+
+        <p class="intro">
+            This internship project also highlights the importance of
+            education in strengthening democracy and social harmony.
+            It encourages students to become responsible citizens who
+            understand constitutional values, secularism, justice,
+            equality, human rights, and the importance of peaceful
+            coexistence in society.
+        </p>
+
+        <p class="intro">
+            The internship work further focuses on developing practical,
+            organizational, communication, and analytical skills among
+            students. It also reflects the significance of discipline,
+            cooperation, teamwork, leadership, and active participation
+            in educational and social activities.
+        </p>
+
+        <p class="intro">
+            Nazir Ajmal Memorial College of Education, affiliated to
+            Gauhati University, plays an important role in promoting
+            higher education, value-based learning, academic excellence,
+            and personality development among students. This internship
+            project has been prepared as part of the educational and
+            practical learning process under the FYUGP 5th Semester
+            Political Science Department.
+        </p>
+
+    </section>
+
+    <!-- OBJECTIVES -->
+
+    <section class="objectives">
+
+        <h2>Objectives of the Internship</h2>
+
+        <div class="objective-list">
+
+            <div class="objective-card">
+
+                <h3>Political Awareness</h3>
+
+                <p>
+                    To create awareness among students regarding democracy,
+                    citizenship, constitution, elections, governance,
+                    and political participation.
+                </p>
+
+            </div>
+
+            <div class="objective-card">
+
+                <h3>Leadership Development</h3>
+
+                <p>
+                    To develop leadership qualities, communication skills,
+                    social responsibility, and decision-making ability
+                    among students.
+                </p>
+
+            </div>
+
+            <div class="objective-card">
+
+                <h3>Understanding Democracy</h3>
+
+                <p>
+                    To understand the functioning of Parliament,
+                    Judiciary, Executive, Election Commission,
+                    and democratic institutions.
+                </p>
+
+            </div>
+
+            <div class="objective-card">
+
+                <h3>Social Responsibility</h3>
+
+                <p>
+                    To encourage students to become responsible citizens
+                    who respect justice, equality, liberty,
+                    secularism, and human rights.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- IMPORTANCE -->
+
+    <section class="about">
+
+        <h2>Importance of Political Science</h2>
+
+        <p class="intro">
+            Political Science plays an important role in understanding
+            society and governance. It helps students understand how
+            laws are made, how governments function, and how citizens
+            participate in democratic systems.
+        </p>
+
+        <p class="intro">
+            It also explains the importance of justice, rights,
+            equality, secularism, constitutional values, and
+            international peace. Political Science develops
+            awareness about current political issues, public
+            administration, foreign policy, and global relations.
+        </p>
+
+        <p class="intro">
+            The subject also develops analytical thinking,
+            leadership qualities, social ethics, public speaking,
+            and problem-solving ability among students.
+            It prepares students for responsible participation
+            in social and political life.
+        </p>
+
+    </section>
+
+    <!-- STUDENT SECTION -->
+
+    <section class="students-section">
+
+        <h2>Student Information</h2>
+
+        <p class="student-note">
+            Student details submitted through Google Forms
+            will automatically appear below class-wise.
+        </p>
+
+        <div id="student-container">
+
+            <!-- Student data from script.js -->
+
+        </div>
+
+    </section>
+
+    <!-- FOOTER -->
+
+    <footer>
+
+        <h3>Internship Project</h3>
+
+        <p>
+            Developed by Newaj Ahmed
+        </p>
+
+        <p>
+            FYUGP 5th Semester
+        </p>
+
+        <p>
+            Political Science Department
+        </p>
+
+        <p>
+            Nazir Ajmal Memorial College of Education
+        </p>
+
+        <p>
+            Affiliated to Gauhati University
+        </p>
+
+    </footer>
+
+    <script src="script.js"></script>
+
 </body>
+
 </html>

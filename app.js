@@ -1,159 +1,135 @@
-alert("JS Loaded");
+const sheetID = "1yIQaKBp2GaV9zrEmDPveItWF2zZM9X5aIzLysT2KhLw";
 
-const students = [
-"Abdul Kasem","Wahid Barbuya","Afzal Hussain","Alomgir Mandol",
-"Arif Arman","Gautam Kumar","Iqbal Hussain","Kunal Hasnu",
-"Mahfuz Alom","Manab Baruah","Manjur Ahmed","Masum Suhel",
-"Mukesh Chauhan","Newaj Ahmed","Nur Amin","Nuruz Zaman",
-"Piarul Islam","Ruhal Ahmed","Samiul Islam","Samsul Alom",
-"Shaminur Sikdar","Sheak Farid","Thangit Hasnu","Yahia Ahmed","Zaid Hussain"
-];
+const url = `https://opensheet.elk.sh/${sheetID}/Form Responses 1`;
 
-let attendance = {};
+fetch(url)
+  .then(response => response.json())
+  .then(data => {
 
-// LOAD STUDENTS
-function loadStudents() {
-  let div = document.getElementById("students");
-  div.innerHTML = "";
+    const container = document.getElementById("student-container");
 
-  students.forEach(name => {
-    let st = attendance[name] || "-";
+    container.innerHTML = "";
 
-    let className = "";
-    if (st === "P") className = "present";
-    if (st === "A") className = "absent";
+    // GROUP STUDENTS CLASSWISE
 
-    div.innerHTML += `
-      <div class="student">
-        <span>${name}</span>
-        <span class="status ${className}">${st}</span>
-        <div>
-          <button onclick="mark('${name}','P')">P</button>
-          <button onclick="mark('${name}','A')">A</button>
-        </div>
-      </div>
-    `;
-  });
-}
+    const groupedStudents = {};
 
-// MARK
-function mark(name, status) {
-  attendance[name] = status;
-  loadStudents();
-}
+    data.forEach(student => {
 
-// MARK ALL
-function markAllPresent() {
-  students.forEach(name => attendance[name] = "P");
-  loadStudents();
-}
+      const studentClass = student["Class"] || "Unknown Class";
 
-function markAllAbsent() {
-  students.forEach(name => attendance[name] = "A");
-  loadStudents();
-}
+      if (!groupedStudents[studentClass]) {
+        groupedStudents[studentClass] = [];
+      }
 
-// SAVE
-function saveAttendance() {
-  let date = new Date().toISOString().split("T")[0];
+      groupedStudents[studentClass].push(student);
 
-  if (localStorage.getItem(date)) {
-    alert("Already saved");
-    return;
-  }
+    });
 
-  localStorage.setItem(date, JSON.stringify(attendance));
-  alert("Saved");
-}
+    // CREATE CLASSWISE SECTIONS
 
-// LOAD
-function loadAttendance() {
-  let date = document.getElementById("date").value;
+    for (const className in groupedStudents) {
 
-  if (!date) {
-    alert("Select date first");
-    return;
-  }
+      // CLASS TITLE
 
-  let data = localStorage.getItem(date);
+      const classTitle = document.createElement("h2");
 
-  if (data) {
-    attendance = JSON.parse(data);
-  } else {
-    attendance = {};
-    alert("No record found");
-  }
+      classTitle.innerText = `Class : ${className}`;
 
-  loadStudents();
-}
+      classTitle.style.width = "100%";
+      classTitle.style.marginTop = "40px";
+      classTitle.style.marginBottom = "20px";
+      classTitle.style.color = "#1e3a8a";
+      classTitle.style.fontSize = "38px";
+      classTitle.style.textAlign = "center";
 
-// UPDATE
-function updateAttendance() {
-  let date = document.getElementById("date").value;
+      container.appendChild(classTitle);
 
-  if (!date) {
-    alert("Select date first");
-    return;
-  }
+      // STUDENT GRID
 
-  localStorage.setItem(date, JSON.stringify(attendance));
-  alert("Updated");
-}
+      const classGrid = document.createElement("div");
 
-// GENERATE EXCEL
-function generateReport() {
-  alert("Generating...");
+      classGrid.style.display = "grid";
+      classGrid.style.gridTemplateColumns = "repeat(auto-fit,minmax(280px,1fr))";
+      classGrid.style.gap = "25px";
+      classGrid.style.width = "100%";
 
-  let stats = {};
-  let total = 0;
-  let currentMonth = new Date().getMonth();
+      groupedStudents[className].forEach(student => {
 
-  for (let i = 0; i < localStorage.length; i++) {
-    let key = localStorage.key(i);
+        const card = document.createElement("div");
 
-    if (!key.includes("-")) continue;
+        card.className = "student-card";
 
-    let d = new Date(key);
-    if (d.getMonth() !== currentMonth) continue;
+        card.innerHTML = `
 
-    total++;
+          <h3>${student["Student Name"] || "No Name"}</h3>
 
-    let data = JSON.parse(localStorage.getItem(key));
+          <p>
+            <strong>Roll Number :</strong>
+            ${student["Roll No"] || "N/A"}
+          </p>
 
-    for (let name in data) {
-      if (!stats[name]) stats[name] = 0;
-      if (data[name] === "P") stats[name]++;
+          <p>
+            <strong>Class :</strong>
+            ${student["Class"] || "N/A"}
+          </p>
+
+          <p>
+            <strong>Department :</strong>
+            Political Science
+          </p>
+
+          <p>
+            <strong>Institution :</strong>
+            Nazir Ajmal Memorial College of Education
+          </p>
+
+          <p>
+            <strong>University :</strong>
+            Gauhati University
+          </p>
+
+          <p>
+            <strong>Academic Session :</strong>
+            FYUGP 5th Semester
+          </p>
+
+          <p>
+            <strong>Status :</strong>
+            Internship Student
+          </p>
+
+        `;
+
+        classGrid.appendChild(card);
+
+      });
+
+      container.appendChild(classGrid);
+
     }
-  }
 
-  if (total === 0) {
-    alert("No data found");
-    return;
-  }
+  })
 
-  let csv = "Name,Attendance %,Present Days,Total Classes\r\n";
+  .catch(error => {
 
-  for (let name in stats) {
-    let percent = ((stats[name] / total) * 100).toFixed(1);
-    csv += `${name},${percent}%,${stats[name]},${total}\r\n`;
-  }
+    console.log("Error:", error);
 
-  let blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
-  let url = URL.createObjectURL(blob);
+    document.getElementById("student-container").innerHTML = `
 
-  let link = document.createElement("a");
-  link.href = url;
+      <div style="
+        background:red;
+        color:white;
+        padding:20px;
+        border-radius:10px;
+        text-align:center;
+        font-size:20px;
+      ">
 
-  const now = new Date();
-  const month = now.toLocaleString("default", { month: "long" });
-  const year = now.getFullYear();
+        Failed to load student data.
 
-  link.download = `attendance_${month}_${year}.csv`;
+      </div>
 
-  document.body.appendChild(link);
-  link.click();
-  document.body.removeChild(link);
-}
+    `;
 
-// INIT
-loadStudents();
+  });

@@ -1,707 +1,212 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
-
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-}
-
-html{
-scroll-behavior:smooth;
-}
-
-body{
-font-family:'Poppins',sans-serif;
-background:#eef2ff;
-color:#111827;
-line-height:1.8;
-overflow-x:hidden;
-}
-
-/* SCROLLBAR */
-
-::-webkit-scrollbar{
-width:10px;
-}
-
-::-webkit-scrollbar-track{
-background:#dbeafe;
-}
-
-::-webkit-scrollbar-thumb{
-background:#2563eb;
-border-radius:20px;
-}
-
-/* HERO SECTION */
-
-.hero{
-min-height:100vh;
-background:
-linear-gradient(rgba(15,23,42,0.55),rgba(30,41,59,0.55)),
-url('./HAAM.png');
-background-size:cover;
-background-position:center;
-background-repeat:no-repeat;
-display:flex;
-align-items:center;
-justify-content:center;
-text-align:center;
-padding:60px 20px;
-position:relative;
-}
-
-.overlay{
-max-width:1200px;
-animation:fadeIn 1.5s ease;
-}
-
-.hero h1{
-font-size:90px;
-font-weight:800;
-letter-spacing:8px;
-margin-bottom:25px;
-color:#facc15;
-text-shadow:0 5px 15px rgba(0,0,0,0.5);
-}
-
-.hero h2{
-font-size:45px;
-margin-bottom:18px;
-color:white;
-font-weight:700;
-}
-
-.hero h3{
-font-size:26px;
-margin-bottom:12px;
-color:#dbeafe;
-font-weight:500;
-}
-
-.affiliated{
-margin-top:25px;
-font-size:24px;
-color:#fde68a;
-font-weight:600;
-}
-
-/* ABOUT */
-
-.about{
-max-width:1350px;
-margin:100px auto;
-padding:20px;
-}
-
-.about h2{
-text-align:center;
-font-size:55px;
-margin-bottom:60px;
-color:#1e3a8a;
-font-weight:800;
-position:relative;
-}
-
-.about h2::after{
-content:"";
-width:130px;
-height:6px;
-background:#2563eb;
-position:absolute;
-left:50%;
-bottom:-15px;
-transform:translateX(-50%);
-border-radius:20px;
-}
-
-.about p{
-background:white;
-padding:35px;
-margin-bottom:30px;
-border-radius:25px;
-font-size:19px;
-text-align:justify;
-box-shadow:0 10px 25px rgba(0,0,0,0.08);
-border-left:10px solid #2563eb;
-transition:0.4s;
-}
-
-.about p:hover{
-transform:translateY(-8px);
-}
-
-/* OBJECTIVES */
-
-.objectives{
-padding:100px 20px;
-background:linear-gradient(135deg,#dbeafe,#ede9fe);
-}
-
-.objectives h2{
-text-align:center;
-font-size:55px;
-margin-bottom:70px;
-color:#111827;
-font-weight:800;
-}
-
-.objective-container{
-max-width:1400px;
-margin:auto;
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-gap:35px;
-}
-
-.objective-card{
-padding:40px;
-border-radius:30px;
-color:white;
-text-align:center;
-transition:0.4s;
-box-shadow:0 15px 30px rgba(0,0,0,0.15);
-position:relative;
-overflow:hidden;
-}
-
-.objective-card::before{
-content:"";
-position:absolute;
-width:200px;
-height:200px;
-background:rgba(255,255,255,0.15);
-border-radius:50%;
-top:-80px;
-right:-80px;
-}
-
-.objective-card:hover{
-transform:translateY(-15px) scale(1.03);
-}
-
-.objective-card:nth-child(1){
-background:linear-gradient(135deg,#2563eb,#06b6d4);
-}
-
-.objective-card:nth-child(2){
-background:linear-gradient(135deg,#9333ea,#ec4899);
-}
-
-.objective-card:nth-child(3){
-background:linear-gradient(135deg,#22c55e,#14b8a6);
-}
-
-.objective-card:nth-child(4){
-background:linear-gradient(135deg,#f97316,#ef4444);
-}
-
-.objective-card h3{
-font-size:32px;
-margin-bottom:20px;
-font-weight:700;
-}
-
-.objective-card p{
-font-size:18px;
-}
-
-/* STUDENT BUTTON SECTION */
-
-.student-button-section{
-background:linear-gradient(135deg,#0f172a,#1e293b);
-color:white;
-text-align:center;
-padding:110px 20px;
-}
-
-.student-button-section h2{
-font-size:60px;
-margin-bottom:30px;
-color:#facc15;
-font-weight:800;
-}
-
-.student-button-section p{
-max-width:1100px;
-margin:auto;
-font-size:22px;
-margin-bottom:50px;
-}
-
-.student-btn{
-display:inline-block;
-padding:22px 60px;
-background:linear-gradient(135deg,#facc15,#f59e0b);
-color:#111827;
-text-decoration:none;
-border-radius:50px;
-font-size:28px;
-font-weight:700;
-transition:0.4s;
-box-shadow:0 10px 20px rgba(0,0,0,0.3);
-}
-
-.student-btn:hover{
-transform:translateY(-8px) scale(1.05);
-background:white;
-}
-
-/* PREVIEW */
-
-.preview{
-padding:100px 20px;
-}
-
-.preview h2{
-text-align:center;
-font-size:55px;
-margin-bottom:70px;
-color:#1e3a8a;
-font-weight:800;
-}
-
-.preview-grid{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-gap:35px;
-max-width:1400px;
-margin:auto;
-}
-
-.preview-card{
-padding:45px;
-border-radius:30px;
-color:white;
-text-align:center;
-transition:0.4s;
-box-shadow:0 15px 30px rgba(0,0,0,0.15);
-}
-
-.preview-card:hover{
-transform:translateY(-15px);
-}
-
-.preview-card:nth-child(1){
-background:linear-gradient(135deg,#2563eb,#06b6d4);
-}
-
-.preview-card:nth-child(2){
-background:linear-gradient(135deg,#9333ea,#ec4899);
-}
-
-.preview-card:nth-child(3){
-background:linear-gradient(135deg,#22c55e,#84cc16);
-}
-
-.preview-card:nth-child(4){
-background:linear-gradient(135deg,#f97316,#ef4444);
-}
-
-.preview-card h3{
-font-size:36px;
-margin-bottom:18px;
-}
-
-.preview-card p{
-font-size:19px;
-}
-
-/* GALLERY SECTION */
-
-.gallery-section{
-padding:100px 20px;
-background:white;
-}
-
-.gallery-section h2{
-text-align:center;
-font-size:55px;
-margin-bottom:60px;
-color:#1e3a8a;
-font-weight:800;
-}
-
-.gallery-container{
-max-width:1200px;
-margin:auto;
-position:relative;
-display:flex;
-align-items:center;
-justify-content:center;
-}
-
-.gallery-slider{
-width:100%;
-height:650px;
-overflow:hidden;
-border-radius:30px;
-box-shadow:0 15px 35px rgba(0,0,0,0.2);
-}
-
-.gallery-slider img{
-width:100%;
-height:100%;
-object-fit:cover;
-}
-
-.gallery-btn{
-position:absolute;
-top:50%;
-transform:translateY(-50%);
-width:70px;
-height:70px;
-border:none;
-border-radius:50%;
-background:rgba(15,23,42,0.8);
-color:white;
-font-size:35px;
-cursor:pointer;
-z-index:10;
-transition:0.4s;
-}
-
-.gallery-btn:hover{
-background:#2563eb;
-transform:translateY(-50%) scale(1.1);
-}
-
-.prev{
-left:-35px;
-}
-
-.next{
-right:-35px;
-}
-
-/* STUDENTS PAGE */
-
-.students-page{
-padding:90px 20px;
-}
-
-.class-title{
-text-align:center;
-font-size:55px;
-margin-bottom:60px;
-color:#1e3a8a;
-font-weight:800;
-}
-
-/* STUDENT GRID */
-
-.student-grid{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
-gap:35px;
-max-width:1450px;
-margin:auto;
-}
-
-/* STUDENT CARD */
-
-.student-card{
-padding:35px;
-border-radius:35px;
-color:white;
-text-align:center;
-position:relative;
-overflow:hidden;
-transition:0.5s;
-box-shadow:0 15px 30px rgba(0,0,0,0.15);
-}
-
-.student-card::before{
-content:"";
-position:absolute;
-width:250px;
-height:250px;
-background:rgba(255,255,255,0.15);
-border-radius:50%;
-top:-120px;
-right:-120px;
-}
-
-.student-card:hover{
-transform:translateY(-15px) scale(1.03);
-}
-
-/* CARD COLORS */
-
-.student-card:nth-child(6n+1){
-background:linear-gradient(135deg,#2563eb,#06b6d4);
-}
-
-.student-card:nth-child(6n+2){
-background:linear-gradient(135deg,#9333ea,#ec4899);
-}
-
-.student-card:nth-child(6n+3){
-background:linear-gradient(135deg,#22c55e,#14b8a6);
-}
-
-.student-card:nth-child(6n+4){
-background:linear-gradient(135deg,#f97316,#ef4444);
-}
-
-.student-card:nth-child(6n+5){
-background:linear-gradient(135deg,#0f766e,#14b8a6);
-}
-
-.student-card:nth-child(6n+6){
-background:linear-gradient(135deg,#7c3aed,#3b82f6);
-}
-
-/* RANK SEAL */
-
-.rank-seal{
-width:120px;
-height:120px;
-background:linear-gradient(135deg,#facc15,#f59e0b);
-border:7px solid white;
-border-radius:50%;
-margin:auto;
-margin-bottom:25px;
-display:flex;
-align-items:center;
-justify-content:center;
-text-align:center;
-font-size:22px;
-font-weight:700;
-color:#111827;
-box-shadow:0 8px 20px rgba(0,0,0,0.3);
-}
-
-/* PHOTO */
-
-.photo-box{
-width:170px;
-height:170px;
-background:white;
-margin:auto;
-margin-bottom:25px;
-border-radius:50%;
-overflow:hidden;
-border:7px solid white;
-display:flex;
-align-items:center;
-justify-content:center;
-font-size:24px;
-font-weight:700;
-color:#111827;
-box-shadow:0 8px 20px rgba(0,0,0,0.25);
-}
-
-.photo-box img{
-width:100%;
-height:100%;
-object-fit:cover;
-border-radius:50%;
-}
-
-/* TEXT */
-
-.student-card h3{
-font-size:32px;
-margin-bottom:18px;
-font-weight:700;
-}
-
-.student-card p{
-font-size:19px;
-margin-bottom:12px;
-font-weight:500;
-}
-
-/* FOOTER */
-
-footer{
-background:#0f172a;
-color:white;
-text-align:center;
-padding:80px 20px;
-}
-
-footer h2{
-font-size:42px;
-margin-bottom:25px;
-color:#facc15;
-font-weight:800;
-}
-
-footer p{
-font-size:20px;
-margin-bottom:12px;
-}
-
-/* FLOATING SOCIAL BUTTONS */
-
-.social-buttons{
-position:fixed;
-right:20px;
-bottom:20px;
-display:flex;
-flex-direction:column;
-gap:15px;
-z-index:999;
-}
-
-.social-buttons a{
-width:65px;
-height:65px;
-border-radius:50%;
-display:flex;
-align-items:center;
-justify-content:center;
-background:white;
-box-shadow:0 8px 20px rgba(0,0,0,0.25);
-transition:0.4s;
-}
-
-.social-buttons a:hover{
-transform:scale(1.12);
-}
-
-.social-buttons img{
-width:38px;
-height:38px;
-}
-
-/* ANIMATION */
-
-@keyframes fadeIn{
-
-```
-from{
-    opacity:0;
-    transform:translateY(40px);
-}
-
-to{
-    opacity:1;
-    transform:translateY(0);
-}
-```
-
-}
-
+```css
 /* RESPONSIVE */
 
 @media(max-width:992px){
 
-```
-.hero h1{
-    font-size:65px;
-}
+    .hero h1{
+        font-size:60px;
+        letter-spacing:4px;
+    }
 
-.hero h2{
-    font-size:38px;
-}
+    .hero h2{
+        font-size:34px;
+    }
 
-.hero h3{
-    font-size:22px;
-}
-```
+    .hero h3{
+        font-size:20px;
+    }
+
+    .about h2,
+    .objectives h2,
+    .preview h2,
+    .gallery-section h2,
+    .class-title,
+    .student-button-section h2{
+        font-size:42px;
+    }
 
 }
 
 @media(max-width:768px){
 
-```
-.hero{
-    min-height:80vh;
-}
+    .hero{
+        min-height:75vh;
+        padding:40px 15px;
+    }
 
-.hero h1{
-    font-size:48px;
-}
+    .overlay{
+        width:100%;
+    }
 
-.hero h2{
-    font-size:30px;
-}
+    .hero h1{
+        font-size:42px;
+        letter-spacing:2px;
+        line-height:1.2;
+    }
 
-.hero h3{
-    font-size:18px;
-}
+    .hero h2{
+        font-size:24px;
+        line-height:1.4;
+    }
 
-.about h2,
-.objectives h2,
-.preview h2,
-.gallery-section h2,
-.class-title,
-.student-button-section h2{
-    font-size:38px;
-}
+    .hero h3{
+        font-size:16px;
+        line-height:1.5;
+    }
 
-.gallery-slider{
-    height:350px;
-}
+    .affiliated{
+        font-size:18px;
+    }
 
-.gallery-btn{
-    width:55px;
-    height:55px;
-    font-size:26px;
-}
+    .about,
+    .preview,
+    .students-page,
+    .gallery-section{
+        margin:60px auto;
+        padding:15px;
+    }
 
-.prev{
-    left:5px;
-}
+    .about h2,
+    .objectives h2,
+    .preview h2,
+    .gallery-section h2,
+    .class-title,
+    .student-button-section h2{
+        font-size:30px;
+        margin-bottom:40px;
+    }
 
-.next{
-    right:5px;
-}
+    .about p{
+        padding:22px;
+        font-size:16px;
+        border-left:6px solid #2563eb;
+    }
 
-.student-card h3{
-    font-size:26px;
-}
+    .objective-container,
+    .preview-grid,
+    .student-grid{
+        grid-template-columns:1fr;
+        gap:25px;
+    }
 
-.student-card p{
-    font-size:16px;
-}
+    .objective-card,
+    .preview-card,
+    .student-card{
+        padding:28px 20px;
+    }
 
-.photo-box{
-    width:140px;
-    height:140px;
-}
+    .objective-card h3,
+    .preview-card h3,
+    .student-card h3{
+        font-size:24px;
+    }
 
-.rank-seal{
-    width:100px;
-    height:100px;
-    font-size:18px;
-}
-```
+    .objective-card p,
+    .preview-card p,
+    .student-card p{
+        font-size:15px;
+    }
+
+    .student-button-section{
+        padding:70px 15px;
+    }
+
+    .student-button-section p{
+        font-size:17px;
+    }
+
+    .student-btn{
+        width:100%;
+        max-width:320px;
+        font-size:20px;
+        padding:18px 20px;
+    }
+
+    .gallery-slider{
+        height:260px;
+        border-radius:20px;
+    }
+
+    .gallery-btn{
+        width:45px;
+        height:45px;
+        font-size:20px;
+    }
+
+    .prev{
+        left:8px;
+    }
+
+    .next{
+        right:8px;
+    }
+
+    .photo-box{
+        width:120px;
+        height:120px;
+    }
+
+    .rank-seal{
+        width:85px;
+        height:85px;
+        font-size:15px;
+    }
+
+    footer{
+        padding:50px 15px;
+    }
+
+    footer h2{
+        font-size:28px;
+    }
+
+    footer p{
+        font-size:15px;
+    }
+
+    .social-buttons{
+        right:12px;
+        bottom:12px;
+    }
+
+    .social-buttons a{
+        width:50px;
+        height:50px;
+    }
+
+    .social-buttons img{
+        width:26px;
+        height:26px;
+    }
 
 }
 
 @media(max-width:480px){
 
+    .hero h1{
+        font-size:34px;
+    }
+
+    .hero h2{
+        font-size:20px;
+    }
+
+    .hero h3{
+        font-size:14px;
+    }
+
+    .about h2,
+    .objectives h2,
+    .preview h2,
+    .gallery-section h2,
+    .class-title,
+    .student-button-section h2{
+        font-size:26px;
+    }
+
+    .gallery-slider{
+        height:220px;
+    }
+
+}
 ```
-.hero h1{
-    font-size:38px;
-}
-
-.hero h2{
-    font-size:24px;
-}
-
-.hero h3{
-    font-size:16px;
-}
-
-.student-btn{
-    width:100%;
-    max-width:300px;
-}
-
-.social-buttons a{
-    width:55px;
-    height:55px;
-}
-
-.social-buttons img{
-    width:30px;
-    height:30px;
-}
-```
-
-}

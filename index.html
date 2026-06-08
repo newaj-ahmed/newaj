@@ -239,6 +239,32 @@
 
 </section>
 
+<!-- GALLERY SECTION -->
+
+<section class="gallery-section">
+
+    <h2>Internship Gallery</h2>
+
+    <div class="gallery-container">
+
+        <button class="gallery-btn prev" onclick="prevSlide()">
+            &#10094;
+        </button>
+
+        <div class="gallery-slider">
+
+            <img id="gallery-image" src="HAAM100.png">
+
+        </div>
+
+        <button class="gallery-btn next" onclick="nextSlide()">
+            &#10095;
+        </button>
+
+    </div>
+
+</section>
+
 <!-- FOOTER -->
 
 <footer>
@@ -280,6 +306,58 @@
     </a>
 
 </div>
+
+<script>
+
+    const images = [];
+
+    for(let i = 100; i >= 1; i--){
+
+        images.push(`HAAM${i}.png`);
+
+    }
+
+    let currentIndex = 0;
+
+    const galleryImage = document.getElementById("gallery-image");
+
+    function showImage(){
+
+        galleryImage.src = images[currentIndex];
+
+    }
+
+    function nextSlide(){
+
+        currentIndex++;
+
+        if(currentIndex >= images.length){
+
+            currentIndex = 0;
+
+        }
+
+        showImage();
+
+    }
+
+    function prevSlide(){
+
+        currentIndex--;
+
+        if(currentIndex < 0){
+
+            currentIndex = images.length - 1;
+
+        }
+
+        showImage();
+
+    }
+
+    setInterval(nextSlide,3000);
+
+</script>
 ```
 
 </body>

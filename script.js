@@ -1,305 +1,299 @@
-const menuBtn =
-document.querySelector(".menu-btn");
-
-const navLinks =
-document.querySelector(".nav-links");
-
-menuBtn.addEventListener("click",()=>{
-
-navLinks.classList.toggle("show-menu");
-
-});
+```javascript id="p8v4mk"
 /* =========================
 MOBILE NAVBAR
 ========================= */
 
 const menuBtn =
-document.querySelector(".menu-btn");
-
-const navLinks =
-document.querySelector(".nav-links");
-
-menuBtn.addEventListener("click",()=>{
-
-    navLinks.classList.toggle("show-menu");
-
-});
-
-/* =========================
-STICKY NAVBAR EFFECT
-========================= */
-
-window.addEventListener("scroll",()=>{
-
-    const navbar =
-    document.querySelector(".navbar");
-
-    if(window.scrollY > 50){
-
-        navbar.classList.add("sticky-nav");
-
-    }
-
-    else{
-
-        navbar.classList.remove("sticky-nav");
-
-    }
-
-});
-
-/* =========================
-SCROLL REVEAL ANIMATION
-========================= */
-
-const revealElements =
-document.querySelectorAll(
-
-    ".preview-card,\
-    .student-card,\
-    .resource-card,\
-    .tip-card,\
-    .contact-card,\
-    .statistics-card,\
-    .gallery-item,\
-    .review-card,\
-    .highlight-card,\
-    .achievement-main-card,\
-    .timeline-content,\
-    .memory-card,\
-    .challenge-card,\
-    .learning-card,\
-    .teacher-comment-card,\
-    .event-card,\
-    .certificate-showcase-card,\
-    .featured-note-card,\
-    .pdf-card"
-
+document.querySelector(
+".menu-btn"
 );
 
-function revealOnScroll(){
+const navLinks =
+document.querySelector(
+".nav-links"
+);
 
-    const windowHeight =
-    window.innerHeight;
+if(menuBtn){
 
-    revealElements.forEach((element)=>{
+menuBtn.addEventListener(
+"click",
+()=>{
 
-        const revealTop =
-        element.getBoundingClientRect().top;
+navLinks.classList.toggle(
+"active"
+);
 
-        if(revealTop < windowHeight - 80){
-
-            element.classList.add("active-reveal");
-
-        }
-
-    });
+});
 
 }
 
-window.addEventListener("scroll",revealOnScroll);
-
-revealOnScroll();
-
 /* =========================
-AUTO HERO IMAGE SLIDER
+TYPING EFFECT
 ========================= */
 
-const heroSections =
-document.querySelectorAll(
-
-    ".hero,\
-    .about-hero,\
-    .rank-hero,\
-    .gallery-hero,\
-    .journey-hero,\
-    .resources-hero,\
-    .testimonial-hero,\
-    .achievement-hero,\
-    .faq-hero,\
-    .contact-hero"
-
+const typingText =
+document.querySelector(
+".typing-text"
 );
 
-const heroImages = [
+const words = [
 
-    "images/gallery/HAAM1.png",
-    "images/gallery/HAAM2.png",
-    "images/gallery/HAAM3.png",
-    "images/gallery/HAAM4.png",
-    "images/gallery/HAAM5.png",
-    "images/gallery/HAAM6.png",
-    "images/gallery/HAAM7.png",
-    "images/gallery/HAAM8.png",
-    "images/gallery/HAAM9.png",
-    "images/gallery/HAAM10.png"
+"Political Science Intern Teacher",
+"Educational Internship Portfolio",
+"Academic Excellence 2026",
+"Teaching • Learning • Growth"
 
 ];
 
-let heroIndex = 0;
+let wordIndex = 0;
+let charIndex = 0;
+let isDeleting = false;
 
-function changeHeroBackground(){
+function typeEffect(){
 
-    heroIndex++;
+if(!typingText) return;
 
-    if(heroIndex >= heroImages.length){
+const currentWord =
+words[wordIndex];
 
-        heroIndex = 0;
+if(isDeleting){
 
-    }
+typingText.textContent =
+currentWord.substring(
+0,
+charIndex--
+);
 
-    heroSections.forEach((section)=>{
+}else{
 
-        section.style.background =
-        `linear-gradient(rgba(0,0,0,0.45),
-        rgba(0,0,0,0.45)),
-        url('${heroImages[heroIndex]}')`;
+typingText.textContent =
+currentWord.substring(
+0,
+charIndex++
+);
 
-        section.style.backgroundSize = "cover";
+}
 
-        section.style.backgroundPosition = "center";
+let speed = 120;
 
-    });
+if(isDeleting){
+
+speed = 60;
 
 }
 
-setInterval(changeHeroBackground,5000);
+if(!isDeleting &&
+charIndex === currentWord.length){
 
-/* =========================
-TYPEWRITER EFFECT
-========================= */
-
-const typingElement =
-document.querySelector(".typing-text");
-
-if(typingElement){
-
-    const text =
-    "Political Science Intern Teacher";
-
-    let index = 0;
-
-    function typeText(){
-
-        if(index < text.length){
-
-            typingElement.innerHTML +=
-            text.charAt(index);
-
-            index++;
-
-            setTimeout(typeText,100);
-
-        }
-
-    }
-
-    typeText();
+speed = 1800;
+isDeleting = true;
 
 }
+
+if(isDeleting &&
+charIndex === 0){
+
+isDeleting = false;
+
+wordIndex++;
+
+if(wordIndex >= words.length){
+
+wordIndex = 0;
+
+}
+
+}
+
+setTimeout(
+typeEffect,
+speed
+);
+
+}
+
+typeEffect();
 
 /* =========================
 COUNTER ANIMATION
 ========================= */
 
 const counters =
-document.querySelectorAll(".counter");
+document.querySelectorAll(
+".counter"
+);
 
-counters.forEach(counter=>{
+const counterObserver =
+new IntersectionObserver(
+(entries)=>{
 
-    counter.innerText = "0";
+entries.forEach((entry)=>{
 
-    const updateCounter = ()=>{
+if(entry.isIntersecting){
 
-        const target =
-        +counter.getAttribute("data-target");
+const counter =
+entry.target;
 
-        const current =
-        +counter.innerText;
+const target =
++counter.getAttribute(
+"data-target"
+);
 
-        const increment =
-        target / 100;
+let count = 0;
 
-        if(current < target){
+const updateCounter = ()=>{
 
-            counter.innerText =
-            `${Math.ceil(current + increment)}`;
+const increment =
+target / 100;
 
-            setTimeout(updateCounter,25);
+count += increment;
 
-        }
+if(count < target){
 
-        else{
+counter.innerText =
+Math.floor(count);
 
-            counter.innerText = target;
+requestAnimationFrame(
+updateCounter
+);
 
-        }
+}else{
 
-    };
+counter.innerText =
+target;
 
-    updateCounter();
+}
+
+};
+
+updateCounter();
+
+counterObserver.unobserve(
+counter
+);
+
+}
+
+});
+
+},
+{
+threshold:0.5
+}
+);
+
+counters.forEach((counter)=>{
+
+counterObserver.observe(
+counter
+);
 
 });
 
 /* =========================
-GALLERY LIGHTBOX
+SCROLL REVEAL
 ========================= */
 
-const galleryImages =
+const revealElements =
 document.querySelectorAll(
 
-    ".gallery-item img,\
-    .mini-gallery-grid img,\
-    .memory-card img,\
-    .event-card img"
+".info-box,\
+.skill-card,\
+.resource-card,\
+.review-card,\
+.statistics-card,\
+.student-card,\
+.rank-card,\
+.gallery-card,\
+.timeline-content,\
+.contact-card,\
+.faq-item,\
+.tip-card,\
+.summary-card,\
+.contact-info-card,\
+.social-contact-card,\
+.teacher-comment-card,\
+.experience-card,\
+.memory-card,\
+.challenge-card,\
+.learning-card,\
+.achievement-card,\
+.education-card"
 
 );
 
-const lightbox =
-document.getElementById("lightbox");
+function revealOnScroll(){
 
-const lightboxImg =
-document.getElementById("lightbox-img");
+const windowHeight =
+window.innerHeight;
 
-if(lightbox){
+revealElements.forEach((element)=>{
 
-    galleryImages.forEach((image)=>{
+const elementTop =
+element.getBoundingClientRect().top;
 
-        image.addEventListener("click",()=>{
+if(elementTop <
+windowHeight - 80){
 
-            lightbox.style.display = "flex";
+element.style.opacity = "1";
 
-            lightboxImg.src = image.src;
-
-        });
-
-    });
-
-    lightbox.addEventListener("click",()=>{
-
-        lightbox.style.display = "none";
-
-    });
+element.style.transform =
+"translateY(0px)";
 
 }
+
+});
+
+}
+
+revealElements.forEach((element)=>{
+
+element.style.opacity = "0";
+
+element.style.transform =
+"translateY(40px)";
+
+element.style.transition =
+"all 0.9s ease";
+
+});
+
+window.addEventListener(
+"scroll",
+revealOnScroll
+);
+
+revealOnScroll();
 
 /* =========================
 FAQ TOGGLE
 ========================= */
 
-const faqQuestions =
-document.querySelectorAll(".faq-question");
+const faqItems =
+document.querySelectorAll(
+".faq-item"
+);
 
-faqQuestions.forEach((question)=>{
+faqItems.forEach((item)=>{
 
-    question.addEventListener("click",()=>{
+const question =
+item.querySelector(
+".faq-question"
+);
 
-        const faqItem =
-        question.parentElement;
+if(question){
 
-        faqItem.classList.toggle("active");
+question.addEventListener(
+"click",
+()=>{
 
-    });
+item.classList.toggle(
+"active-faq"
+);
+
+});
+
+}
 
 });
 
@@ -308,181 +302,378 @@ TESTIMONIAL SLIDER
 ========================= */
 
 const testimonials =
-document.querySelectorAll(".testimonial-card");
+document.querySelectorAll(
+".testimonial-slider-card"
+);
 
-let currentTestimonial = 0;
+let testimonialIndex = 0;
 
 function showTestimonial(index){
 
-    testimonials.forEach((card)=>{
+if(testimonials.length === 0)
+return;
 
-        card.classList.remove("active-slide");
+testimonials.forEach((card)=>{
 
-    });
+card.classList.remove(
+"active-slide"
+);
 
-    if(testimonials[index]){
+});
 
-        testimonials[index]
-        .classList.add("active-slide");
-
-    }
+testimonials[index]
+.classList.add(
+"active-slide"
+);
 
 }
 
 function nextTestimonial(){
 
-    currentTestimonial++;
+testimonialIndex++;
 
-    if(currentTestimonial >= testimonials.length){
+if(testimonialIndex >=
+testimonials.length){
 
-        currentTestimonial = 0;
+testimonialIndex = 0;
 
-    }
+}
 
-    showTestimonial(currentTestimonial);
+showTestimonial(
+testimonialIndex
+);
 
 }
 
 function prevTestimonial(){
 
-    currentTestimonial--;
+testimonialIndex--;
 
-    if(currentTestimonial < 0){
+if(testimonialIndex < 0){
 
-        currentTestimonial =
-        testimonials.length - 1;
+testimonialIndex =
+testimonials.length - 1;
 
-    }
+}
 
-    showTestimonial(currentTestimonial);
+showTestimonial(
+testimonialIndex
+);
 
 }
 
 if(testimonials.length > 0){
 
-    setInterval(nextTestimonial,4000);
+showTestimonial(0);
+
+setInterval(
+nextTestimonial,
+5000
+);
 
 }
+
+/* =========================
+LIGHTBOX GALLERY
+========================= */
+
+const galleryImages =
+document.querySelectorAll(
+".gallery-card img"
+);
+
+const lightbox =
+document.getElementById(
+"lightbox"
+);
+
+const lightboxImg =
+document.getElementById(
+"lightbox-img"
+);
+
+galleryImages.forEach((image)=>{
+
+image.addEventListener(
+"click",
+()=>{
+
+lightbox.style.display =
+"flex";
+
+lightboxImg.src =
+image.src;
+
+});
+
+});
+
+if(lightbox){
+
+lightbox.addEventListener(
+"click",
+()=>{
+
+lightbox.style.display =
+"none";
+
+});
+
+}
+
+/* =========================
+PREMIUM GALLERY SLIDER
+========================= */
+
+const sliderImage =
+document.getElementById(
+"slider-image"
+);
+
+const sliderImages = [
+
+"HAAM1.png",
+"HAAM2.png",
+"HAAM3.png",
+"HAAM4.png",
+"HAAM5.png",
+"HAAM6.png",
+"HAAM7.png",
+"HAAM8.png",
+"HAAM9.png",
+"HAAM10.png"
+
+];
+
+let currentSlide = 0;
+
+function showSlide(){
+
+if(!sliderImage) return;
+
+sliderImage.style.filter =
+"blur(12px) brightness(40%)";
+
+sliderImage.style.transform =
+"scale(1.15)";
+
+sliderImage.style.opacity =
+"0.5";
+
+setTimeout(()=>{
+
+sliderImage.src =
+sliderImages[currentSlide];
+
+sliderImage.style.filter =
+"blur(0px) brightness(100%)";
+
+sliderImage.style.transform =
+"scale(1)";
+
+sliderImage.style.opacity =
+"1";
+
+},500);
+
+}
+
+function nextSlide(){
+
+currentSlide++;
+
+if(currentSlide >=
+sliderImages.length){
+
+currentSlide = 0;
+
+}
+
+showSlide();
+
+}
+
+function previousSlide(){
+
+currentSlide--;
+
+if(currentSlide < 0){
+
+currentSlide =
+sliderImages.length - 1;
+
+}
+
+showSlide();
+
+}
+
+if(sliderImage){
+
+setInterval(
+nextSlide,
+4000
+);
+
+}
+
+/* =========================
+NAVBAR BACKGROUND CHANGE
+========================= */
+
+window.addEventListener(
+"scroll",
+()=>{
+
+const navbar =
+document.querySelector(
+".navbar"
+);
+
+if(window.scrollY > 50){
+
+navbar.style.background =
+"rgba(20,20,20,0.95)";
+
+navbar.style.padding =
+"12px 6%";
+
+}else{
+
+navbar.style.background =
+"rgba(25,20,20,0.82)";
+
+navbar.style.padding =
+"14px 6%";
+
+}
+
+});
+
+/* =========================
+LOADER
+========================= */
+
+window.addEventListener(
+"load",
+()=>{
+
+const loader =
+document.querySelector(
+".loader"
+);
+
+if(loader){
+
+setTimeout(()=>{
+
+loader.style.display =
+"none";
+
+},2200);
+
+}
+
+});
+
+/* =========================
+SMOOTH BUTTON EFFECT
+========================= */
+
+const buttons =
+document.querySelectorAll(
+".primary-btn,\
+.secondary-btn"
+);
+
+buttons.forEach((button)=>{
+
+button.addEventListener(
+"mouseenter",
+()=>{
+
+button.style.transform =
+"translateY(-4px)";
+
+});
+
+button.addEventListener(
+"mouseleave",
+()=>{
+
+button.style.transform =
+"translateY(0px)";
+
+});
+
+});
+
+/* =========================
+IMAGE HOVER ZOOM
+========================= */
+
+const allImages =
+document.querySelectorAll(
+"img"
+);
+
+allImages.forEach((img)=>{
+
+img.addEventListener(
+"mouseenter",
+()=>{
+
+img.style.transition =
+"0.5s";
+
+});
+
+});
+
+/* =========================
+AUTO CLOSE MOBILE MENU
+========================= */
+
+const navItems =
+document.querySelectorAll(
+".nav-links a"
+);
+
+navItems.forEach((item)=>{
+
+item.addEventListener(
+"click",
+()=>{
+
+navLinks.classList.remove(
+"active"
+);
+
+});
+
+});
 
 /* =========================
 ACTIVE NAV LINK
 ========================= */
 
-const currentPage =
-window.location.pathname.split("/")
-.pop();
+const currentLocation =
+location.href;
 
-const navItems =
-document.querySelectorAll(".nav-links a");
-
-navItems.forEach((item)=>{
-
-    const href =
-    item.getAttribute("href");
-
-    if(href === currentPage){
-
-        item.classList.add("active");
-
-    }
-
-});
-
-/* =========================
-SMOOTH BUTTON HOVER EFFECT
-========================= */
-
-const buttons =
+const menuItems =
 document.querySelectorAll(
-
-    ".primary-btn,\
-    .secondary-btn"
-
+".nav-links a"
 );
 
-buttons.forEach((button)=>{
+menuItems.forEach((link)=>{
 
-    button.addEventListener("mouseenter",()=>{
+if(link.href === currentLocation){
 
-        button.style.transform =
-        "translateY(-5px) scale(1.02)";
+link.classList.add(
+"active"
+);
 
-    });
-
-    button.addEventListener("mouseleave",()=>{
-
-        button.style.transform =
-        "translateY(0px) scale(1)";
-
-    });
-
-});
-
-/* =========================
-PRELOADER
-========================= */
-
-window.addEventListener("load",()=>{
-
-    const loader =
-    document.querySelector(".loader");
-
-    if(loader){
-
-        loader.style.display = "none";
-
-    }
-
-});
-
-/* =========================
-PARALLAX EFFECT
-========================= */
-
-window.addEventListener("scroll",()=>{
-
-    const scrolled =
-    window.pageYOffset;
-
-    const parallax =
-    document.querySelectorAll(
-
-        ".hero,\
-        .about-hero,\
-        .rank-hero,\
-        .gallery-hero,\
-        .journey-hero,\
-        .resources-hero,\
-        .testimonial-hero,\
-        .achievement-hero,\
-        .faq-hero,\
-        .contact-hero"
-
-    );
-
-    parallax.forEach((section)=>{
-
-        section.style.backgroundPositionY =
-        `${scrolled * 0.4}px`;
-
-    });
-
-});
-
-/* =========================
-IMAGE FADE ANIMATION
-========================= */
-
-const allImages =
-document.querySelectorAll("img");
-
-allImages.forEach((image)=>{
-
-    image.addEventListener("load",()=>{
-
-        image.classList.add("image-loaded");
-
-    });
+}
 
 });
 
@@ -491,120 +682,91 @@ SCROLL TO TOP BUTTON
 ========================= */
 
 const scrollBtn =
-document.createElement("button");
+document.createElement(
+"button"
+);
 
 scrollBtn.innerHTML = "↑";
 
-scrollBtn.classList.add("scroll-top-btn");
+scrollBtn.classList.add(
+"scroll-top-btn"
+);
 
-document.body.appendChild(scrollBtn);
+document.body.appendChild(
+scrollBtn
+);
 
-window.addEventListener("scroll",()=>{
+scrollBtn.style.position =
+"fixed";
 
-    if(window.scrollY > 400){
+scrollBtn.style.bottom =
+"20px";
 
-        scrollBtn.style.opacity = "1";
+scrollBtn.style.left =
+"20px";
 
-        scrollBtn.style.visibility = "visible";
+scrollBtn.style.width =
+"45px";
 
-    }
+scrollBtn.style.height =
+"45px";
 
-    else{
+scrollBtn.style.border =
+"none";
 
-        scrollBtn.style.opacity = "0";
+scrollBtn.style.borderRadius =
+"50%";
 
-        scrollBtn.style.visibility = "hidden";
+scrollBtn.style.background =
+"#6b2335";
 
-    }
+scrollBtn.style.color =
+"white";
 
-});
+scrollBtn.style.fontSize =
+"22px";
 
-scrollBtn.addEventListener("click",()=>{
+scrollBtn.style.cursor =
+"pointer";
 
-    window.scrollTo({
+scrollBtn.style.display =
+"none";
 
-        top:0,
+scrollBtn.style.zIndex =
+"999";
 
-        behavior:"smooth"
+window.addEventListener(
+"scroll",
+()=>{
 
-    });
+if(window.scrollY > 300){
 
-});
+scrollBtn.style.display =
+"block";
 
-/* =========================
-AUTO GALLERY SLIDER
-========================= */
+}else{
 
-const sliderImage =
-document.getElementById("slider-image");
-
-const sliderImages = [
-
-    "images/gallery/HAAM1.png",
-    "images/gallery/HAAM2.png",
-    "images/gallery/HAAM3.png",
-    "images/gallery/HAAM4.png",
-    "images/gallery/HAAM5.png",
-    "images/gallery/HAAM6.png",
-    "images/gallery/HAAM7.png",
-    "images/gallery/HAAM8.png",
-    "images/gallery/HAAM9.png",
-    "images/gallery/HAAM10.png"
-
-];
-
-let currentSlide = 0;
-
-function changeSlider(){
-
-    if(sliderImage){
-
-        currentSlide++;
-
-        if(currentSlide >= sliderImages.length){
-
-            currentSlide = 0;
-
-        }
-
-        sliderImage.style.opacity = "0";
-
-        setTimeout(()=>{
-
-            sliderImage.src =
-            sliderImages[currentSlide];
-
-            sliderImage.style.opacity = "1";
-
-        },400);
-
-    }
+scrollBtn.style.display =
+"none";
 
 }
 
-setInterval(changeSlider,3500);
+});
 
-/* =========================
-CONTACT FORM
-========================= */
+scrollBtn.addEventListener(
+"click",
+()=>{
 
-const contactForm =
-document.querySelector(".contact-form");
+window.scrollTo({
 
-if(contactForm){
+top:0,
+behavior:"smooth"
 
-    contactForm.addEventListener("submit",(e)=>{
+});
 
-        e.preventDefault();
-
-        alert("Message Sent Successfully!");
-
-        contactForm.reset();
-
-    });
-
-}
+});
 
 /* =========================
 END
 ========================= */
+```

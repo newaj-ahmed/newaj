@@ -4,764 +4,727 @@
 
 <head>
 
-    <meta charset="UTF-8">
+<meta charset="UTF-8">
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
 
-    <title>Gallery | Internship Portfolio</title>
+<title>
+Gallery | Internship Portfolio
+</title>
 
-    <link rel="stylesheet" href="style.css">
+<link rel="stylesheet"
+href="style.css">
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect"
+href="https://fonts.googleapis.com">
 
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect"
+href="https://fonts.gstatic.com"
+crossorigin>
 
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Poppins:wght@300;400;500;600;700;800&display=swap"
+rel="stylesheet">
 
 </head>
 
 <body>
 
-    <!-- NAVBAR -->
+<!-- NAVBAR -->
 
-    <nav class="navbar">
+<nav class="navbar">
 
-        <div class="logo-section">
+<div class="logo-section">
 
-            <img src="images/logo/HAAMLOGO.png" alt="Logo">
+<img src="HAAMlogo.png">
 
-            <div class="logo-text">
+<div class="logo-text">
 
-                <h2>Internship</h2>
+<h2>
+Internship
+</h2>
 
-                <p>Academic Excellence 2026</p>
+<p>
+Academic Excellence 2026
+</p>
 
-            </div>
+</div>
 
-        </div>
+</div>
 
-        <ul class="nav-links">
+<ul class="nav-links">
 
-            <li><a href="index.html">Home</a></li>
+<li>
+<a href="index.html">
+Home
+</a>
+</li>
 
-            <li><a href="about.html">About</a></li>
+<li>
+<a href="about.html">
+About
+</a>
+</li>
 
-            <li><a href="rankholders.html">Rank Holders</a></li>
+<li>
+<a href="rankholders.html">
+Rank Holders
+</a>
+</li>
 
-            <li><a href="gallery.html" class="active">Gallery</a></li>
+<li>
+<a href="gallery.html"
+class="active">
+Gallery
+</a>
+</li>
 
-            <li><a href="journey.html">Journey</a></li>
+<li>
+<a href="diary.html">
+Daily Diary
+</a>
+</li>
 
-            <li><a href="resources.html">Resources</a></li>
+<li>
+<a href="resources.html">
+Resources
+</a>
+</li>
 
-            <li><a href="achievements.html">Achievements</a></li>
+<li>
+<a href="testimonials.html">
+Testimonials
+</a>
+</li>
 
-            <li><a href="faq.html">FAQ</a></li>
+<li>
+<a href="achievements.html">
+Achievements
+</a>
+</li>
 
-            <li><a href="contact.html">Contact</a></li>
+<li>
+<a href="faq.html">
+FAQ
+</a>
+</li>
 
-        </ul>
+<li>
+<a href="contact.html">
+Contact
+</a>
+</li>
 
-        <div class="menu-btn">
+</ul>
 
-            ☰
+<div class="menu-btn">
 
-        </div>
+☰
 
-    </nav>
+</div>
 
-    <!-- HERO SECTION -->
+</nav>
 
-    <section class="gallery-hero">
+<!-- HERO SECTION -->
 
-        <div class="gallery-overlay"></div>
+<section class="gallery-hero">
 
-        <div class="gallery-hero-content">
+<div class="gallery-overlay"></div>
 
-            <p class="hero-small">
-                Internship Memories
-            </p>
+<div class="gallery-hero-content">
 
-            <h1>
-                Internship Gallery
-            </h1>
+<p class="hero-small">
 
-            <h2>
-                Teaching Activities, Events & Classroom Moments
-            </h2>
+Internship Photo Collection
 
-        </div>
+</p>
 
-    </section>
+<h1>
 
-    <!-- INTRO SECTION -->
+Internship Gallery
 
-    <section class="gallery-intro">
+</h1>
 
-        <div class="section-title">
+<h2>
 
-            <h2>Photo Collection</h2>
+Classroom Activities,
+Educational Moments,
+Teaching Experience,
+and Internship Memories
 
-            <div class="line"></div>
+</h2>
 
-        </div>
+<p class="hero-description">
 
-        <p>
+A visual collection of internship experiences,
+student interaction,
+educational activities,
+and memorable moments captured during internship.
 
-            This gallery section showcases classroom activities,
-            internship experiences,
-            teaching moments,
-            student interaction,
-            educational events,
-            and memorable moments
-            during the internship program.
+</p>
 
-        </p>
+</div>
 
-    </section>
+</section>
 
-    <!-- GALLERY FILTERS -->
+<!-- PREMIUM SLIDER -->
 
-    <section class="gallery-filter-section">
+<section class="premium-slider-section">
 
-        <div class="gallery-filters">
+<div class="section-title">
 
-            <button class="filter-btn active">
-                All
-            </button>
+<h2>
+Featured Internship Photos
+</h2>
 
-            <button class="filter-btn">
-                Classroom
-            </button>
+<div class="line"></div>
 
-            <button class="filter-btn">
-                Teaching
-            </button>
+</div>
 
-            <button class="filter-btn">
-                Events
-            </button>
+<div class="premium-slider-container">
 
-            <button class="filter-btn">
-                Group Photos
-            </button>
+<button class="slider-btn prev-btn"
+onclick="previousSlide()">
 
-        </div>
+&#10094;
 
-    </section>
+</button>
 
-    <!-- MAIN GALLERY -->
+<div class="slider-image-container">
 
-    <section class="main-gallery-section">
+<img id="slider-image"
+src="HAAM1.png">
 
-        <div class="masonry-gallery">
+<div class="slider-dark-overlay"></div>
 
-            <div class="gallery-item">
+</div>
 
-                <img src="images/gallery/HAAM1.png" alt="Gallery">
+<button class="slider-btn next-btn"
+onclick="nextSlide()">
 
-                <div class="gallery-content">
+&#10095;
 
-                    <h3>
-                        Internship Activity
-                    </h3>
+</button>
 
-                    <p>
-                        Classroom learning environment
-                    </p>
+</div>
 
-                </div>
+</section>
 
-            </div>
+<!-- GALLERY GRID -->
 
-            <div class="gallery-item">
+<section class="gallery-main-section">
 
-                <img src="images/gallery/HAAM2.png" alt="Gallery">
+<div class="section-title">
 
-                <div class="gallery-content">
+<h2>
+Internship Photo Collection
+</h2>
 
-                    <h3>
-                        Student Interaction
-                    </h3>
+<div class="line"></div>
 
-                    <p>
-                        Educational classroom activity
-                    </p>
+</div>
 
-                </div>
+<div class="gallery-grid">
 
-            </div>
+<!-- IMAGE -->
 
-            <div class="gallery-item">
+<div class="gallery-card">
 
-                <img src="images/gallery/HAAM3.png" alt="Gallery">
+<img src="HAAM1.png">
 
-                <div class="gallery-content">
+<div class="gallery-content">
 
-                    <h3>
-                        Teaching Session
-                    </h3>
+<h3>
 
-                    <p>
-                        Academic internship experience
-                    </p>
+Educational Activity
 
-                </div>
+</h3>
 
-            </div>
+<p>
 
-            <div class="gallery-item">
+Classroom interaction
+and internship participation.
 
-                <img src="images/gallery/HAAM4.png" alt="Gallery">
+</p>
 
-                <div class="gallery-content">
+</div>
 
-                    <h3>
-                        Group Activity
-                    </h3>
+</div>
 
-                    <p>
-                        Students participation program
-                    </p>
+<!-- IMAGE -->
 
-                </div>
+<div class="gallery-card">
 
-            </div>
+<img src="HAAM2.png">
 
-            <div class="gallery-item">
+<div class="gallery-content">
 
-                <img src="images/gallery/HAAM5.png" alt="Gallery">
+<h3>
 
-                <div class="gallery-content">
+Teaching Session
 
-                    <h3>
-                        Classroom Discussion
-                    </h3>
+</h3>
 
-                    <p>
-                        Educational interaction
-                    </p>
+<p>
 
-                </div>
+Practical classroom teaching
+and student communication.
 
-            </div>
+</p>
 
-            <div class="gallery-item">
+</div>
 
-                <img src="images/gallery/HAAM6.png" alt="Gallery">
+</div>
 
-                <div class="gallery-content">
+<!-- IMAGE -->
 
-                    <h3>
-                        Internship Event
-                    </h3>
+<div class="gallery-card">
 
-                    <p>
-                        School academic program
-                    </p>
+<img src="HAAM3.png">
 
-                </div>
+<div class="gallery-content">
 
-            </div>
+<h3>
 
-            <div class="gallery-item">
+Classroom Experience
 
-                <img src="images/gallery/HAAM7.png" alt="Gallery">
+</h3>
 
-                <div class="gallery-content">
+<p>
 
-                    <h3>
-                        Group Photo
-                    </h3>
+Educational participation
+and learning activities.
 
-                    <p>
-                        Internship memories
-                    </p>
+</p>
 
-                </div>
+</div>
 
-            </div>
+</div>
 
-            <div class="gallery-item">
+<!-- IMAGE -->
 
-                <img src="images/gallery/HAAM8.png" alt="Gallery">
+<div class="gallery-card">
 
-                <div class="gallery-content">
+<img src="HAAM4.png">
 
-                    <h3>
-                        Classroom Observation
-                    </h3>
+<div class="gallery-content">
 
-                    <p>
-                        Practical teaching experience
-                    </p>
+<h3>
 
-                </div>
+Student Interaction
 
-            </div>
+</h3>
 
-            <div class="gallery-item">
+<p>
 
-                <img src="images/gallery/HAAM9.png" alt="Gallery">
+Communication,
+discussion,
+and classroom activities.
 
-                <div class="gallery-content">
+</p>
 
-                    <h3>
-                        Academic Environment
-                    </h3>
+</div>
 
-                    <p>
-                        Educational atmosphere
-                    </p>
+</div>
 
-                </div>
+<!-- IMAGE -->
 
-            </div>
+<div class="gallery-card">
 
-            <div class="gallery-item">
+<img src="HAAM5.png">
 
-                <img src="images/gallery/HAAM10.png" alt="Gallery">
+<div class="gallery-content">
 
-                <div class="gallery-content">
+<h3>
 
-                    <h3>
-                        Internship Journey
-                    </h3>
+Internship Activities
 
-                    <p>
-                        Memorable educational moments
-                    </p>
+</h3>
 
-                </div>
+<p>
 
-            </div>
+Educational development
+and practical experience.
 
-        </div>
+</p>
 
-    </section>
+</div>
 
-    <!-- FEATURED SECTION -->
+</div>
 
-    <section class="featured-gallery-section">
+<!-- IMAGE -->
 
-        <div class="section-title">
+<div class="gallery-card">
 
-            <h2>Featured Moments</h2>
+<img src="HAAM6.png">
 
-            <div class="line"></div>
+<div class="gallery-content">
 
-        </div>
+<h3>
 
-        <div class="featured-gallery-grid">
+Educational Discussion
 
-            <div class="featured-card">
+</h3>
 
-                <img src="images/gallery/HAAM1.png">
+<p>
 
-                <div class="featured-overlay">
+Interactive classroom learning
+and participation.
 
-                    <h3>
-                        Teaching Experience
-                    </h3>
+</p>
 
-                </div>
+</div>
 
-            </div>
+</div>
 
-            <div class="featured-card">
+<!-- IMAGE -->
 
-                <img src="images/gallery/HAAM2.png">
+<div class="gallery-card">
 
-                <div class="featured-overlay">
+<img src="HAAM7.png">
 
-                    <h3>
-                        Student Engagement
-                    </h3>
+<div class="gallery-content">
 
-                </div>
+<h3>
 
-            </div>
+Group Activity
 
-            <div class="featured-card">
+</h3>
 
-                <img src="images/gallery/HAAM3.png">
+<p>
 
-                <div class="featured-overlay">
+Educational teamwork
+and student participation.
 
-                    <h3>
-                        Internship Activities
-                    </h3>
+</p>
 
-                </div>
+</div>
 
-            </div>
+</div>
 
-        </div>
+<!-- IMAGE -->
 
-    </section>
+<div class="gallery-card">
 
-    <!-- AUTO SLIDER SECTION -->
+<img src="HAAM8.png">
 
-    <section class="slider-section">
+<div class="gallery-content">
 
-        <div class="section-title">
+<h3>
 
-            <h2>Internship Highlights</h2>
+Academic Session
 
-            <div class="line"></div>
+</h3>
 
-        </div>
+<p>
 
-        <div class="slider-container">
+Internship classroom experience
+and learning environment.
 
-            <button class="slider-btn prev-btn" onclick="prevSlide()">
-                &#10094;
-            </button>
+</p>
 
-            <div class="slider-image-box">
+</div>
 
-                <img id="slider-image" src="images/gallery/HAAM1.png">
+</div>
 
-            </div>
+<!-- IMAGE -->
 
-            <button class="slider-btn next-btn" onclick="nextSlide()">
-                &#10095;
-            </button>
+<div class="gallery-card">
 
-        </div>
+<img src="HAAM9.png">
 
-    </section>
+<div class="gallery-content">
 
-    <!-- GALLERY STATS -->
+<h3>
 
-    <section class="gallery-statistics-section">
+Educational Program
 
-        <div class="statistics-grid">
+</h3>
 
-            <div class="statistics-card">
+<p>
 
-                <h2>
-                    10+
-                </h2>
+Practical educational activities
+during internship.
 
-                <p>
-                    Internship Photos
-                </p>
+</p>
 
-            </div>
+</div>
 
-            <div class="statistics-card">
+</div>
 
-                <h2>
-                    5+
-                </h2>
+<!-- IMAGE -->
 
-                <p>
-                    Educational Activities
-                </p>
+<div class="gallery-card">
 
-            </div>
+<img src="HAAM10.png">
 
-            <div class="statistics-card">
+<div class="gallery-content">
 
-                <h2>
-                    120
-                </h2>
+<h3>
 
-                <p>
-                    Internship Hours
-                </p>
+Internship Memory
 
-            </div>
+</h3>
 
-            <div class="statistics-card">
+<p>
 
-                <h2>
-                    2026
-                </h2>
+Memorable educational moments
+and classroom experience.
 
-                <p>
-                    Academic Session
-                </p>
+</p>
 
-            </div>
+</div>
 
-        </div>
+</div>
 
-    </section>
+</div>
 
-    <!-- LIGHTBOX -->
+</section>
 
-    <div class="lightbox" id="lightbox">
+<!-- GALLERY HIGHLIGHTS -->
 
-        <span class="close-lightbox">
-            &times;
-        </span>
+<section class="gallery-highlight-section">
 
-        <img id="lightbox-img">
+<div class="section-title">
 
-    </div>
+<h2>
+Gallery Highlights
+</h2>
 
-    <!-- DAILY QUOTE -->
+<div class="line"></div>
 
-    <section class="daily-quote">
+</div>
 
-        <div class="daily-box">
+<div class="statistics-grid">
 
-            <h2>
-                Internship Memories
-            </h2>
+<div class="statistics-card">
 
-            <p>
+<h2 class="counter"
+data-target="10">
 
-                “Every classroom experience becomes
-                a valuable lesson in the journey of teaching.”
+0
 
-            </p>
+</h2>
 
-        </div>
+<p>
+Gallery Photos
+</p>
 
-    </section>
+</div>
 
-    <!-- CONTACT SECTION -->
+<div class="statistics-card">
 
-    <section class="contact-preview">
+<h2 class="counter"
+data-target="120">
 
-        <div class="section-title">
+0
 
-            <h2>Contact Information</h2>
+</h2>
 
-            <div class="line"></div>
+<p>
+Internship Hours
+</p>
 
-        </div>
+</div>
 
-        <div class="contact-grid">
+<div class="statistics-card">
 
-            <div class="contact-card">
+<h2 class="counter"
+data-target="400">
 
-                <h3>Phone</h3>
+0
 
-                <p>
-                    9387127176
-                </p>
+</h2>
 
-            </div>
+<p>
+Student Interaction
+</p>
 
-            <div class="contact-card">
+</div>
 
-                <h3>Email</h3>
+<div class="statistics-card">
 
-                <p>
-                    newaja35@gmail.com
-                </p>
+<h2 class="counter"
+data-target="2026">
 
-            </div>
+0
 
-            <div class="contact-card">
+</h2>
 
-                <h3>Instagram</h3>
+<p>
+Academic Session
+</p>
 
-                <p>
-                    @newaj_ahmad
-                </p>
+</div>
 
-            </div>
+</div>
 
-            <div class="contact-card">
+</section>
 
-                <h3>School</h3>
+<!-- QUOTE SECTION -->
 
-                <p>
-                    Haji Ajmal Ali Memorial Senior Secondary School
-                </p>
+<section class="motivation-banner">
 
-            </div>
+<div class="motivation-content">
 
-        </div>
+<h2>
 
-    </section>
+“Every picture captures
+a moment of learning,
+growth,
+and educational experience.”
 
-    <!-- FOOTER -->
+</h2>
 
-    <footer>
+<p>
 
-        <div class="footer-container">
+Internship memories reflect
+dedication,
+discipline,
+and educational development.
 
-            <div class="footer-about">
+</p>
 
-                <h2>
-                    Internship Portfolio
-                </h2>
+</div>
 
-                <p>
+</section>
 
-                    Internship gallery showcasing
-                    educational activities,
-                    classroom interaction,
-                    and memorable teaching experiences.
+<!-- FOOTER -->
 
-                </p>
+<footer class="simple-footer">
 
-            </div>
+<p>
 
-            <div class="footer-links">
+© 2026 Newaj Ahmed |
+Internship Portfolio Website
 
-                <h3>Quick Links</h3>
+</p>
 
-                <a href="index.html">Home</a>
+</footer>
 
-                <a href="about.html">About</a>
+<!-- FLOATING SOCIAL ICONS -->
 
-                <a href="gallery.html">Gallery</a>
+<div class="social-icons">
 
-                <a href="contact.html">Contact</a>
+<a href="https://wa.me/919387127176"
+target="_blank">
 
-            </div>
+<img src="https://cdn-icons-png.flaticon.com/512/733/733585.png">
 
-            <div class="footer-contact">
+</a>
 
-                <h3>Contact</h3>
+<a href="https://instagram.com/newaj_ahmad"
+target="_blank">
 
-                <p>Phone: 9387127176</p>
+<img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png">
 
-                <p>Email: newaja35@gmail.com</p>
+</a>
 
-                <p>Kapashbari, Hojai, Assam</p>
+</div>
 
-            </div>
+<!-- LIGHTBOX -->
 
-        </div>
+<div id="lightbox"
+class="lightbox">
 
-        <div class="footer-bottom">
+<img id="lightbox-img">
 
-            <p>
-                © 2026 Newaj Ahmed | Internship Portfolio Website
-            </p>
+</div>
 
-        </div>
+<!-- SCRIPT -->
 
-    </footer>
+<script src="script.js"></script>
 
-    <!-- FLOATING SOCIAL ICONS -->
+<!-- PREMIUM SLIDER SCRIPT -->
 
-    <div class="social-icons">
+<script>
 
-        <a href="https://wa.me/919387127176" target="_blank">
+const sliderImages = [
 
-            <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png">
+"HAAM1.png",
+"HAAM2.png",
+"HAAM3.png",
+"HAAM4.png",
+"HAAM5.png",
+"HAAM6.png",
+"HAAM7.png",
+"HAAM8.png",
+"HAAM9.png",
+"HAAM10.png"
 
-        </a>
+];
 
-        <a href="https://instagram.com/newaj_ahmad" target="_blank">
+let currentSlide = 0;
 
-            <img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png">
+const sliderImage =
+document.getElementById(
+"slider-image"
+);
 
-        </a>
+function showSlide(){
 
-    </div>
+sliderImage.style.filter =
+"blur(12px) brightness(40%)";
 
-    <!-- GALLERY SCRIPT -->
+sliderImage.style.transform =
+"scale(1.15)";
 
-    <script>
+sliderImage.style.opacity =
+"0.4";
 
-        const sliderImages = [
+setTimeout(()=>{
 
-            "images/gallery/HAAM1.png",
-            "images/gallery/HAAM2.png",
-            "images/gallery/HAAM3.png",
-            "images/gallery/HAAM4.png",
-            "images/gallery/HAAM5.png",
-            "images/gallery/HAAM6.png",
-            "images/gallery/HAAM7.png",
-            "images/gallery/HAAM8.png",
-            "images/gallery/HAAM9.png",
-            "images/gallery/HAAM10.png"
+sliderImage.src =
+sliderImages[currentSlide];
 
-        ];
+sliderImage.style.filter =
+"blur(0px) brightness(100%)";
 
-        let currentSlide = 0;
+sliderImage.style.transform =
+"scale(1)";
 
-        const sliderImage =
-        document.getElementById("slider-image");
+sliderImage.style.opacity =
+"1";
 
-        function showSlide(){
+},600);
 
-            sliderImage.style.animation = "none";
+}
 
-            void sliderImage.offsetWidth;
+function nextSlide(){
 
-            sliderImage.style.animation =
-            "galleryFade 1.4s ease";
+currentSlide++;
 
-            sliderImage.src =
-            sliderImages[currentSlide];
+if(currentSlide >=
+sliderImages.length){
 
-        }
+currentSlide = 0;
 
-        function nextSlide(){
+}
 
-            currentSlide++;
+showSlide();
 
-            if(currentSlide >= sliderImages.length){
+}
 
-                currentSlide = 0;
+function previousSlide(){
 
-            }
+currentSlide--;
 
-            showSlide();
+if(currentSlide < 0){
 
-        }
+currentSlide =
+sliderImages.length - 1;
 
-        function prevSlide(){
+}
 
-            currentSlide--;
+showSlide();
 
-            if(currentSlide < 0){
+}
 
-                currentSlide =
-                sliderImages.length - 1;
+setInterval(nextSlide,4000);
 
-            }
-
-            showSlide();
-
-        }
-
-        setInterval(nextSlide,3000);
-
-        /* LIGHTBOX */
-
-        const galleryImages =
-        document.querySelectorAll(".gallery-item img");
-
-        const lightbox =
-        document.getElementById("lightbox");
-
-        const lightboxImg =
-        document.getElementById("lightbox-img");
-
-        galleryImages.forEach(image => {
-
-            image.addEventListener("click", () => {
-
-                lightbox.style.display = "flex";
-
-                lightboxImg.src = image.src;
-
-            });
-
-        });
-
-        document.querySelector(".close-lightbox")
-        .addEventListener("click", () => {
-
-            lightbox.style.display = "none";
-
-        });
-
-    </script>
+</script>
 
 </body>
 
 </html>
-
+```

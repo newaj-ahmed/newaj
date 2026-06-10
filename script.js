@@ -1,40 +1,82 @@
-```javascript id="p8v4mk"
-/* =========================
-MOBILE NAVBAR
-========================= */
+/* =====================================================
+MOBILE MENU
+===================================================== */
 
 const menuBtn =
-document.querySelector(
-".menu-btn"
-);
+document.querySelector(".menu-btn");
 
 const navLinks =
-document.querySelector(
-".nav-links"
-);
+document.querySelector(".nav-links");
 
 if(menuBtn){
 
-menuBtn.addEventListener(
-"click",
-()=>{
+menuBtn.addEventListener("click",()=>{
 
-navLinks.classList.toggle(
-"active"
-);
+navLinks.classList.toggle("active");
+
+if(navLinks.classList.contains("active")){
+
+menuBtn.innerHTML = "✕";
+
+}else{
+
+menuBtn.innerHTML = "☰";
+
+}
 
 });
 
 }
 
-/* =========================
+/* =====================================================
+AUTO CLOSE MENU
+===================================================== */
+
+const navItems =
+document.querySelectorAll(".nav-links a");
+
+navItems.forEach((item)=>{
+
+item.addEventListener("click",()=>{
+
+navLinks.classList.remove("active");
+
+if(menuBtn){
+
+menuBtn.innerHTML = "☰";
+
+}
+
+});
+
+});
+
+/* =====================================================
+ACTIVE NAV LINK
+===================================================== */
+
+const currentPage =
+window.location.href;
+
+const menuLinks =
+document.querySelectorAll(".nav-links a");
+
+menuLinks.forEach((link)=>{
+
+if(link.href === currentPage){
+
+link.classList.add("active");
+
+}
+
+});
+
+/* =====================================================
 TYPING EFFECT
-========================= */
+===================================================== */
 
 const typingText =
-document.querySelector(
-".typing-text"
-);
+document.querySelector(".typing-text");
 
 const words = [
 
@@ -105,23 +147,18 @@ wordIndex = 0;
 
 }
 
-setTimeout(
-typeEffect,
-speed
-);
+setTimeout(typeEffect,speed);
 
 }
 
 typeEffect();
 
-/* =========================
+/* =====================================================
 COUNTER ANIMATION
-========================= */
+===================================================== */
 
 const counters =
-document.querySelectorAll(
-".counter"
-);
+document.querySelectorAll(".counter");
 
 const counterObserver =
 new IntersectionObserver(
@@ -190,102 +227,21 @@ counter
 
 });
 
-/* =========================
-SCROLL REVEAL
-========================= */
-
-const revealElements =
-document.querySelectorAll(
-
-".info-box,\
-.skill-card,\
-.resource-card,\
-.review-card,\
-.statistics-card,\
-.student-card,\
-.rank-card,\
-.gallery-card,\
-.timeline-content,\
-.contact-card,\
-.faq-item,\
-.tip-card,\
-.summary-card,\
-.contact-info-card,\
-.social-contact-card,\
-.teacher-comment-card,\
-.experience-card,\
-.memory-card,\
-.challenge-card,\
-.learning-card,\
-.achievement-card,\
-.education-card"
-
-);
-
-function revealOnScroll(){
-
-const windowHeight =
-window.innerHeight;
-
-revealElements.forEach((element)=>{
-
-const elementTop =
-element.getBoundingClientRect().top;
-
-if(elementTop <
-windowHeight - 80){
-
-element.style.opacity = "1";
-
-element.style.transform =
-"translateY(0px)";
-
-}
-
-});
-
-}
-
-revealElements.forEach((element)=>{
-
-element.style.opacity = "0";
-
-element.style.transform =
-"translateY(40px)";
-
-element.style.transition =
-"all 0.9s ease";
-
-});
-
-window.addEventListener(
-"scroll",
-revealOnScroll
-);
-
-revealOnScroll();
-
-/* =========================
+/* =====================================================
 FAQ TOGGLE
-========================= */
+===================================================== */
 
 const faqItems =
-document.querySelectorAll(
-".faq-item"
-);
+document.querySelectorAll(".faq-item");
 
 faqItems.forEach((item)=>{
 
 const question =
-item.querySelector(
-".faq-question"
-);
+item.querySelector(".faq-question");
 
 if(question){
 
-question.addEventListener(
-"click",
-()=>{
+question.addEventListener("click",()=>{
 
 item.classList.toggle(
 "active-faq"
@@ -297,9 +253,9 @@ item.classList.toggle(
 
 });
 
-/* =========================
+/* =====================================================
 TESTIMONIAL SLIDER
-========================= */
+===================================================== */
 
 const testimonials =
 document.querySelectorAll(
@@ -373,9 +329,9 @@ nextTestimonial,
 
 }
 
-/* =========================
+/* =====================================================
 LIGHTBOX GALLERY
-========================= */
+===================================================== */
 
 const galleryImages =
 document.querySelectorAll(
@@ -398,11 +354,15 @@ image.addEventListener(
 "click",
 ()=>{
 
+if(lightbox){
+
 lightbox.style.display =
 "flex";
 
 lightboxImg.src =
 image.src;
+
+}
 
 });
 
@@ -421,9 +381,9 @@ lightbox.style.display =
 
 }
 
-/* =========================
+/* =====================================================
 PREMIUM GALLERY SLIDER
-========================= */
+===================================================== */
 
 const sliderImage =
 document.getElementById(
@@ -452,13 +412,13 @@ function showSlide(){
 if(!sliderImage) return;
 
 sliderImage.style.filter =
-"blur(12px) brightness(40%)";
+"blur(10px) brightness(40%)";
 
 sliderImage.style.transform =
-"scale(1.15)";
+"scale(1.10)";
 
 sliderImage.style.opacity =
-"0.5";
+"0.6";
 
 setTimeout(()=>{
 
@@ -517,9 +477,76 @@ nextSlide,
 
 }
 
-/* =========================
-NAVBAR BACKGROUND CHANGE
-========================= */
+/* =====================================================
+SCROLL REVEAL
+===================================================== */
+
+const revealElements =
+document.querySelectorAll(
+
+".statistics-card,\
+.contact-card,\
+.resource-card,\
+.experience-card,\
+.learning-card,\
+.achievement-card,\
+.summary-card,\
+.tip-card,\
+.rank-card,\
+.timeline-box,\
+.gallery-card,\
+.skill-card,\
+.education-card,\
+.info-box"
+
+);
+
+function revealOnScroll(){
+
+const windowHeight =
+window.innerHeight;
+
+revealElements.forEach((element)=>{
+
+const elementTop =
+element.getBoundingClientRect().top;
+
+if(elementTop <
+windowHeight - 80){
+
+element.style.opacity = "1";
+
+element.style.transform =
+"translateY(0px)";
+
+}
+
+});
+
+}
+
+revealElements.forEach((element)=>{
+
+element.style.opacity = "0";
+
+element.style.transform =
+"translateY(40px)";
+
+element.style.transition =
+"all 0.9s ease";
+
+});
+
+window.addEventListener(
+"scroll",
+revealOnScroll
+);
+
+revealOnScroll();
+
+/* =====================================================
+NAVBAR EFFECT
+===================================================== */
 
 window.addEventListener(
 "scroll",
@@ -533,164 +560,31 @@ document.querySelector(
 if(window.scrollY > 50){
 
 navbar.style.background =
-"rgba(20,20,20,0.95)";
+"rgba(10,10,10,0.95)";
 
 navbar.style.padding =
-"12px 6%";
+"12px 7%";
 
 }else{
 
 navbar.style.background =
-"rgba(25,20,20,0.82)";
+"rgba(0,0,0,0.78)";
 
 navbar.style.padding =
-"14px 6%";
+"15px 7%";
 
 }
 
 });
 
-/* =========================
-LOADER
-========================= */
-
-window.addEventListener(
-"load",
-()=>{
-
-const loader =
-document.querySelector(
-".loader"
-);
-
-if(loader){
-
-setTimeout(()=>{
-
-loader.style.display =
-"none";
-
-},2200);
-
-}
-
-});
-
-/* =========================
-SMOOTH BUTTON EFFECT
-========================= */
-
-const buttons =
-document.querySelectorAll(
-".primary-btn,\
-.secondary-btn"
-);
-
-buttons.forEach((button)=>{
-
-button.addEventListener(
-"mouseenter",
-()=>{
-
-button.style.transform =
-"translateY(-4px)";
-
-});
-
-button.addEventListener(
-"mouseleave",
-()=>{
-
-button.style.transform =
-"translateY(0px)";
-
-});
-
-});
-
-/* =========================
-IMAGE HOVER ZOOM
-========================= */
-
-const allImages =
-document.querySelectorAll(
-"img"
-);
-
-allImages.forEach((img)=>{
-
-img.addEventListener(
-"mouseenter",
-()=>{
-
-img.style.transition =
-"0.5s";
-
-});
-
-});
-
-/* =========================
-AUTO CLOSE MOBILE MENU
-========================= */
-
-const navItems =
-document.querySelectorAll(
-".nav-links a"
-);
-
-navItems.forEach((item)=>{
-
-item.addEventListener(
-"click",
-()=>{
-
-navLinks.classList.remove(
-"active"
-);
-
-});
-
-});
-
-/* =========================
-ACTIVE NAV LINK
-========================= */
-
-const currentLocation =
-location.href;
-
-const menuItems =
-document.querySelectorAll(
-".nav-links a"
-);
-
-menuItems.forEach((link)=>{
-
-if(link.href === currentLocation){
-
-link.classList.add(
-"active"
-);
-
-}
-
-});
-
-/* =========================
-SCROLL TO TOP BUTTON
-========================= */
+/* =====================================================
+SCROLL TOP BUTTON
+===================================================== */
 
 const scrollBtn =
-document.createElement(
-"button"
-);
+document.createElement("button");
 
 scrollBtn.innerHTML = "↑";
-
-scrollBtn.classList.add(
-"scroll-top-btn"
-);
 
 document.body.appendChild(
 scrollBtn
@@ -718,7 +612,7 @@ scrollBtn.style.borderRadius =
 "50%";
 
 scrollBtn.style.background =
-"#6b2335";
+"#5c1d2b";
 
 scrollBtn.style.color =
 "white";
@@ -766,7 +660,52 @@ behavior:"smooth"
 
 });
 
-/* =========================
+/* =====================================================
+LOADER
+===================================================== */
+
+window.addEventListener(
+"load",
+()=>{
+
+const loader =
+document.querySelector(".loader");
+
+if(loader){
+
+setTimeout(()=>{
+
+loader.style.opacity = "0";
+
+loader.style.visibility =
+"hidden";
+
+},1200);
+
+}
+
+});
+
+/* =====================================================
+IMAGE HOVER EFFECT
+===================================================== */
+
+const allImages =
+document.querySelectorAll("img");
+
+allImages.forEach((img)=>{
+
+img.addEventListener(
+"mouseenter",
+()=>{
+
+img.style.transition =
+"0.5s";
+
+});
+
+});
+
+/* =====================================================
 END
-========================= */
-```
+===================================================== */

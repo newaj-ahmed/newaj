@@ -1,963 +1,279 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Interns | Political Science Cohort</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;800&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #5C1D2B;      /* Premium Dark Maroon */
+            --secondary: #F8F5F2;    /* Cream Academic White */
+            --accent: #D4AF37;       /* Soft Gold */
+            --bg-main: #FFFFFF;
+            --text-dark: #222222;
+            --text-muted: #555555;
+            --glass-border: rgba(92, 29, 43, 0.1);
+            --font-heading: 'Cinzel', serif;
+            --font-body: 'Poppins', sans-serif;
+            --transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
 
-<meta charset="UTF-8">
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: var(--font-body); background-color: var(--bg-main); color: var(--text-dark); line-height: 1.6; padding-top: 90px; }
 
-<meta name="viewport"
-content="width=device-width, initial-scale=1.0">
+        /* FIXED STICKY NAVIGATION */
+        header { position: fixed; top: 0; left: 0; width: 100%; padding: 15px 6%; display: flex; justify-content: space-between; align-items: center; z-index: 1000; background: #ffffff; box-shadow: 0 2px 20px rgba(0,0,0,0.05); border-bottom: 1px solid var(--glass-border); height: 90px; }
+        .logo-text { font-family: var(--font-heading); font-weight: 700; font-size: 1.1rem; color: var(--primary); letter-spacing: 0.5px; line-height: 1.2; }
+        .logo-text span { display: block; font-size: 0.75rem; font-family: var(--font-body); font-weight: 400; color: var(--text-muted); }
+        .nav-menu { display: flex; list-style: none; gap: 15px; }
+        .nav-link { text-decoration: none; color: var(--text-dark); font-size: 0.82rem; font-weight: 500; transition: var(--transition); padding: 6px 10px; border-radius: 4px; }
+        .nav-link:hover, .nav-link.active { color: var(--primary); background: var(--secondary); }
+        .hamburger { display: none; cursor: pointer; background: none; border: none; font-size: 1.3rem; color: var(--primary); padding: 5px; }
 
-<title>
-About | Internship Portfolio
-</title>
+        /* FLOATING WHATSAPP INTERACTION WIDGET */
+        .whatsapp-widget { position: fixed; bottom: 30px; right: 30px; background-color: #25D366; color: white; width: 55px; height: 55px; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 1.8rem; box-shadow: 0 4px 15px rgba(0,0,0,0.15); z-index: 999; text-decoration: none; transition: var(--transition); }
+        .whatsapp-widget:hover { transform: scale(1.1); background-color: #20ba5a; }
 
-<link rel="stylesheet"
-href="style.css">
+        /* SUB-HERO PAGE BANNER */
+        .page-banner { padding: 60px 8%; background: linear-gradient(135deg, var(--primary) 0%, #3a101a 100%); color: #ffffff; text-align: center; }
+        .page-banner h1 { font-family: var(--font-heading); font-size: 2.5rem; color: var(--accent); margin-bottom: 10px; }
+        .page-banner p { font-size: 1rem; max-width: 700px; margin: 0 auto; color: rgba(255,255,255,0.8); }
 
-<link rel="preconnect"
-href="https://fonts.googleapis.com">
+        /* DETAILED PROFILES SECTION */
+        .profiles-section { padding: 80px 8%; background: #ffffff; }
+        .section-title { font-family: var(--font-heading); color: var(--primary); font-size: 2rem; margin-bottom: 50px; text-align: center; position: relative; }
+        .section-title::after { content: ''; display: block; width: 60px; height: 3px; background: var(--accent); margin: 10px auto 0 auto; }
+        
+        .profile-container { display: flex; flex-direction: column; gap: 40px; }
+        .intern-profile-card { display: grid; grid-template-columns: 280px 1fr; background: var(--secondary); border: 1px solid var(--glass-border); border-radius: 12px; overflow: hidden; transition: var(--transition); }
+        .intern-profile-card:hover { transform: translateY(-3px); box-shadow: 0 12px 25px rgba(92,29,43,0.06); border-color: var(--accent); }
+        
+        .profile-visual { background: linear-gradient(180deg, #eaddd3 0%, var(--secondary) 100%); display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 30px; border-right: 1px solid var(--glass-border); text-align: center; }
+        .profile-visual i { font-size: 4.5rem; color: var(--primary); margin-bottom: 15px; background: #ffffff; width: 110px; height: 110px; display: flex; align-items: center; justify-content: center; border-radius: 50%; box-shadow: 0 4px 10px rgba(0,0,0,0.03); border: 2px solid var(--accent); }
+        .profile-visual h3 { font-family: var(--font-heading); color: var(--primary); font-size: 1.2rem; }
+        .profile-visual .role-tag { font-size: 0.72rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; color: var(--text-muted); margin-top: 4px; background: rgba(92,29,43,0.05); padding: 2px 10px; border-radius: 20px; }
 
-<link rel="preconnect"
-href="https://fonts.gstatic.com"
-crossorigin>
+        .profile-details { padding: 35px; display: flex; flex-direction: column; justify-content: center; }
+        .meta-info-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; margin-bottom: 20px; }
+        .meta-item { font-size: 0.88rem; color: var(--text-dark); }
+        .meta-item strong { color: var(--primary); font-family: var(--font-heading); font-size: 0.82rem; display: block; text-transform: uppercase; letter-spacing: 0.5px; }
+        
+        .skills-zone { margin-top: 15px; }
+        .skills-zone h4 { font-family: var(--font-heading); color: var(--primary); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 10px; }
+        .skill-bar-wrapper { margin-bottom: 8px; }
+        .skill-label { display: flex; justify-content: space-between; font-size: 0.78rem; font-weight: 500; color: var(--text-muted); margin-bottom: 2px; }
+        .skill-bar-bg { width: 100%; height: 6px; background: rgba(92,29,43,0.1); border-radius: 3px; overflow: hidden; }
+        .skill-bar-fill { height: 100%; background: linear-gradient(90deg, var(--primary), var(--accent)); border-radius: 3px; }
 
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Poppins:wght@300;400;500;600;700;800&display=swap"
-rel="stylesheet">
+        /* FOOTER MODULE */
+        footer { background: var(--primary); color: rgba(255,255,255,0.8); text-align: center; padding: 35px 0; border-top: 3px solid var(--accent); font-size: 0.85rem; }
+        footer strong { color: #ffffff; font-family: var(--font-heading); }
 
+        @media (max-width: 900px) {
+            .intern-profile-card { grid-template-columns: 1fr; }
+            .profile-visual { border-right: none; border-bottom: 1px solid var(--glass-border); padding: 40px 20px; }
+            .meta-info-grid { grid-template-columns: 1fr; }
+        }
+        
+        @media (max-width: 768px) {
+            .page-banner h1 { font-size: 2rem; }
+            .hamburger { display: block; }
+            .nav-menu { position: fixed; top: 90px; right: -100%; width: 260px; height: calc(100vh - 90px); background: #ffffff; flex-direction: column; padding: 30px; gap: 15px; box-shadow: -5px 5px 15px rgba(0,0,0,0.05); transition: var(--transition); }
+            .nav-menu.open { right: 0; }
+        }
+    </style>
 </head>
-
 <body>
 
-<!-- LOADER -->
-
-<div class="loader">
-
-<div class="loader-text">
-
-ABOUT
-
-</div>
-
-</div>
-
-<!-- NAVBAR -->
-
-<nav class="navbar">
-
-<div class="logo-section">
-
-<img src="HAAMlogo.png"
-alt="School Logo">
-
-<div class="logo-text">
-
-<h2>
-Internship
-</h2>
-
-<p>
-Academic Excellence 2026
-</p>
-
-</div>
-
-</div>
-
-<ul class="nav-links">
-
-<li>
-<a href="index.html">
-Home
-</a>
-</li>
-
-<li>
-<a href="about.html"
-class="active">
-About
-</a>
-</li>
-
-<li>
-<a href="rankholders.html">
-Rank Holders
-</a>
-</li>
-
-<li>
-<a href="gallery.html">
-Gallery
-</a>
-</li>
-
-<li>
-<a href="diary.html">
-Daily Diary
-</a>
-</li>
-
-<li>
-<a href="resources.html">
-Resources
-</a>
-</li>
-
-<li>
-<a href="testimonials.html">
-Testimonials
-</a>
-</li>
-
-<li>
-<a href="achievements.html">
-Achievements
-</a>
-</li>
-
-<li>
-<a href="faq.html">
-FAQ
-</a>
-</li>
-
-<li>
-<a href="contact.html">
-Contact
-</a>
-</li>
-
-</ul>
-
-<div class="menu-btn">
-
-☰
-
-</div>
-
-</nav>
-
-<!-- HERO SECTION -->
-
-<section class="about-hero">
-
-<div class="about-overlay"></div>
-
-<div class="about-hero-content">
-
-<p class="hero-small">
-
-Professional Educational Profile
-
-</p>
-
-<h1>
-
-About Me
-
-</h1>
-
-<h2>
-
-Political Science Intern Teacher
-
-</h2>
-
-<p class="hero-description">
-
-Educational internship portfolio focused on practical teaching,
-student interaction,
-communication,
-discipline,
-and professional educational development.
-
-</p>
-
-</div>
-
-</section>
-
-<!-- ABOUT SECTION -->
-
-<section class="about-main-section">
-
-<div class="section-title">
-
-<h2>
-Professional Introduction
-</h2>
-
-<div class="line"></div>
-
-</div>
-
-<div class="about-container">
-
-<div class="about-content">
-
-<h3>
-
-Newaj Ahmed
-
-</h3>
-
-<p>
-
-I am a Political Science intern teacher
-from Nazir Ajmal Memorial College of Education,
-affiliated to Gauhati University.
-
-</p>
-
-<p>
-
-The internship journey provided practical classroom experience,
-educational understanding,
-student communication,
-leadership development,
-and teaching practice.
-
-</p>
-
-<div class="about-grid">
-
-<div class="about-box">
-
-<h4>
-College
-</h4>
-
-<p>
-
-Nazir Ajmal Memorial College of Education
-
-</p>
-
-</div>
-
-<div class="about-box">
-
-<h4>
-University
-</h4>
-
-<p>
-
-Gauhati University
-
-</p>
-
-</div>
-
-<div class="about-box">
-
-<h4>
-Specialization
-</h4>
-
-<p>
-
-Political Science
-
-</p>
-
-</div>
-
-<div class="about-box">
-
-<h4>
-Internship Duration
-</h4>
-
-<p>
-
-120 Hours
-
-</p>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</section>
-
-<!-- EDUCATIONAL BACKGROUND -->
-
-<section class="education-section">
-
-<div class="section-title">
-
-<h2>
-Educational Background
-</h2>
-
-<div class="line"></div>
-
-</div>
-
-<div class="education-grid">
-
-<div class="education-card">
-
-<div class="education-icon">
-
-🎓
-
-</div>
-
-<h3>
-
-Teacher Training
-
-</h3>
-
-<p>
-
-Professional educational training through internship activities,
-academic participation,
-and classroom teaching practice.
-
-</p>
-
-</div>
-
-<div class="education-card">
-
-<div class="education-icon">
-
-📚
-
-</div>
-
-<h3>
-
-Political Science
-
-</h3>
-
-<p>
-
-Focused on Political Science,
-educational communication,
-classroom discussion,
-and teaching development.
-
-</p>
-
-</div>
-
-<div class="education-card">
-
-<div class="education-icon">
-
-🏫
-
-</div>
-
-<h3>
-
-Educational Practice
-
-</h3>
-
-<p>
-
-Practical classroom teaching experience
-through student interaction
-and educational activities.
-
-</p>
-
-</div>
-
-</div>
-
-</section>
-
-<!-- PROFESSIONAL SKILLS -->
-
-<section class="skills-section">
-
-<div class="section-title">
-
-<h2>
-Professional Skills
-</h2>
-
-<div class="line"></div>
-
-</div>
-
-<div class="skills-grid">
-
-<div class="skill-card">
-
-<div class="skill-icon">
-
-🗣️
-
-</div>
-
-<h3>
-
-Communication Skills
-
-</h3>
-
-<p>
-
-Improved communication through educational discussion
-and classroom participation.
-
-</p>
-
-</div>
-
-<div class="skill-card">
-
-<div class="skill-icon">
-
-👨‍🏫
-
-</div>
-
-<h3>
-
-Teaching Skills
-
-</h3>
-
-<p>
-
-Developed practical classroom teaching
-and educational interaction abilities.
-
-</p>
-
-</div>
-
-<div class="skill-card">
-
-<div class="skill-icon">
-
-⭐
-
-</div>
-
-<h3>
-
-Leadership
-
-</h3>
-
-<p>
-
-Learned leadership,
-discipline,
-confidence,
-and classroom responsibility.
-
-</p>
-
-</div>
-
-<div class="skill-card">
-
-<div class="skill-icon">
-
-📖
-
-</div>
-
-<h3>
-
-Classroom Management
-
-</h3>
-
-<p>
-
-Maintaining classroom discipline,
-interaction,
-and positive educational environment.
-
-</p>
-
-</div>
-
-</div>
-
-</section>
-
-<!-- TEACHING PHILOSOPHY -->
-
-<section class="philosophy-section">
-
-<div class="section-title">
-
-<h2>
-Teaching Philosophy
-</h2>
-
-<div class="line"></div>
-
-</div>
-
-<div class="philosophy-box">
-
-<h3>
-
-Educational Vision
-
-</h3>
-
-<p>
-
-Teaching is not only delivering lessons.
-It is about inspiring students,
-developing confidence,
-encouraging discipline,
-and creating a positive educational environment.
-
-</p>
-
-<p>
-
-A teacher helps students improve academically,
-communicate effectively,
-and develop educational understanding through guidance and support.
-
-</p>
-
-<div class="philosophy-points">
-
-<div class="point">
-
-✔ Interactive learning
-
-</div>
-
-<div class="point">
-
-✔ Student-centered teaching
-
-</div>
-
-<div class="point">
-
-✔ Educational communication
-
-</div>
-
-<div class="point">
-
-✔ Academic growth
-
-</div>
-
-</div>
-
-</div>
-
-</section>
-
-<!-- INTERNSHIP SCHOOL -->
-
-<section class="school-section">
-
-<div class="section-title">
-
-<h2>
-Internship School
-</h2>
-
-<div class="line"></div>
-
-</div>
-
-<div class="school-container">
-
-<div class="school-content full-width">
-
-<h3>
-
-Haji Ajmal Ali Memorial Senior Secondary School
-
-</h3>
-
-<p>
-
-The internship activities were conducted
-at Haji Ajmal Ali Memorial Senior Secondary School,
-Kapashbari,
-Hojai,
-Assam.
-
-</p>
-
-<p>
-
-The school environment provided practical classroom teaching experience,
-student communication,
-educational participation,
-and leadership development.
-
-</p>
-
-<div class="school-details">
-
-<div class="school-detail-box">
-
-<h4>
-Principal
-</h4>
-
-<p>
-
-Faizul Islam
-
-</p>
-
-</div>
-
-<div class="school-detail-box">
-
-<h4>
-Supervisor
-</h4>
-
-<p>
-
-Faizul Islam
-
-</p>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</section>
-
-<!-- PROFESSIONAL EXPERIENCE -->
-
-<section class="experience-section">
-
-<div class="section-title">
-
-<h2>
-Professional Experience
-</h2>
-
-<div class="line"></div>
-
-</div>
-
-<div class="experience-grid">
-
-<div class="experience-card">
-
-<div class="experience-number">
-
-01
-
-</div>
-
-<h3>
-
-Classroom Observation
-
-</h3>
-
-<p>
-
-Observed educational methods,
-student participation,
-and classroom discipline.
-
-</p>
-
-</div>
-
-<div class="experience-card">
-
-<div class="experience-number">
-
-02
-
-</div>
-
-<h3>
-
-Teaching Practice
-
-</h3>
-
-<p>
-
-Conducted classroom teaching
-through educational interaction
-and student communication.
-
-</p>
-
-</div>
-
-<div class="experience-card">
-
-<div class="experience-number">
-
-03
-
-</div>
-
-<h3>
-
-Student Interaction
-
-</h3>
-
-<p>
-
-Communicated with students
-through educational discussion
-and classroom activities.
-
-</p>
-
-</div>
-
-<div class="experience-card">
-
-<div class="experience-number">
-
-04
-
-</div>
-
-<h3>
-
-Professional Growth
-
-</h3>
-
-<p>
-
-Improved confidence,
-leadership,
-communication,
-and educational understanding.
-
-</p>
-
-</div>
-
-</div>
-
-</section>
-
-<!-- ACHIEVEMENT PREVIEW -->
-
-<section class="achievement-preview-section">
-
-<div class="section-title">
-
-<h2>
-Professional Development
-</h2>
-
-<div class="line"></div>
-
-</div>
-
-<div class="achievement-grid">
-
-<div class="achievement-card">
-
-<div class="achievement-icon">
-
-🏆
-
-</div>
-
-<h3>
-
-Internship Completion
-
-</h3>
-
-<p>
-
-Successfully completed
-120 Hours internship program
-through educational participation.
-
-</p>
-
-</div>
-
-<div class="achievement-card">
-
-<div class="achievement-icon">
-
-📚
-
-</div>
-
-<h3>
-
-Educational Activities
-
-</h3>
-
-<p>
-
-Participated in classroom teaching,
-discussion,
-and educational interaction.
-
-</p>
-
-</div>
-
-<div class="achievement-card">
-
-<div class="achievement-icon">
-
-⭐
-
-</div>
-
-<h3>
-
-Skill Development
-
-</h3>
-
-<p>
-
-Improved communication,
-leadership,
-and classroom management skills.
-
-</p>
-
-</div>
-
-</div>
-
-</section>
-
-<!-- CONTACT SECTION -->
-
-<section class="contact-preview-section">
-
-<div class="section-title">
-
-<h2>
-Professional Contact
-</h2>
-
-<div class="line"></div>
-
-</div>
-
-<div class="contact-grid">
-
-<div class="contact-card">
-
-<h3>
-Phone
-</h3>
-
-<p>
-9387127176
-</p>
-
-</div>
-
-<div class="contact-card">
-
-<h3>
-Email
-</h3>
-
-<p>
-newaja35@gmail.com
-</p>
-
-</div>
-
-<div class="contact-card">
-
-<h3>
-Instagram
-</h3>
-
-<p>
-@newaj_ahmad
-</p>
-
-</div>
-
-<div class="contact-card">
-
-<h3>
-Location
-</h3>
-
-<p>
-Kapashbari, Hojai, Assam
-</p>
-
-</div>
-
-</div>
-
-</section>
-
-<!-- FOOTER -->
-
-<footer class="simple-footer">
-
-<p>
-
-© 2026 Newaj Ahmed |
-Internship Portfolio Website
-
-</p>
-
-</footer>
-
-<!-- FLOATING SOCIAL -->
-
-<div class="social-icons">
-
-<a href="https://wa.me/919387127176"
-target="_blank">
-
-<img src="https://cdn-icons-png.flaticon.com/512/733/733585.png">
-
-</a>
-
-<a href="https://instagram.com/newaj_ahmad"
-target="_blank">
-
-<img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png">
-
-</a>
-
-</div>
-
-<script src="script.js"></script>
-
+    <header>
+        <div class="logo-text">AJMALian COHORT<span>Political Science Field Track</span></div>
+        <nav>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="about.html" class="nav-link active">About Interns</a></li>
+                <li><a href="academy.html" class="nav-link">Academy Profile</a></li>
+                <li><a href="activities.html" class="nav-link">Activities</a></li>
+                <li><a href="gallery.html" class="nav-link">Gallery</a></li>
+                <li><a href="diary.html" class="nav-link">Daily Diary</a></li>
+                <li><a href="documents.html" class="nav-link">Documents</a></li>
+                <li><a href="contact.html" class="nav-link">Contact</a></li>
+            </ul>
+        </nav>
+        <button class="hamburger" id="hamburgerBtn" aria-label="Toggle navigation Menu">
+            <i class="fas fa-bars"></i>
+        </button>
+    </header>
+
+    <a href="https://wa.me/919387127176" class="whatsapp-widget" target="_blank" rel="noopener noreferrer" title="Chat via WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <section class="page-banner">
+        <h1>Meet Our Intern Cohort</h1>
+        <p>A specialized assembly of five Political Science student researchers undergoing high-intensity field placement and strategic administrative alignment inside the Ajmal IAS Academy network.</p>
+    </section>
+
+    <section class="profiles-section">
+        <h2 class="section-title">Academic & Operational Profiles</h2>
+        
+        <div class="profile-container">
+            
+            <!-- INTERN 1: NEWAJ AHMED -->
+            <div class="intern-profile-card">
+                <div class="profile-visual">
+                    <i class="fas fa-user-tie"></i>
+                    <h3>Newaj Ahmed</h3>
+                    <div class="role-tag">Team Lead / Systems</div>
+                </div>
+                <div class="profile-details">
+                    <div class="meta-info-grid">
+                        <div class="meta-item"><strong>Core Focus Assignment</strong>Academic Architecture & Portfolio Infrastructure Management</div>
+                        <div class="meta-item"><strong>Operational Field Cluster</strong>Administrative Alignment & Analytical Workflow Logs</div>
+                    </div>
+                    <div class="skills-zone">
+                        <h4>Field Competency Indexes</h4>
+                        <div class="skill-bar-wrapper">
+                            <div class="skill-label"><span>Policy & Public Administration Analysis</span><span>92%</span></div>
+                            <div class="skill-bar-bg"><div class="skill-bar-fill" style="width: 92%;"></div></div>
+                        </div>
+                        <div class="skill-bar-wrapper">
+                            <div class="skill-label"><span>Institutional Framework Mapping</span><span>88%</span></div>
+                            <div class="skill-bar-bg"><div class="skill-bar-fill" style="width: 88%;"></div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- INTERN 2: ARIF ARMAN -->
+            <div class="intern-profile-card">
+                <div class="profile-visual">
+                    <i class="fas fa-user-tie"></i>
+                    <h3>Arif Arman</h3>
+                    <div class="role-tag">Research Specialist</div>
+                </div>
+                <div class="profile-details">
+                    <div class="meta-info-grid">
+                        <div class="meta-item"><strong>Core Focus Assignment</strong>Constitutional Studies & Comparative Governance Assessment</div>
+                        <div class="meta-item"><strong>Operational Field Cluster</strong>Academic Coordination & Seminar Operations</div>
+                    </div>
+                    <div class="skills-zone">
+                        <h4>Field Competency Indexes</h4>
+                        <div class="skill-bar-wrapper">
+                            <div class="skill-label"><span>Constitutional Data Curation</span><span>85%</span></div>
+                            <div class="skill-bar-bg"><div class="skill-bar-fill" style="width: 85%;"></div></div>
+                        </div>
+                        <div class="skill-bar-wrapper">
+                            <div class="skill-label"><span>Administrative Reporting</span><span>80%</span></div>
+                            <div class="skill-bar-bg"><div class="skill-bar-fill" style="width: 80%;"></div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- INTERN 3: NURUZ ZAMAN -->
+            <div class="intern-profile-card">
+                <div class="profile-visual">
+                    <i class="fas fa-user-tie"></i>
+                    <h3>Nuruz Zaman</h3>
+                    <div class="role-tag">Operations Log Officer</div>
+                </div>
+                <div class="profile-details">
+                    <div class="meta-info-grid">
+                        <div class="meta-item"><strong>Core Focus Assignment</strong>Field Diary Reconciliation & Compliance Verification</div>
+                        <div class="meta-item"><strong>Operational Field Cluster</strong>Resource Management & Structural Asset Auditing</div>
+                    </div>
+                    <div class="skills-zone">
+                        <h4>Field Competency Indexes</h4>
+                        <div class="skill-bar-wrapper">
+                            <div class="skill-label"><span>Field Data Integration</span><span>84%</span></div>
+                            <div class="skill-bar-bg"><div class="skill-bar-fill" style="width: 84%;"></div></div>
+                        </div>
+                        <div class="skill-bar-wrapper">
+                            <div class="skill-label"><span>Public Policy Frameworks</span><span>81%</span></div>
+                            <div class="skill-bar-bg"><div class="skill-bar-fill" style="width: 81%;"></div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- INTERN 4: SHEKH FARID -->
+            <div class="intern-profile-card">
+                <div class="profile-visual">
+                    <i class="fas fa-user-tie"></i>
+                    <h3>Shekh Farid</h3>
+                    <div class="role-tag">Academic Coordinator</div>
+                </div>
+                <div class="profile-details">
+                    <div class="meta-info-grid">
+                        <div class="meta-item"><strong>Core Focus Assignment</strong>Syllabus Structural Tracking & Academic Evaluation Modalities</div>
+                        <div class="meta-item"><strong>Operational Field Cluster</strong>Foundation Program Management & Cohort Mentorship</div>
+                    </div>
+                    <div class="skills-zone">
+                        <h4>Field Competency Indexes</h4>
+                        <div class="skill-bar-wrapper">
+                            <div class="skill-label"><span>Strategic Curriculum Planning</span><span>95%</span></div>
+                            <div class="skill-bar-bg"><div class="skill-bar-fill" style="width: 95%;"></div></div>
+                        </div>
+                        <div class="skill-bar-wrapper">
+                            <div class="skill-label"><span>Public Systems Management</span><span>89%</span></div>
+                            <div class="skill-bar-bg"><div class="skill-bar-fill" style="width: 89%;"></div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- INTERN 5: ZAID HUSSAIN -->
+            <div class="intern-profile-card">
+                <div class="profile-visual">
+                    <i class="fas fa-user-tie"></i>
+                    <h3>Zaid Hussain</h3>
+                    <div class="role-tag">Strategic Communications</div>
+                </div>
+                <div class="profile-details">
+                    <div class="meta-info-grid">
+                        <div class="meta-item"><strong>Core Focus Assignment</strong>Stakeholder Documentation & Strategic Outreach Reports</div>
+                        <div class="meta-item"><strong>Operational Field Cluster</strong>Institutional Relations & Media Interface Records</div>
+                    </div>
+                    <div class="skills-zone">
+                        <h4>Field Competency Indexes</h4>
+                        <div class="skill-bar-wrapper">
+                            <div class="skill-label"><span>Institutional Public Relations</span><span>87%</span></div>
+                            <div class="skill-bar-bg"><div class="skill-bar-fill" style="width: 87%;"></div></div>
+                        </div>
+                        <div class="skill-bar-wrapper">
+                            <div class="skill-label"><span>Documentation Accuracy Control</span><span>83%</span></div>
+                            <div class="skill-bar-bg"><div class="skill-bar-fill" style="width: 83%;"></div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <footer>
+        <p><strong>Ajmal IAS Academy Interns</strong> | Political Science Department | © 2026 All Rights Reserved</p>
+    </footer>
+
+    <script>
+        const hamburgerBtn = document.getElementById('hamburgerBtn');
+        const navMenu = document.getElementById('navMenu');
+        
+        hamburgerBtn.addEventListener('click', (e) => { 
+            e.stopPropagation();
+            navMenu.classList.toggle('open'); 
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!navMenu.contains(e.target) && !hamburgerBtn.contains(e.target)) {
+                navMenu.classList.remove('open');
+            }
+        });
+    </script>
 </body>
-
 </html>

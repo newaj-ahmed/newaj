@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Field Activities | Political Science Cohort</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;800&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #5C1D2B;      /* Premium Dark Maroon */
+            --secondary: #F8F5F2;    /* Cream Academic White */
+            --accent: #D4AF37;       /* Soft Gold */
+            --bg-main: #FFFFFF;
+            --text-dark: #222222;
+            --text-muted: #555555;
+            --glass-border: rgba(92, 29, 43, 0.1);
+            --font-heading: 'Cinzel', serif;
+            --font-body: 'Poppins', sans-serif;
+            --transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            --success: #2e7d32;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: var(--font-body); background-color: var(--bg-main); color: var(--text-dark); line-height: 1.6; padding-top: 90px; }
+
+        /* FIXED STICKY NAVIGATION */
+        header { position: fixed; top: 0; left: 0; width: 100%; padding: 15px 6%; display: flex; justify-content: space-between; align-items: center; z-index: 1000; background: #ffffff; box-shadow: 0 2px 20px rgba(0,0,0,0.05); border-bottom: 1px solid var(--glass-border); height: 90px; }
+        .logo-text { font-family: var(--font-heading); font-weight: 700; font-size: 1.1rem; color: var(--primary); letter-spacing: 0.5px; line-height: 1.2; }
+        .logo-text span { display: block; font-size: 0.75rem; font-family: var(--font-body); font-weight: 400; color: var(--text-muted); }
+        .nav-menu { display: flex; list-style: none; gap: 15px; }
+        .nav-link { text-decoration: none; color: var(--text-dark); font-size: 0.82rem; font-weight: 500; transition: var(--transition); padding: 6px 10px; border-radius: 4px; }
+        .nav-link:hover, .nav-link.active { color: var(--primary); background: var(--secondary); }
+        .hamburger { display: none; cursor: pointer; background: none; border: none; font-size: 1.3rem; color: var(--primary); padding: 5px; }
+
+        /* FLOATING WHATSAPP INTERACTION WIDGET */
+        .whatsapp-widget { position: fixed; bottom: 30px; right: 30px; background-color: #25D366; color: white; width: 55px; height: 55px; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 1.8rem; box-shadow: 0 4px 15px rgba(0,0,0,0.15); z-index: 999; text-decoration: none; transition: var(--transition); }
+        .whatsapp-widget:hover { transform: scale(1.1); background-color: #20ba5a; }
+
+        /* SUB-HERO BANNER MODULE */
+        .page-banner { padding: 60px 8%; background: linear-gradient(135deg, var(--primary) 0%, #3a101a 100%); color: #ffffff; text-align: center; }
+        .page-banner h1 { font-family: var(--font-heading); font-size: 2.5rem; color: var(--accent); margin-bottom: 10px; }
+        .page-banner p { font-size: 1rem; max-width: 700px; margin: 0 auto; color: rgba(255,255,255,0.8); }
+
+        /* ACTIVITIES TRACKER CONTAINER */
+        .activities-section { padding: 80px 8%; background: #ffffff; }
+        .section-title { font-family: var(--font-heading); color: var(--primary); font-size: 2rem; margin-bottom: 50px; text-align: center; position: relative; }
+        .section-title::after { content: ''; display: block; width: 60px; height: 3px; background: var(--accent); margin: 10px auto 0 auto; }
+
+        .activities-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 30px; }
+        .activity-card { background: var(--secondary); border: 1px solid var(--glass-border); border-radius: 10px; padding: 35px; transition: var(--transition); display: flex; flex-direction: column; justify-content: space-between; }
+        .activity-card:hover { transform: translateY(-4px); border-color: var(--accent); box-shadow: 0 12px 25px rgba(92,29,43,0.05); }
+        
+        .activity-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 20px; }
+        .activity-icon-box { width: 50px; height: 50px; background: #ffffff; border: 1px solid var(--glass-border); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: var(--primary); font-size: 1.4rem; box-shadow: 0 4px 10px rgba(0,0,0,0.02); }
+        .status-badge { font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; padding: 4px 12px; border-radius: 20px; background: rgba(46, 125, 50, 0.1); color: var(--success); display: inline-flex; align-items: center; gap: 5px; }
+        .status-badge::before { content: ''; width: 6px; height: 6px; background: var(--success); border-radius: 50%; }
+
+        .activity-body h3 { font-family: var(--font-heading); color: var(--primary); font-size: 1.2rem; margin-bottom: 10px; }
+        .activity-body p { color: var(--text-muted); font-size: 0.9rem; text-align: justify; margin-bottom: 20px; }
+        
+        .activity-meta { border-top: 1px solid rgba(92, 29, 43, 0.08); padding-top: 15px; display: flex; justify-content: space-between; font-size: 0.8rem; color: var(--text-muted); }
+        .activity-meta span strong { color: var(--primary); }
+
+        /* METRICS PANEL */
+        .metrics-banner { background: var(--secondary); padding: 60px 8%; border-top: 1px solid var(--glass-border); border-bottom: 1px solid var(--glass-border); text-align: center; }
+        .metrics-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; max-width: 1100px; margin: 0 auto; }
+        .metric-item h4 { font-family: var(--font-heading); font-size: 2.2rem; color: var(--primary); margin-bottom: 5px; }
+        .metric-item p { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; color: var(--text-muted); font-weight: 500; }
+
+        /* FOOTER MODULE */
+        footer { background: var(--primary); color: rgba(255,255,255,0.8); text-align: center; padding: 35px 0; border-top: 3px solid var(--accent); font-size: 0.85rem; }
+        footer strong { color: #ffffff; font-family: var(--font-heading); }
+
+        @media (max-width: 992px) {
+            .activities-grid { grid-template-columns: 1fr; }
+            .metrics-grid { grid-template-columns: repeat(2, 1fr); gap: 30px; }
+        }
+        
+        @media (max-width: 768px) {
+            .page-banner h1 { font-size: 2rem; }
+            .hamburger { display: block; }
+            .nav-menu { position: fixed; top: 90px; right: -100%; width: 260px; height: calc(100vh - 90px); background: #ffffff; flex-direction: column; padding: 30px; gap: 15px; box-shadow: -5px 5px 15px rgba(0,0,0,0.05); transition: var(--transition); }
+            .nav-menu.open { right: 0; }
+        }
+        @media (max-width: 480px) {
+            .metrics-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo-text">AJMALian COHORT<span>Political Science Field Track</span></div>
+        <nav>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="about.html" class="nav-link">About Interns</a></li>
+                <li><a href="academy.html" class="nav-link">Academy Profile</a></li>
+                <li><a href="activities.html" class="nav-link active">Activities</a></li>
+                <li><a href="gallery.html" class="nav-link">Gallery</a></li>
+                <li><a href="diary.html" class="nav-link">Daily Diary</a></li>
+                <li><a href="documents.html" class="nav-link">Documents</a></li>
+                <li><a href="contact.html" class="nav-link">Contact</a></li>
+            </ul>
+        </nav>
+        <button class="hamburger" id="hamburgerBtn" aria-label="Toggle navigation Menu">
+            <i class="fas fa-bars"></i>
+        </button>
+    </header>
+
+    <a href="https://wa.me/919387127176" class="whatsapp-widget" target="_blank" rel="noopener noreferrer" title="Chat via WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <section class="page-banner">
+        <h1>Field Operations & Track Activities</h1>
+        <p>A comprehensive inventory of structural duties, research milestones, and institutional support systems executed during our field placement.</p>
+    </section>
+
+    <!-- CORE METRICS TRACKER -->
+    <section class="metrics-banner">
+        <div class="metrics-grid">
+            <div class="metric-item">
+                <h4>15+</h4>
+                <p>Field Sessions Logged</p>
+            </div>
+            <div class="metric-item">
+                <h4>100%</h4>
+                <p>Syllabus Mapping Checked</p>
+            </div>
+            <div class="metric-item">
+                <h4>05</h4>
+                <p>Specialized Clusters Managed</p>
+            </div>
+            <div class="metric-item">
+                <h4>2026</h4>
+                <p>Current Active Cohort</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- DETAILED ACTIVITIES SECTION -->
+    <section class="activities-section">
+        <h2 class="section-title">Core Institutional Workflows</h2>
+        
+        <div class="activities-grid">
+            
+            <!-- ACTIVITY 1 -->
+            <div class="activity-card">
+                <div>
+                    <div class="activity-header">
+                        <div class="activity-icon-box"><i class="fas fa-sitemap"></i></div>
+                        <span class="status-badge">Active Log Verified</span>
+                    </div>
+                    <div class="activity-body">
+                        <h3>Academic & Syllabus Architecture Tracking</h3>
+                        <p>Our cohort handles structural review mechanisms for the Civil Services foundational batches. This involves mapping public administration and core political science syllabus benchmarks directly with dynamic exam patterns requested by UPSC and APSC.</p>
+                    </div>
+                </div>
+                <div class="activity-meta">
+                    <span><strong>Lead:</strong> Shekh Farid</span>
+                    <span><strong>Scope:</strong> Curriculum Audit</span>
+                </div>
+            </div>
+
+            <!-- ACTIVITY 2 -->
+            <div class="activity-card">
+                <div>
+                    <div class="activity-header">
+                        <div class="activity-icon-box"><i class="fas fa-folder-open"></i></div>
+                        <span class="status-badge">Active Log Verified</span>
+                    </div>
+                    <div class="activity-body">
+                        <h3>Portfolio & Digital Infrastructure Control</h3>
+                        <p>Centralizing documentation, building collaborative workflow interfaces, and managing asset filing arrays for the intern framework. This includes maintaining web-based accessibility vectors via GitHub Pages for clear field tracking transparent metrics.</p>
+                    </div>
+                </div>
+                <div class="activity-meta">
+                    <span><strong>Lead:</strong> Newaj Ahmed</span>
+                    <span><strong>Scope:</strong> System Admin</span>
+                </div>
+            </div>
+
+            <!-- ACTIVITY 3 -->
+            <div class="activity-card">
+                <div>
+                    <div class="activity-header">
+                        <div class="activity-icon-box"><i class="fas fa-users-viewfinder"></i></div>
+                        <span class="status-badge">Active Log Verified</span>
+                    </div>
+                    <div class="activity-body">
+                        <h3>Integrated Outreach Coordination</h3>
+                        <p>Assisting institutional alignment protocols for the integrated degree systems, specifically the BA+IAS program tracks at the Nazir Ajmal Memorial College of Education. Managing information paths for incoming aspirants seeking civil service pathways.</p>
+                    </div>
+                </div>
+                <div class="activity-meta">
+                    <span><strong>Lead:</strong> Zaid Hussain</span>
+                    <span><strong>Scope:</strong> Strategy & PR</span>
+                </div>
+            </div>
+
+            <!-- ACTIVITY 4 -->
+            <div class="activity-card">
+                <div>
+                    <div class="activity-header">
+                        <div class="activity-icon-box"><i class="fas fa-clipboard-check"></i></div>
+                        <span class="status-badge">Active Log Verified</span>
+                    </div>
+                    <div class="activity-body">
+                        <h3>Daily Field Diary Auditing</h3>
+                        <p>Managing systemic evaluation checks and balance logs for daily individual work items. Cross-referencing practical administrative insights gained inside active lecture zones with academic political theory targets.</p>
+                    </div>
+                </div>
+                <div class="activity-meta">
+                    <span><strong>Co-Leads:</strong> Arif & Nuruz</span>
+                    <span><strong>Scope:</strong> Operations Audit</span>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <footer>
+        <p><strong>Ajmal IAS Academy Interns</strong> | Political Science Department | © 2026 All Rights Reserved</p>
+    </footer>
+
+    <script>
+        const hamburgerBtn = document.getElementById('hamburgerBtn');
+        const navMenu = document.getElementById('navMenu');
+        
+        hamburgerBtn.addEventListener('click', (e) => { 
+            e.stopPropagation();
+            navMenu.classList.toggle('open'); 
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!navMenu.contains(e.target) && !hamburgerBtn.contains(e.target)) {
+                navMenu.classList.remove('open');
+            }
+        });
+    </script>
+</body>
+</html>

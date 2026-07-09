@@ -1,827 +1,266 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery | Cinematic Auto Presentation</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root { 
+            --primary: #5C1D2B; 
+            --secondary: #F8F5F2; 
+            --accent: #D4AF37; 
+            --text-dark: #222222; 
+            --font-heading: 'Cinzel', serif; 
+            --font-body: 'Poppins', sans-serif; 
+            --glass-border: rgba(92, 29, 43, 0.15);
+        }
 
-<meta charset="UTF-8">
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: var(--font-body); color: var(--text-dark); padding-top: 100px; padding-bottom: 80px; background: #fff; overflow-x: hidden; }
+        
+        /* FIXED STICKY NAVIGATION */
+        header { position: fixed; top: 0; left: 0; width: 100%; padding: 15px 6%; display: flex; justify-content: space-between; align-items: center; background: #fff; box-shadow: 0 2px 20px rgba(0,0,0,0.05); border-bottom: 1px solid var(--glass-border); z-index:1000; }
+        .logo-text { font-family: var(--font-heading); font-weight:700; color:var(--primary); font-size: 1.2rem; }
+        .nav-menu { display: flex; list-style: none; gap: 20px; }
+        .nav-link { text-decoration: none; color: var(--text-dark); font-size: 0.85rem; font-weight: 500; transition: color 0.3s ease; }
+        .nav-link.active, .nav-link:hover { color: var(--primary); }
+        
+        /* HAMBURGER TRIGGER BUTTON STYLE */
+        .hamburger { display: none; cursor: pointer; background: none; border: none; font-size: 1.3rem; color: var(--primary); padding: 5px; z-index: 1001; }
 
-<meta name="viewport"
-content="width=device-width, initial-scale=1.0">
+        /* FLOATING INTERACTION WIDGET */
+        .whatsapp-widget { position: fixed; bottom: 30px; right: 30px; background-color: #25D366; color: white; width: 55px; height: 55px; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 1.8rem; z-index:9999; text-decoration:none; box-shadow: 0 4px 15px rgba(0,0,0,0.2); transition: transform 0.3s ease; }
+        .whatsapp-widget:hover { transform: scale(1.1); }
 
-<title>
-Gallery | Internship Portfolio
-</title>
+        /* HERO INTRO CONTENT */
+        .gallery-intro { text-align: center; max-width: 700px; margin: 40px auto 10px auto; padding: 0 20px; }
+        .gallery-intro h1 { font-family: var(--font-heading); color: var(--primary); font-size: 2.2rem; margin-bottom: 10px; }
+        .gallery-intro p { font-size: 0.95rem; color: #555; }
 
-<link rel="stylesheet"
-href="style.css">
+        /* ANIMATED PREMIUM PRESENTATION WINDOW */
+        .presentation-frame { max-width: 950px; width: calc(100% - 40px); height: 580px; margin: 30px auto 60px auto; position: relative; background: #0b0204; border-radius: 16px; overflow: hidden; box-shadow: 0 25px 55px rgba(92,29,43,0.15); border: 1px solid var(--glass-border); }
+        
+        /* THE STYLISH BLUR & ZOOM SLIDE LAYERS */
+        .slide { position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0; filter: blur(20px) brightness(0.6); transform: scale(1.08); transition: opacity 1.4s cubic-bezier(0.25, 1, 0.5, 1), filter 1.4s cubic-bezier(0.25, 1, 0.5, 1), transform 1.6s cubic-bezier(0.25, 1, 0.5, 1); display: flex; justify-content: center; align-items: center; z-index: 1; }
+        
+        /* ACTIVE SLIDE STATUS: CRYSTAL CLEAR & FOCUS INSIDE */
+        .slide.active { opacity: 1; filter: blur(0px) brightness(1); transform: scale(1); z-index: 2; }
+        .slide img { width: 100%; height: 100%; object-fit: cover; pointer-events: none; }
 
-<link rel="preconnect"
-href="https://fonts.googleapis.com">
+        /* GLASSMORPHISM INFO OVERLAY LABEL */
+        .slide-caption { position: absolute; bottom: 0; left: 0; width: 100%; padding: 30px 40px; background: linear-gradient(to top, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0.4) 60%, transparent 100%); color: #ffffff; z-index: 5; transform: translateY(20px); opacity: 0; transition: all 1s cubic-bezier(0.25, 1, 0.5, 1) 0.4s; }
+        .slide.active .slide-caption { transform: translateY(0); opacity: 1; }
+        .slide-caption h3 { font-family: var(--font-heading); color: var(--accent); font-size: 1.3rem; margin-bottom: 5px; letter-spacing: 1px; }
+        .slide-caption p { font-size: 0.85rem; opacity: 0.85; font-weight: 300; letter-spacing: 0.5px; }
 
-<link rel="preconnect"
-href="https://fonts.gstatic.com"
-crossorigin>
+        /* PROGRESS TIMELINE INDICATOR BAR */
+        .progress-timeline { position: absolute; bottom: 0; left: 0; height: 4px; background: var(--accent); width: 0%; z-index: 10; }
 
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Poppins:wght@300;400;500;600;700;800&display=swap"
-rel="stylesheet">
+        /* RESPONSIVE LAYOUT CALIBRATION */
+        @media(max-width: 768px) { 
+            body { padding-top: 90px; }
+            header { padding: 15px 4%; }
+            .gallery-intro h1 { font-size: 1.7rem; }
+            .presentation-frame { height: 380px; margin-bottom: 40px; } 
+            .slide-caption { padding: 20px; }
+            .slide-caption h3 { font-size: 1rem; }
+            
+            /* SHOW THE THREE LINES LOGIC WITHOUT CHANGING STYLING COLORS */
+            .hamburger { display: block; }
+            .nav-menu { position: fixed; top: 70px; right: -100%; width: 260px; height: calc(100vh - 70px); background: #ffffff; flex-direction: column; padding: 30px; gap: 15px; box-shadow: -5px 5px 15px rgba(0,0,0,0.05); transition: right 0.3s ease; display: flex; }
+            .nav-menu.open { right: 0; }
+        }
 
+        footer { background: var(--primary); color: #fff; text-align: center; padding: 20px 0; font-size: 0.85rem; position: fixed; bottom: 0; width: 100%; border-top: 2px solid var(--accent); z-index: 999; }
+        footer strong { font-family: var(--font-heading); color: var(--accent); }
+    </style>
 </head>
-
 <body>
 
-<!-- LOADER -->
-
-<div class="loader">
-
-<div class="loader-text">
-
-GALLERY
-
-</div>
-
-</div>
-
-<!-- NAVBAR -->
-
-<nav class="navbar">
-
-<div class="logo-section">
-
-<img src="HAAMlogo.png"
-alt="School Logo">
-
-<div class="logo-text">
-
-<h2>
-Internship
-</h2>
-
-<p>
-Academic Excellence 2026
-</p>
-
-</div>
-
-</div>
-
-<ul class="nav-links">
-
-<li><a href="index.html">Home</a></li>
-
-<li><a href="about.html">About</a></li>
-
-<li><a href="rankholders.html">Rank Holders</a></li>
-
-<li><a href="gallery.html"
-class="active">Gallery</a></li>
-
-<li><a href="diary.html">Daily Diary</a></li>
-
-<li><a href="resources.html">Resources</a></li>
-
-<li><a href="testimonials.html">Testimonials</a></li>
-
-<li><a href="achievements.html">Achievements</a></li>
-
-<li><a href="faq.html">FAQ</a></li>
-
-<li><a href="contact.html">Contact</a></li>
-
-</ul>
-
-<div class="menu-btn">
-
-☰
-
-</div>
-
-</nav>
-
-<!-- HERO SECTION -->
-
-<section class="gallery-hero">
-
-<div class="gallery-overlay"></div>
-
-<div class="gallery-hero-content">
-
-<p class="hero-small">
-
-Educational Internship Gallery
-
-</p>
-
-<h1>
-
-Internship Gallery
-
-</h1>
-
-<h2>
-
-Classroom Activities,
-Teaching Experience,
-and Educational Moments
-
-</h2>
-
-<p class="hero-description">
-
-This gallery showcases internship activities,
-educational participation,
-classroom interaction,
-group activities,
-and memorable internship moments.
-
-</p>
-
-</div>
-
-</section>
-
-<!-- INTRO SECTION -->
-
-<section class="gallery-intro-section">
-
-<div class="section-title">
-
-<h2>
-Educational Photo Gallery
-</h2>
-
-<div class="line"></div>
-
-</div>
-
-<p class="gallery-intro-text">
-
-The internship gallery represents
-classroom teaching,
-student interaction,
-group activities,
-educational communication,
-and practical teaching experiences.
-
-</p>
-
-</section>
-
-<!-- PREMIUM SLIDER -->
-
-<section class="slider-section">
-
-<div class="section-title">
-
-<h2>
-Featured Gallery
-</h2>
-
-<div class="line"></div>
-
-</div>
-
-<div class="premium-slider-container">
-
-<div class="slider-image-container">
-
-<img src="HAAM1.png"
-id="slider-image">
-
-<div class="slider-dark-overlay"></div>
-
-</div>
-
-<button class="slider-btn prev-btn"
-onclick="previousSlide()">
-
-❮
-
-</button>
-
-<button class="slider-btn next-btn"
-onclick="nextSlide()">
-
-❯
-
-</button>
-
-</div>
-
-</section>
-
-<!-- GALLERY GRID -->
-
-<section class="gallery-main-section">
-
-<div class="section-title">
-
-<h2>
-Internship Moments
-</h2>
-
-<div class="line"></div>
-
-</div>
-
-<div class="gallery-grid">
-
-<!-- IMAGE 1 -->
-
-<div class="gallery-card">
-
-<img src="HAAM1.png"
-alt="Gallery Image">
-
-<div class="gallery-content">
-
-<h3>
-
-Classroom Teaching
-
-</h3>
-
-<p>
-
-Educational classroom interaction
-and teaching activities.
-
-</p>
-
-</div>
-
-</div>
-
-<!-- IMAGE 2 -->
-
-<div class="gallery-card">
-
-<img src="HAAM2.png"
-alt="Gallery Image">
-
-<div class="gallery-content">
-
-<h3>
-
-Student Participation
-
-</h3>
-
-<p>
-
-Students participating
-in classroom educational activities.
-
-</p>
-
-</div>
-
-</div>
-
-<!-- IMAGE 3 -->
-
-<div class="gallery-card">
-
-<img src="HAAM3.png"
-alt="Gallery Image">
-
-<div class="gallery-content">
-
-<h3>
-
-Teaching Practice
-
-</h3>
-
-<p>
-
-Practical classroom teaching
-during internship activities.
-
-</p>
-
-</div>
-
-</div>
-
-<!-- IMAGE 4 -->
-
-<div class="gallery-card">
-
-<img src="HAAM4.png"
-alt="Gallery Image">
-
-<div class="gallery-content">
-
-<h3>
-
-Educational Discussion
-
-</h3>
-
-<p>
-
-Interactive communication
-and classroom discussion.
-
-</p>
-
-</div>
-
-</div>
-
-<!-- IMAGE 5 -->
-
-<div class="gallery-card">
-
-<img src="HAAM5.png"
-alt="Gallery Image">
-
-<div class="gallery-content">
-
-<h3>
-
-Group Activities
-
-</h3>
-
-<p>
-
-Group participation
-and educational teamwork.
-
-</p>
-
-</div>
-
-</div>
-
-<!-- IMAGE 6 -->
-
-<div class="gallery-card">
-
-<img src="HAAM6.png"
-alt="Gallery Image">
-
-<div class="gallery-content">
-
-<h3>
-
-Student Interaction
-
-</h3>
-
-<p>
-
-Communication and educational guidance
-with students.
-
-</p>
-
-</div>
-
-</div>
-
-<!-- IMAGE 7 -->
-
-<div class="gallery-card">
-
-<img src="HAAM7.png"
-alt="Gallery Image">
-
-<div class="gallery-content">
-
-<h3>
-
-Internship Activities
-
-</h3>
-
-<p>
-
-Daily educational internship participation
-and activities.
-
-</p>
-
-</div>
-
-</div>
-
-<!-- IMAGE 8 -->
-
-<div class="gallery-card">
-
-<img src="HAAM8.png"
-alt="Gallery Image">
-
-<div class="gallery-content">
-
-<h3>
-
-Educational Environment
-
-</h3>
-
-<p>
-
-Positive classroom environment
-and learning activities.
-
-</p>
-
-</div>
-
-</div>
-
-<!-- IMAGE 9 -->
-
-<div class="gallery-card">
-
-<img src="HAAM9.png"
-alt="Gallery Image">
-
-<div class="gallery-content">
-
-<h3>
-
-Group Photo
-
-</h3>
-
-<p>
-
-Internship moments
-with students and activities.
-
-</p>
-
-</div>
-
-</div>
-
-<!-- IMAGE 10 -->
-
-<div class="gallery-card">
-
-<img src="HAAM10.png"
-alt="Gallery Image">
-
-<div class="gallery-content">
-
-<h3>
-
-Memorable Moments
-
-</h3>
-
-<p>
-
-Educational experiences
-and internship memories.
-
-</p>
-
-</div>
-
-</div>
-
-</div>
-
-</section>
-
-<!-- CATEGORY SECTION -->
-
-<section class="achievement-category-section">
-
-<div class="section-title">
-
-<h2>
-Gallery Categories
-</h2>
-
-<div class="line"></div>
-
-</div>
-
-<div class="achievement-grid">
-
-<div class="achievement-card">
-
-<div class="achievement-icon">
-
-🏫
-
-</div>
-
-<h3>
-
-Classroom Activities
-
-</h3>
-
-<p>
-
-Teaching practice,
-discussion,
-and educational interaction activities.
-
-</p>
-
-</div>
-
-<div class="achievement-card">
-
-<div class="achievement-icon">
-
-📚
-
-</div>
-
-<h3>
-
-Educational Participation
-
-</h3>
-
-<p>
-
-Student participation
-and classroom communication activities.
-
-</p>
-
-</div>
-
-<div class="achievement-card">
-
-<div class="achievement-icon">
-
-🎓
-
-</div>
-
-<h3>
-
-Teaching Experience
-
-</h3>
-
-<p>
-
-Practical educational experience
-through internship activities.
-
-</p>
-
-</div>
-
-<div class="achievement-card">
-
-<div class="achievement-icon">
-
-⭐
-
-</div>
-
-<h3>
-
-Memorable Moments
-
-</h3>
-
-<p>
-
-Important internship memories
-and educational experiences.
-
-</p>
-
-</div>
-
-</div>
-
-</section>
-
-<!-- HIGHLIGHTS -->
-
-<section class="highlight-section">
-
-<div class="section-title">
-
-<h2>
-Gallery Highlights
-</h2>
-
-<div class="line"></div>
-
-</div>
-
-<div class="statistics-grid">
-
-<div class="statistics-card">
-
-<h2 class="counter"
-data-target="10">
-
-0
-
-</h2>
-
-<p>
-Gallery Photos
-</p>
-
-</div>
-
-<div class="statistics-card">
-
-<h2 class="counter"
-data-target="120">
-
-0
-
-</h2>
-
-<p>
-Internship Hours
-</p>
-
-</div>
-
-<div class="statistics-card">
-
-<h2 class="counter"
-data-target="400">
-
-0
-
-</h2>
-
-<p>
-Student Interaction
-</p>
-
-</div>
-
-<div class="statistics-card">
-
-<h2 class="counter"
-data-target="2026">
-
-0
-
-</h2>
-
-<p>
-Academic Session
-</p>
-
-</div>
-
-</div>
-
-</section>
-
-<!-- MOTIVATIONAL SECTION -->
-
-<section class="motivation-banner">
-
-<div class="motivation-content">
-
-<h2>
-
-“Every educational moment
-creates experience,
-learning,
-and growth.”
-
-</h2>
-
-<p>
-
-Internship activities develop confidence,
-communication,
-and practical understanding.
-
-</p>
-
-</div>
-
-</section>
-
-<!-- CONTACT PREVIEW -->
-
-<section class="contact-preview-section">
-
-<div class="section-title">
-
-<h2>
-Educational Contact
-</h2>
-
-<div class="line"></div>
-
-</div>
-
-<div class="contact-grid">
-
-<div class="contact-card">
-
-<h3>
-Phone
-</h3>
-
-<p>
-9387127176
-</p>
-
-</div>
-
-<div class="contact-card">
-
-<h3>
-Email
-</h3>
-
-<p>
-newaja35@gmail.com
-</p>
-
-</div>
-
-<div class="contact-card">
-
-<h3>
-Instagram
-</h3>
-
-<p>
-@newaj_ahmad
-</p>
-
-</div>
-
-<div class="contact-card">
-
-<h3>
-School
-</h3>
-
-<p>
-HAAM Senior Secondary School
-</p>
-
-</div>
-
-</div>
-
-</section>
-
-<!-- FOOTER -->
-
-<footer class="simple-footer">
-
-<p>
-
-© 2026 Newaj Ahmed |
-Internship Portfolio Website
-
-</p>
-
-</footer>
-
-<!-- LIGHTBOX -->
-
-<div class="lightbox"
-id="lightbox">
-
-<img src=""
-id="lightbox-img">
-
-</div>
-
-<!-- FLOATING SOCIAL ICONS -->
-
-<div class="social-icons">
-
-<a href="https://wa.me/919387127176"
-target="_blank">
-
-<img src="https://cdn-icons-png.flaticon.com/512/733/733585.png">
-
-</a>
-
-<a href="https://instagram.com/newaj_ahmad"
-target="_blank">
-
-<img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png">
-
-</a>
-
-</div>
-
-<script src="script.js"></script>
-
+    <header>
+        <div class="logo-text">AJMALian COHORT</div>
+        <!-- Injected menu tracking ID -->
+        <ul class="nav-menu" id="navMenu">
+            <li><a href="index.html" class="nav-link">Home</a></li>
+            <li><a href="about.html" class="nav-link">About Interns</a></li>
+            <li><a href="academy.html" class="nav-link">Academy Profile</a></li>
+            <li><a href="activities.html" class="nav-link">Activities</a></li>
+            <li><a href="gallery.html" class="nav-link active">Gallery</a></li>
+            <li><a href="diary.html" class="nav-link">Daily Diary</a></li>
+            <li><a href="documents.html" class="nav-link">Documents</a></li>
+            <li><a href="contact.html" class="nav-link">Contact</a></li>
+        </ul>
+        <!-- Injected missing Hamburger element structure -->
+        <button class="hamburger" id="hamburgerBtn" aria-label="Toggle navigation Menu">
+            <i class="fas fa-bars"></i>
+        </button>
+    </header>
+
+    <a href="https://wa.me/919387127176" class="whatsapp-widget" target="_blank" rel="noopener noreferrer">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <section class="gallery-intro">
+        <h1>Field Operations Registry</h1>
+        <p>A sequence of active documentation captures, field deployment notes, and core strategic operations logged by our internship unit.</p>
+    </section>
+
+    <!-- CINEMATIC PRESENTATION HUB -->
+    <div class="presentation-frame">
+        
+        <!-- Slide 1 -->
+        <div class="slide active">
+            <img src="AIA1.jpeg" alt="Operational Capture">
+            <div class="slide-caption">
+                <h3>Syllabus Audit Operations</h3>
+                <p>Strategic structural mapping of Civil Service foundational framework tracks.</p>
+            </div>
+        </div>
+        
+        <!-- Slide 2 -->
+        <div class="slide">
+            <img src="AIA2.jpeg" alt="Operational Capture">
+            <div class="slide-caption">
+                <h3>Integrated Outreach Infrastructure</h3>
+                <p>Coordinating layout profiles for incoming aspirants at the College vectors.</p>
+            </div>
+        </div>
+        
+        <!-- Slide 3 -->
+        <div class="slide">
+            <img src="AIA3.jpeg" alt="Operational Capture">
+            <div class="slide-caption">
+                <h3>Digital Ecosystem Maintenance</h3>
+                <p>Upkeep of centralized resource portals and tracking grids via GitHub Pages.</p>
+            </div>
+        </div>
+        
+        <!-- Slide 4 -->
+        <div class="slide">
+            <img src="AIA4.jpeg" alt="Operational Capture">
+            <div class="slide-caption">
+                <h3>Administrative Lecture Logs</h3>
+                <p>Cross-referencing core political science fields with actual training parameters.</p>
+            </div>
+        </div>
+        
+        <!-- Slide 5 -->
+        <div class="slide">
+            <img src="AIA5.jpeg" alt="Operational Capture">
+            <div class="slide-caption">
+                <h3>Cohort Strategic Briefings</h3>
+                <p>Periodic alignments across distinct assignment teams and operational clusters.</p>
+            </div>
+        </div>
+        
+        <!-- Slide 6 -->
+        <div class="slide">
+            <img src="AIA6.jpeg" alt="Operational Capture">
+            <div class="slide-caption">
+                <h3>Reference Archiving Arrays</h3>
+                <p>Structuring access channels for analytical materials inside the academy wing.</p>
+            </div>
+        </div>
+        
+        <!-- Slide 7 -->
+        <div class="slide">
+            <img src="AIA7.jpeg" alt="Operational Capture">
+            <div class="slide-caption">
+                <h3>Metrics Evaluation Control</h3>
+                <p>Validating performance logs against predefined administrative project indexes.</p>
+            </div>
+        </div>
+        
+        <!-- Slide 8 -->
+        <div class="slide">
+            <img src="AIA8.jpeg" alt="Operational Capture">
+            <div class="slide-caption">
+                <h3>Institutional Field Tracks</h3>
+                <p>Executing ground surveys regarding local regulatory awareness matrices.</p>
+            </div>
+        </div>
+        
+        <!-- Slide 9 -->
+        <div class="slide">
+            <img src="AIA9.jpeg" alt="Operational Capture">
+            <div class="slide-caption">
+                <h3>Analytical Data Collation</h3>
+                <p>Sifting information streams gathered during primary tracking modules.</p>
+            </div>
+        </div>
+        
+        <!-- Slide 10 -->
+        <div class="slide">
+            <img src="AIA10.jpeg" alt="Operational Capture">
+            <div class="slide-caption">
+                <h3>Filing Strategy Alignments</h3>
+                <p>Iterative adjustments on active documentation pipelines and layout maps.</p>
+            </div>
+        </div>
+        
+        <!-- Slide 11 -->
+        <div class="slide">
+            <img src="AIA11.jpeg" alt="Operational Capture">
+            <div class="slide-caption">
+                <h3>Deployment Finalization Logs</h3>
+                <p>Consolidating field research inputs into structural academic modules.</p>
+            </div>
+        </div>
+
+        <!-- PROGRESS TIMELINE INTERFACE ELEMENT -->
+        <div class="progress-timeline" id="timelineBar"></div>
+    </div>
+
+    <footer><p>© 2026 Live Visual Transition Registry | Powered by <strong>AJMALian Cohort</strong></p></footer>
+
+    <script>
+        const slides = document.querySelectorAll('.slide');
+        const timelineBar = document.getElementById('timelineBar');
+        let index = 0;
+        const transitionDuration = 3800; // Time in ms per slide
+        let timelineInterval;
+        let startTime;
+
+        function resetTimeline() {
+            clearInterval(timelineInterval);
+            startTime = Date.now();
+            timelineInterval = setInterval(() => {
+                const elapsedTime = Date.now() - startTime;
+                const progressPercentage = Math.min((elapsedTime / transitionDuration) * 100, 100);
+                timelineBar.style.width = progressPercentage + '%';
+            }, 16); // 60fps tracking updates
+        }
+
+        function executeCinematicTransition() {
+            slides[index].classList.remove('active');
+            index = (index + 1) % slides.length;
+            slides[index].classList.add('active');
+            resetTimeline();
+        }
+
+        // Run
+        resetTimeline();
+        setInterval(executeCinematicTransition, transitionDuration);
+
+        // Mobile Navigation Hamburger Logic Injected
+        const hamburgerBtn = document.getElementById('hamburgerBtn');
+        const navMenu = document.getElementById('navMenu');
+        
+        hamburgerBtn.addEventListener('click', (e) => { 
+            e.stopPropagation();
+            navMenu.classList.toggle('open'); 
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!navMenu.contains(e.target) && !hamburgerBtn.contains(e.target)) {
+                navMenu.classList.remove('open');
+            }
+        });
+    </script>
 </body>
-
 </html>

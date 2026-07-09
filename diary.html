@@ -1,791 +1,606 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daily Diary | AJMALian Field Logs</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;800&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #5C1D2B;      /* Premium Dark Maroon */
+            --secondary: #F8F5F2;    /* Cream Academic White */
+            --accent: #D4AF37;       /* Soft Gold */
+            --bg-main: #FFFFFF;
+            --text-dark: #222222;
+            --text-muted: #555555;
+            --glass-border: rgba(92, 29, 43, 0.1);
+            --font-heading: 'Cinzel', serif;
+            --font-body: 'Poppins', sans-serif;
+            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
 
-<meta charset="UTF-8">
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: var(--font-body); background-color: #fcfbfa; color: var(--text-dark); padding-top: 90px; padding-bottom: 60px; }
 
-<meta name="viewport"
-content="width=device-width, initial-scale=1.0">
+        /* FIXED NAVIGATION ARCHITECTURE */
+        header { position: fixed; top: 0; left: 0; width: 100%; padding: 15px 6%; display: flex; justify-content: space-between; align-items: center; z-index: 1000; background: #ffffff; box-shadow: 0 2px 20px rgba(0,0,0,0.05); border-bottom: 1px solid var(--glass-border); height: 90px; }
+        .logo-text { font-family: var(--font-heading); font-weight: 700; font-size: 1.1rem; color: var(--primary); letter-spacing: 0.5px; }
+        .logo-text span { display: block; font-size: 0.75rem; font-family: var(--font-body); font-weight: 400; color: var(--text-muted); }
+        .nav-menu { display: flex; list-style: none; gap: 15px; }
+        .nav-link { text-decoration: none; color: var(--text-dark); font-size: 0.82rem; font-weight: 500; transition: var(--transition); padding: 6px 10px; border-radius: 4px; }
+        .nav-link:hover, .nav-link.active { color: var(--primary); background: var(--secondary); }
+        .hamburger { display: none; cursor: pointer; background: none; border: none; font-size: 1.3rem; color: var(--primary); }
 
-<title>
-Daily Internship Diary | Internship Portfolio
-</title>
+        /* SUB-HERO BANNER MODULE */
+        .page-banner { padding: 50px 8%; background: linear-gradient(135deg, var(--primary) 0%, #3a101a 100%); color: #ffffff; text-align: center; }
+        .page-banner h1 { font-family: var(--font-heading); font-size: 2.3rem; color: var(--accent); margin-bottom: 8px; }
+        .page-banner p { font-size: 0.95rem; max-width: 700px; margin: 0 auto; color: rgba(255,255,255,0.8); }
 
-<link rel="stylesheet"
-href="style.css">
+        /* INTERFACE WORKSPACE CONTROLLER */
+        .diary-workspace { display: grid; grid-template-columns: 280px 1fr; gap: 40px; padding: 50px 6%; max-width: 1400px; margin: 0 auto; }
+        
+        /* SIDEBAR INTERACTIVE TRACKER FILTER */
+        .tracker-sidebar { background: #ffffff; border: 1px solid var(--glass-border); padding: 25px; border-radius: 12px; height: fit-content; position: sticky; top: 130px; box-shadow: 0 4px 20px rgba(0,0,0,0.02); }
+        .sidebar-title { font-family: var(--font-heading); font-size: 1rem; color: var(--primary); margin-bottom: 20px; border-bottom: 2px solid var(--secondary); padding-bottom: 10px; }
+        .day-shortcuts { display: flex; flex-direction: column; gap: 8px; list-style: none; }
+        .shortcut-btn { display: flex; justify-content: space-between; align-items: center; width: 100%; padding: 10px 14px; background: var(--secondary); border: 1px solid transparent; border-radius: 6px; text-decoration: none; color: var(--text-dark); font-size: 0.82rem; font-weight: 500; transition: var(--transition); text-align: left; }
+        .shortcut-btn:hover { background: #ffffff; border-color: var(--accent); color: var(--primary); transform: translateX(3px); }
+        .shortcut-btn span { font-size: 0.72rem; opacity: 0.6; }
 
-<link rel="preconnect"
-href="https://fonts.googleapis.com">
+        /* TIMELINE DISPLAY AREA */
+        .timeline-container { display: flex; flex-direction: column; gap: 40px; }
+        .diary-node { background: #ffffff; border: 1px solid var(--glass-border); border-radius: 12px; padding: 35px; box-shadow: 0 4px 25px rgba(0,0,0,0.01); border-left: 5px solid var(--primary); transition: var(--transition); scroll-margin-top: 130px; }
+        .diary-node:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(92,29,43,0.04); border-left-color: var(--accent); }
+        
+        /* NODE METRICS HEADER */
+        .node-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--secondary); padding-bottom: 15px; margin-bottom: 20px; flex-wrap: wrap; gap: 10px; }
+        .node-day { font-family: var(--font-heading); font-size: 1.25rem; color: var(--primary); display: flex; align-items: center; gap: 10px; }
+        .node-day span { font-family: var(--font-body); font-size: 0.85rem; color: var(--text-muted); font-weight: 400; background: var(--secondary); padding: 2px 10px; border-radius: 4px; }
+        .node-hours { font-size: 0.75rem; font-weight: 600; color: var(--primary); background: rgba(92, 29, 43, 0.08); padding: 4px 12px; border-radius: 20px; text-transform: uppercase; letter-spacing: 0.5px; }
 
-<link rel="preconnect"
-href="https://fonts.gstatic.com"
-crossorigin>
+        /* NODE CORE FIELDS MATRIX */
+        .field-block { margin-bottom: 18px; }
+        .field-block:last-child { margin-bottom: 0; }
+        .field-title { font-size: 0.85rem; font-weight: 600; text-transform: uppercase; color: var(--primary); margin-bottom: 6px; letter-spacing: 0.5px; display: flex; align-items: center; gap: 8px; }
+        .field-title i { color: var(--accent); font-size: 0.9rem; }
+        .field-text { font-size: 0.9rem; color: var(--text-dark); text-align: justify; }
+        
+        /* DATA RECONGREGATION MATRIX LISTS */
+        .matrix-list { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px 20px; list-style: none; padding-top: 5px; }
+        .matrix-list.full-width { grid-template-columns: 1fr; }
+        .matrix-list li { font-size: 0.88rem; color: #444; position: relative; padding-left: 18px; line-height: 1.4; }
+        .matrix-list li::before { content: '•'; position: absolute; left: 5px; color: var(--primary); font-weight: bold; }
 
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Poppins:wght@300;400;500;600;700;800&display=swap"
-rel="stylesheet">
+        /* FLOATING WHATSAPP INTERACTION WIDGET */
+        .whatsapp-widget { position: fixed; bottom: 30px; right: 30px; background-color: #25D366; color: white; width: 55px; height: 55px; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 1.8rem; box-shadow: 0 4px 15px rgba(0,0,0,0.15); z-index: 999; text-decoration: none; transition: var(--transition); }
+        .whatsapp-widget:hover { transform: scale(1.1); }
 
+        footer { background: var(--primary); color: rgba(255,255,255,0.8); text-align: center; padding: 30px 0; border-top: 3px solid var(--accent); font-size: 0.85rem; }
+        footer strong { color: #ffffff; font-family: var(--font-heading); }
+
+        /* RESPONSIVE LAYOUT CALIBRATION */
+        @media (max-width: 1024px) {
+            .diary-workspace { grid-template-columns: 1fr; }
+            .tracker-sidebar { position: static; width: 100%; }
+            .day-shortcuts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+        }
+        @media (max-width: 768px) {
+            .day-shortcuts { grid-template-columns: repeat(2, 1fr); }
+            .matrix-list { grid-template-columns: 1fr; }
+            .hamburger { display: block; }
+            .nav-menu { position: fixed; top: 90px; right: -100%; width: 260px; height: calc(100vh - 90px); background: #ffffff; flex-direction: column; padding: 30px; gap: 15px; box-shadow: -5px 5px 15px rgba(0,0,0,0.05); transition: var(--transition); }
+            .nav-menu.open { right: 0; }
+        }
+        @media (max-width: 480px) {
+            .day-shortcuts { grid-template-columns: 1fr; }
+            .page-banner h1 { font-size: 1.8rem; }
+            .diary-node { padding: 20px; }
+        }
+    </style>
 </head>
-
 <body>
 
-<!-- LOADER -->
-
-<div class="loader">
-
-<div class="loader-text">
-
-DAILY DIARY
-
-</div>
-
-</div>
-
-<!-- NAVBAR -->
-
-<nav class="navbar">
-
-<div class="logo-section">
-
-<img src="HAAMlogo.png"
-alt="School Logo">
-
-<div class="logo-text">
-
-<h2>
-Internship
-</h2>
-
-<p>
-Academic Excellence 2026
-</p>
-
-</div>
-
-</div>
-
-<ul class="nav-links">
-
-<li><a href="index.html">Home</a></li>
-
-<li><a href="about.html">About</a></li>
-
-<li><a href="rankholders.html">Rank Holders</a></li>
-
-<li><a href="gallery.html">Gallery</a></li>
-
-<li><a href="diary.html"
-class="active">Daily Diary</a></li>
-
-<li><a href="resources.html">Resources</a></li>
-
-<li><a href="testimonials.html">Testimonials</a></li>
-
-<li><a href="achievements.html">Achievements</a></li>
-
-<li><a href="faq.html">FAQ</a></li>
-
-<li><a href="contact.html">Contact</a></li>
-
-</ul>
-
-<div class="menu-btn">
-
-☰
-
-</div>
-
-</nav>
-
-<!-- HERO SECTION -->
-
-<section class="diary-hero">
-
-<div class="diary-overlay"></div>
-
-<div class="diary-hero-content">
-
-<p class="hero-small">
-
-Educational Internship Activities
-
-</p>
-
-<h1>
-
-Daily Internship Diary
-
-</h1>
-
-<h2>
-
-Daily Educational Activities,
-Teaching Practice,
-and Internship Experience
-
-</h2>
-
-<p class="hero-description">
-
-This section records daily internship activities,
-classroom teaching experience,
-student interaction,
-and educational participation during internship.
-
-</p>
-
-</div>
-
-</section>
-
-<!-- INTRO -->
-
-<section class="diary-intro-section">
-
-<div class="section-title">
-
-<h2>
-Internship Overview
-</h2>
-
-<div class="line"></div>
-
-</div>
-
-<p class="diary-intro-text">
-
-The daily internship diary represents educational experiences,
-classroom communication,
-teaching practice,
-and practical learning throughout internship activities.
-
-</p>
-
-</section>
-
-<!-- DAILY ACTIVITIES -->
-
-<section class="timeline-section">
-
-<div class="section-title">
-
-<h2>
-Daily Internship Activities
-</h2>
-
-<div class="line"></div>
-
-</div>
-
-<div class="timeline-wrapper">
-
-<!-- DAY 1 -->
-
-<div class="timeline-box">
-
-<h3>
-
-Day 1
-
-</h3>
-
-<p>
-
-Visited the school campus,
-met school authorities,
-and observed the classroom environment and educational system.
-
-</p>
-
-</div>
-
-<!-- DAY 2 -->
-
-<div class="timeline-box">
-
-<h3>
-
-Day 2
-
-</h3>
-
-<p>
-
-Observed classroom discipline,
-student interaction,
-and educational communication methods.
-
-</p>
-
-</div>
-
-<!-- DAY 3 -->
-
-<div class="timeline-box">
-
-<h3>
-
-Day 3
-
-</h3>
-
-<p>
-
-Participated in classroom discussion
-and educational activities with students.
-
-</p>
-
-</div>
-
-<!-- DAY 4 -->
-
-<div class="timeline-box">
-
-<h3>
-
-Day 4
-
-</h3>
-
-<p>
-
-Prepared classroom teaching materials,
-notes,
-and educational discussion topics.
-
-</p>
-
-</div>
-
-<!-- DAY 5 -->
-
-<div class="timeline-box">
-
-<h3>
-
-Day 5
-
-</h3>
-
-<p>
-
-Conducted classroom teaching
-through educational interaction
-and communication.
-
-</p>
-
-</div>
-
-<!-- DAY 6 -->
-
-<div class="timeline-box">
-
-<h3>
-
-Day 6
-
-</h3>
-
-<p>
-
-Observed student participation,
-learning process,
-and classroom discipline.
-
-</p>
-
-</div>
-
-<!-- DAY 7 -->
-
-<div class="timeline-box">
-
-<h3>
-
-Day 7
-
-</h3>
-
-<p>
-
-Participated in educational communication
-and answered student academic questions.
-
-</p>
-
-</div>
-
-<!-- DAY 8 -->
-
-<div class="timeline-box">
-
-<h3>
-
-Day 8
-
-</h3>
-
-<p>
-
-Conducted educational activities,
-classroom discussion,
-and student interaction.
-
-</p>
-
-</div>
-
-<!-- DAY 9 -->
-
-<div class="timeline-box">
-
-<h3>
-
-Day 9
-
-</h3>
-
-<p>
-
-Improved communication skills
-through educational participation
-and teaching activities.
-
-</p>
-
-</div>
-
-<!-- DAY 10 -->
-
-<div class="timeline-box">
-
-<h3>
-
-Day 10
-
-</h3>
-
-<p>
-
-Successfully completed educational internship activities
-with practical teaching experience and professional understanding.
-
-</p>
-
-</div>
-
-</div>
-
-</section>
-
-<!-- EXPERIENCE SECTION -->
-
-<section class="experience-section">
-
-<div class="section-title">
-
-<h2>
-Educational Experience
-</h2>
-
-<div class="line"></div>
-
-</div>
-
-<div class="experience-grid">
-
-<div class="experience-card">
-
-<div class="experience-number">
-
-01
-
-</div>
-
-<h3>
-
-Teaching Practice
-
-</h3>
-
-<p>
-
-Improved practical classroom teaching
-through educational communication
-and student participation.
-
-</p>
-
-</div>
-
-<div class="experience-card">
-
-<div class="experience-number">
-
-02
-
-</div>
-
-<h3>
-
-Communication Skills
-
-</h3>
-
-<p>
-
-Developed communication abilities
-through classroom discussion
-and educational interaction.
-
-</p>
-
-</div>
-
-<div class="experience-card">
-
-<div class="experience-number">
-
-03
-
-</div>
-
-<h3>
-
-Leadership Development
-
-</h3>
-
-<p>
-
-Improved confidence,
-discipline,
-and leadership abilities during internship activities.
-
-</p>
-
-</div>
-
-<div class="experience-card">
-
-<div class="experience-number">
-
-04
-
-</div>
-
-<h3>
-
-Educational Understanding
-
-</h3>
-
-<p>
-
-Learned practical classroom management
-and educational participation methods.
-
-</p>
-
-</div>
-
-</div>
-
-</section>
-
-<!-- LEARNING SECTION -->
-
-<section class="learning-section">
-
-<div class="section-title">
-
-<h2>
-What I Learned
-</h2>
-
-<div class="line"></div>
-
-</div>
-
-<div class="learning-grid">
-
-<div class="learning-card">
-
-<h3>
-
-Interactive Teaching
-
-</h3>
-
-<p>
-
-Students learn better through communication,
-discussion,
-and participation.
-
-</p>
-
-</div>
-
-<div class="learning-card">
-
-<h3>
-
-Classroom Discipline
-
-</h3>
-
-<p>
-
-Positive discipline improves educational environment
-and learning experience.
-
-</p>
-
-</div>
-
-<div class="learning-card">
-
-<h3>
-
-Educational Communication
-
-</h3>
-
-<p>
-
-Communication helps students understand concepts
-and improve confidence.
-
-</p>
-
-</div>
-
-<div class="learning-card">
-
-<h3>
-
-Professional Growth
-
-</h3>
-
-<p>
-
-Internship activities improved practical understanding,
-confidence,
-and educational skills.
-
-</p>
-
-</div>
-
-</div>
-
-</section>
-
-<!-- HIGHLIGHTS -->
-
-<section class="highlight-section">
-
-<div class="section-title">
-
-<h2>
-Internship Highlights
-</h2>
-
-<div class="line"></div>
-
-</div>
-
-<div class="statistics-grid">
-
-<div class="statistics-card">
-
-<h2 class="counter"
-data-target="120">
-
-0
-
-</h2>
-
-<p>
-Internship Hours
-</p>
-
-</div>
-
-<div class="statistics-card">
-
-<h2 class="counter"
-data-target="10">
-
-0
-
-</h2>
-
-<p>
-Daily Activities
-</p>
-
-</div>
-
-<div class="statistics-card">
-
-<h2 class="counter"
-data-target="400">
-
-0
-
-</h2>
-
-<p>
-Student Interaction
-</p>
-
-</div>
-
-<div class="statistics-card">
-
-<h2 class="counter"
-data-target="2026">
-
-0
-
-</h2>
-
-<p>
-Academic Session
-</p>
-
-</div>
-
-</div>
-
-</section>
-
-<!-- MOTIVATION -->
-
-<section class="motivation-banner">
-
-<div class="motivation-content">
-
-<h2>
-
-“Practical educational experience
-builds confidence,
-knowledge,
-and professional growth.”
-
-</h2>
-
-<p>
-
-Daily internship activities improve
-leadership,
-communication,
-and educational understanding.
-
-</p>
-
-</div>
-
-</section>
-
-<!-- SCHOOL SECTION -->
-
-<section class="school-section">
-
-<div class="section-title">
-
-<h2>
-Internship School
-</h2>
-
-<div class="line"></div>
-
-</div>
-
-<div class="school-container">
-
-<div class="school-content full-width">
-
-<h3>
-
-Haji Ajmal Ali Memorial Senior Secondary School
-
-</h3>
-
-<p>
-
-Kapashbari,
-Hojai,
-Assam
-
-</p>
-
-<p>
-
-Educational internship activities were conducted through classroom participation,
-teaching practice,
-and student interaction.
-
-</p>
-
-<div class="school-details">
-
-<div class="school-detail-box">
-
-<h4>
-Principal
-</h4>
-
-<p>
-
-Faizul Islam
-
-</p>
-
-</div>
-
-<div class="school-detail-box">
-
-<h4>
-Supervisor
-</h4>
-
-<p>
-
-Faizul Islam
-
-</p>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</section>
-
-<!-- FOOTER -->
-
-<footer class="simple-footer">
-
-<p>
-
-© 2026 Newaj Ahmed |
-Internship Portfolio Website
-
-</p>
-
-</footer>
-
-<script src="script.js"></script>
-
+    <header>
+        <div class="logo-text">AJMALian COHORT<span>Political Science Field Track</span></div>
+        <nav>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="about.html" class="nav-link">About Interns</a></li>
+                <li><a href="academy.html" class="nav-link">Academy Profile</a></li>
+                <li><a href="activities.html" class="nav-link">Activities</a></li>
+                <li><a href="gallery.html" class="nav-link">Gallery</a></li>
+                <li><a href="diary.html" class="nav-link active">Daily Diary</a></li>
+                <li><a href="documents.html" class="nav-link">Documents</a></li>
+                <li><a href="contact.html" class="nav-link">Contact</a></li>
+            </ul>
+        </nav>
+        <button class="hamburger" id="hamburgerBtn" aria-label="Toggle navigation Menu">
+            <i class="fas fa-bars"></i>
+        </button>
+    </header>
+
+    <a href="https://wa.me/919387127176" class="whatsapp-widget" target="_blank" rel="noopener noreferrer" title="Chat via WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <section class="page-banner">
+        <h1>Field Internship Daily Diary</h1>
+        <p>Systemic chronological data entries mapping structural workflows, knowledge capture vectors, and analytical skill scaling.</p>
+    </section>
+
+    <div class="diary-workspace">
+        
+        <!-- SIDEBAR CONTROLLER -->
+        <aside class="tracker-sidebar">
+            <h2 class="sidebar-title">Logs Registry</h2>
+            <ul class="day-shortcuts">
+                <li><a href="#day1" class="shortcut-btn">Day 01 <span>26 Jun</span></a></li>
+                <li><a href="#day2" class="shortcut-btn">Day 02 <span>27 Jun</span></a></li>
+                <li><a href="#day3" class="shortcut-btn">Day 03 <span>29 Jun</span></a></li>
+                <li><a href="#day4" class="shortcut-btn">Day 04 <span>30 Jun</span></a></li>
+                <li><a href="#day5" class="shortcut-btn">Day 05 <span>01 Jul</span></a></li>
+                <li><a href="#day6" class="shortcut-btn">Day 06 <span>02 Jul</span></a></li>
+                <li><a href="#day7" class="shortcut-btn">Day 07 <span>03 Jul</span></a></li>
+                <li><a href="#day8" class="shortcut-btn">Day 08 <span>04 Jul</span></a></li>
+                <li><a href="#day9" class="shortcut-btn">Day 09 <span>06 Jul</span></a></li>
+                <li><a href="#day10" class="shortcut-btn">Day 10 <span>07 Jul</span></a></li>
+                <li><a href="#day11" class="shortcut-btn">Day 11 <span>08 Jul</span></a></li>
+            </ul>
+        </aside>
+
+        <!-- TIMELINE ENTRIES -->
+        <main class="timeline-container">
+
+            <!-- DAY 1 -->
+            <div class="diary-node" id="day1">
+                <div class="node-header">
+                    <h2 class="node-day">Day 1 <span>26-06-2026</span></h2>
+                    <span class="node-hours">10:00 AM - 04:00 PM</span>
+                </div>
+                <div class="field-block">
+                    <h3 class="field-title"><i class="fas fa-tasks"></i> Task Performed</h3>
+                    <p class="field-text">Read and analysed three newspapers, prepared important daily current affairs for UPSC related to Indian polity and governance, and drafted a detailed article on "Passport Not a Proof of Citizenship: Ministry of External Affairs."</p>
+                </div>
+                <div class="field-block">
+                    <h3 class="field-title"><i class="fas fa-graduation-cap"></i> Knowledge Acquired</h3>
+                    <ul class="matrix-list">
+                        <li>Improved understanding of Indian polity and provisions on citizenship.</li>
+                        <li>Developed skills in newspaper analysis and UPSC current affairs note-making.</li>
+                        <li>Gained knowledge about legal distinctions between passport, identity, and citizenship.</li>
+                        <li>Enhanced analytical writing skills by preparing structured current affairs articles.</li>
+                        <li>Strengthened understanding of governance issues and policy implications.</li>
+                    </ul>
+                </div>
+                <div class="field-block">
+                    <h3 class="field-title"><i class="fas fa-tools"></i> Skills Learned</h3>
+                    <ul class="matrix-list">
+                        <li>Current affairs analysis from newspapers.</li>
+                        <li>Article writing and structured note-making for UPSC-oriented topics.</li>
+                        <li>Critical thinking and issue-based analysis in polity and governance.</li>
+                        <li>Improved research and information filtering skills.</li>
+                    </ul>
+                </div>
+                <div class="field-block">
+                    <h3 class="field-title"><i class="fas fa-heart"></i> Observed Attitude & Gained Values</h3>
+                    <ul class="matrix-list">
+                        <li>Developed discipline and consistency in daily newspaper reading and analysis.</li>
+                        <li>Improved patience and attention to detail while studying current affairs.</li>
+                        <li>Learned the importance of accuracy and objectivity in article writing.</li>
+                        <li>Gained professionalism in completing assigned tasks and time management.</li>
+                    </ul>
+                </div>
+                <div class="field-block">
+                    <h3 class="field-title"><i class="fas fa-exclamation-triangle"></i> Challenges Faced</h3>
+                    <ul class="matrix-list">
+                        <li>Difficulty in identifying relevant current affairs from multiple newspapers.</li>
+                        <li>Understanding complex constitutional and legal concepts related to polity.</li>
+                        <li>Converting newspaper data into structured UPSC-oriented notes under tight timelines.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- DAY 2 -->
+            <div class="diary-node" id="day2">
+                <div class="node-header">
+                    <h2 class="node-day">Day 2 <span>27-06-2026</span></h2>
+                    <span class="node-hours">10:00 AM - 04:00 PM</span>
+                </div>
+                <div class="field-block">
+                    <h3 class="field-title"><i class="fas fa-tasks"></i> Task Performed</h3>
+                    <p class="field-text">Prepared UPSC and APSC standard objective and subjective questions by analyzing different newspaper articles and current affairs issues.</p>
+                </div>
+                <div class="field-block">
+                    <h3 class="field-title"><i class="fas fa-graduation-cap"></i> Knowledge Acquired</h3>
+                    <ul class="matrix-list">
+                        <li>Gained knowledge of current affairs relevance in UPSC and APSC exams.</li>
+                        <li>Learned the process of framing objective and descriptive questions from news.</li>
+                        <li>Enhanced knowledge of linking static syllabus topics with dynamic current affairs.</li>
+                        <li>Developed a better understanding of analytical and exam-oriented question patterns.</li>
+                    </ul>
+                </div>
+                <div class="field-block">
+                    <h3 class="field-title"><i class="fas fa-tools"></i> Skills Learned</h3>
+                    <ul class="matrix-list">
+                        <li>Developed analytical reading skills through news item evaluation.</li>
+                        <li>Improved objective and descriptive question-setting mechanics.</li>
+                        <li>Strengthened comprehension of polity, governance, and constitutional items.</li>
+                    </ul>
+                </div>
+                <div class="field-block">
+                    <h3 class="field-title"><i class="fas fa-heart"></i> Observed Attitude & Gained Values</h3>
+                    <ul class="matrix-list">
+                        <li>Developed patience and discipline while analyzing complex topics.</li>
+                        <li>Improved accuracy and attention to detail in test-question assembly.</li>
+                        <li>Strengthened critical and analytical mindset requirements for civil services standard.</li>
+                    </ul>
+                </div>
+                <div class="field-block">
+                    <h3 class="field-title"><i class="fas fa-exclamation-triangle"></i> Challenges Faced</h3>
+                    <ul class="matrix-list">
+                        <li>Difficulty filtering lengthy texts and framing balanced standard options.</li>
+                        <li>Faced challenges managing high factual accuracy alongside strict conceptual clarity.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- DAY 3 -->
+            <div class="diary-node" id="day3">
+                <div class="node-header">
+                    <h2 class="node-day">Day 3 <span>29-06-2026</span></h2>
+                    <span class="node-hours">10:00 AM - 04:00 PM</span>
+                </div>
+                <div class="field-block">
+                    <h3 class="field-title"><i class="fas fa-tasks"></i> Task Performed</h3>
+                    <p class="field-text">Prepared and formatted articles and magazines in Microsoft Word using headings, font styles, page layout, alignment, and watermark features.</p>
+                </div>
+                <div class="field-block">
+                    <h3 class="field-title"><i class="fas fa-graduation-cap"></i> Knowledge Acquired</h3>
+                    <ul class="matrix-list">
+                        <li>Learned systematic article and magazine formatting techniques in Microsoft Word.</li>
+                        <li>Understood the usage parameters of watermarks, page layouts, and structural text design.</li>
+                    </ul>
+                </div>
+                <div class="field-block">
+                    <h3 class="field-title"><i class="fas fa-tools"></i> Skills Learned</h3>
+                    <ul class="matrix-list">
+                        <li>Improved document structural layout editing and processing controls.</li>
+                        <li>Learned to organize raw academic content professionally for publication blocks.</li>
+                    </ul>
+                </div>
+                <div class="field-block">
+                    <h3 class="field-title"><i class="fas fa-heart"></i> Observed Attitude & Gained Values</h3>
+                    <ul class="matrix-list">
+                        <li>Developed a high level of patience and focus on typography detailing.</li>
+                        <li>Improved individual spatial placement creativity and structural presentation metrics.</li>
+                    </ul>
+                </div>
+                <div class="field-block">
+                    <h3 class="field-title"><i class="fas fa-exclamation-triangle"></i> Challenges Faced</h3>
+                    <p class="field-text">Faced slight initial difficulty in managing precise grid layout settings and uniform design styling parameters across multiple source files.</p>
+                </div>
+            </div>
+
+            <!-- DAY 4 -->
+            <div class="diary-node" id="day4">
+                <div class="node-header">
+                    <h2 class="node-day">Day 4 <span>30-06-2026</span></h2>
+                    <span class="node-hours">10:00 AM - 04:00 PM</span>
+                </div>
+                <div class="field-block">
+                    <h3 class="field-title"><i class="fas fa-tasks"></i> Task Performed</h3>
+                    <p class="field-text">Formatted objective and descriptive questions for APSC and UPSC mock tests in Microsoft Word by organizing the content, applying proper headings, numbering, alignment, page layout, and text styling.</p>
+                </div>
+                <div class="field-block">
+                    <h3 class="field-title"><i class="fas fa-graduation-cap"></i> Knowledge Acquired</h3>
+                    <ul class="matrix-list">
+                        <li>Gained structural alignment mapping data for professional civil service testing papers.</li>
+                        <li>Mastered multi-level indexing lists, font weighting, and margin alignments inside MS Word.</li>
+                    </ul>
+                </div>
+                <div class="field-block">
+                    <h3 class="field-title"><i class="fas fa-tools"></i> Skills Learned</h3>
+                    <ul class="matrix-list">
+                        <li>Advanced document processing typography controls.</li>
+                        <li>Developed speed and editing accuracy while handling highly dense data vectors.</li>
+                    </ul>
+                </div>
+                <div class="field-block">
+                    <h3 class="field-title"><i class="fas fa-heart"></i> Observed Attitude & Gained Values</h3>
+                    <ul class="matrix-list">
+                        <li>Enhanced concentration capacities during deep data input phases.</li>
+                        <li>Understood the functional presentation values of discipline and order in learning materials.</li>
+                    </ul>
+                </div>
+                <div class="field-block">
+                    <h3 class="field-title"><i class="fas fa-exclamation-triangle"></i> Challenges Faced</h3>
+                    <p class="field-text">Maintaining completely uniform line heights, indent spacing parameters, and auto-numbering resets throughout dynamic subjective fields.</p>
+                </div>
+            </div>
+
+            <!-- DAY 5 -->
+            <div class="diary-node" id="day5">
+                <div class="node-header">
+                    <h2 class="node-day">Day 5 <span>01-07-2026</span></h2>
+                    <span class="node-hours">10:00 AM - 04:00 PM</span>
+                </div>
+                <div class="field-block">
+                    <h3 class="field-title"><i class="fas fa-tasks"></i> Task Performed</h3>
+                    <p class="field-text">Communicated with students through WhatsApp and answered their admission-related queries regarding fees, courses, and other details. Also provided offline counselling to students and observed the counselling process.</p>
+                </div>
+                <div class="field-block">
+                    <h3 class="field-title"><i class="fas fa-graduation-cap"></i> Knowledge Acquired</h3>
+                    <ul class="matrix-list">
+                        <li>Gained understanding of admission procedures, fee structures, and integrated course lines.</li>
+                        <li>Learned face-to-face academic communication models and strategic advice arrays.</li>
+                    </ul>
+                </div>
+                <div class="field-block">
+                    <h3 class="field-title"><i class="fas fa-tools"></i> Skills Learned</h3>
+                    <ul class="matrix-list">
+                        <li>Improved public outreach inter-personal conversational metrics.</li>
+                        <li>Developed fast multi-tasking client inquiry dispatch handling skills.</li>
+                    </ul>
+                </div>
+                <div class="field-block">
+                    <h3 class="field-title"><i class="fas fa-heart"></i> Observed Attitude & Gained Values</h3>
+                    <ul class="matrix-list">
+                        <li>Cultivated active empathetic listening capacities towards candidate queries.</li>
+                        <li>Acquired accountability markers for delivering institutional pricing data accurately.</li>
+                    </ul>
+                </div>
+                <div class="field-block">
+                    <h3 class="field-title"><i class="fas fa-exclamation-triangle"></i> Challenges Faced</h3>
+                    <p class="field-text">Managing dense traffic patterns of inbound WhatsApp text alerts while keeping in-person communication fluid and professional.</p>
+                </div>
+            </div>
+
+            <!-- DAY 6 -->
+            <div class="diary-node" id="day6">
+                <div class="node-header">
+                    <h2 class="node-day">Day 6 <span>02-07-2026</span></h2>
+                    <span class="node-hours">10:00 AM - 04:00 PM</span>
+                </div>
+                <div class="field-block">
+                    <h3 class="field-title"><i class="fas fa-tasks"></i> Task Performed</h3>
+                    <p class="field-text">Prepared and managed the attendance record of students from different batches using Microsoft Excel.</p>
+                </div>
+                <div class="field-block">
+                    <h3 class="field-title"><i class="fas fa-graduation-cap"></i> Knowledge Acquired</h3>
+                    <ul class="matrix-list">
+                        <li>Learned database normalization processes for student logs inside spreadsheets.</li>
+                        <li>Understood tracking optimization targets across separate active foundation batches.</li>
+                    </ul>
+                </div>
+                <div class="field-block">
+                    <h3 class="field-title"><i class="fas fa-tools"></i> Skills Learned</h3>
+                    <ul class="matrix-list">
+                        <li>Advanced Excel spreadsheet data-entry architectures.</li>
+                        <li>Applied conditional data cells, functional calculations, and quick validation lists.</li>
+                    </ul>
+                </div>
+                <div class="field-block">
+                    <h3 class="field-title"><i class="fas fa-heart"></i> Observed Attitude & Gained Values</h3>
+                    <ul class="matrix-list">
+                        <li>High accuracy discipline during manual tracking registry updates.</li>
+                        <li>Developed strong administrative data handling ethics and structural consistency.</li>
+                    </ul>
+                </div>
+                <div class="field-block">
+                    <h3 class="field-title"><i class="fas fa-exclamation-triangle"></i> Challenges Faced</h3>
+                    <p class="field-text">Auditing multi-batch overlapping rosters and filtering user typing duplicates without interrupting structural calculations.</p>
+                </div>
+            </div>
+
+            <!-- DAY 7 -->
+            <div class="diary-node" id="day7">
+                <div class="node-header">
+                    <h2 class="node-day">Day 7 <span>03-07-2026</span></h2>
+                    <span class="node-hours">10:00 AM - 04:00 PM</span>
+                </div>
+                <div class="field-block">
+                    <h3 class="field-title"><i class="fas fa-tasks"></i> Task Performed</h3>
+                    <p class="field-text">Made phone calls to students and attended their calls to provide counselling regarding admission, courses, fees, and other related queries.</p>
+                </div>
+                <div class="field-block">
+                    <h3 class="field-title"><i class="fas fa-graduation-cap"></i> Knowledge Acquired</h3>
+                    <ul class="matrix-list">
+                        <li>Isolated regular student anxieties and information roadblocks regarding syllabus choices.</li>
+                        <li>Mastered vocal tele-counselling workflows and course alignment maps.</li>
+                    </ul>
+                </div>
+                <div class="field-block">
+                    <h3 class="field-title"><i class="fas fa-tools"></i> Skills Learned</h3>
+                    <ul class="matrix-list">
+                        <li>Refined high-impact verbal expression profiles and client guidance tracks.</li>
+                        <li>Learned prompt documentation capturing workflows mid-call.</li>
+                    </ul>
+                </div>
+                <div class="field-block">
+                    <h3 class="field-title"><i class="fas fa-heart"></i> Observed Attitude & Gained Values</h3>
+                    <ul class="matrix-list">
+                        <li>Maintained calm demeanor during extended periods of student interaction.</li>
+                        <li>Built operational confidence levels within competitive academic communication.</li>
+                    </ul>
+                </div>
+                <div class="field-block">
+                    <h3 class="field-title"><i class="fas fa-exclamation-triangle"></i> Challenges Faced</h3>
+                    <p class="field-text">Resolving complex, multi-layered structural doubts regarding syllabus intersections under stringent timeline bounds over tele-channels.</p>
+                </div>
+            </div>
+
+            <!-- DAY 8 -->
+            <div class="diary-node" id="day8">
+                <div class="node-header">
+                    <h2 class="node-day">Day 8 <span>04-07-2026</span></h2>
+                    <span class="node-hours">10:00 AM - 04:00 PM</span>
+                </div>
+                <div class="field-block">
+                    <h3 class="field-title"><i class="fas fa-tasks"></i> Task Performed</h3>
+                    <p class="field-text">Uploaded and published UPSC and APSC related articles on the academy website for students’ reference and exam preparation.</p>
+                </div>
+                <div class="field-block">
+                    <h3 class="field-title"><i class="fas fa-graduation-cap"></i> Knowledge Acquired</h3>
+                    <ul class="matrix-list">
+                        <li>Acquired functional architecture insights on academic portal Content Management Systems.</li>
+                        <li>Understood web-hierarchy filing parameters for open civil service learning logs.</li>
+                    </ul>
+                </div>
+                <div class="field-block">
+                    <h3 class="field-title"><i class="fas fa-tools"></i> Skills Learned</h3>
+                    <ul class="matrix-list">
+                        <li>Digital production deployments and layout markup processing.</li>
+                        <li>Enhanced web assets formatting, hyperlink routing adjustments, and visual structuring.</li>
+                    </ul>
+                </div>
+                <div class="field-block">
+                    <h3 class="field-title"><i class="fas fa-heart"></i> Observed Attitude & Gained Values</h3>
+                    <ul class="matrix-list">
+                        <li>Deep awareness regarding formatting layouts for better reader experiences.</li>
+                        <li>Maintained clean organizational schedules while updating public informational zones.</li>
+                    </ul>
+                </div>
+                <div class="field-block">
+                    <h3 class="field-title"><i class="fas fa-exclamation-triangle"></i> Challenges Faced</h3>
+                    <p class="field-text">Fixing inline CSS source errors and paragraph spacing bugs when parsing raw editorial text into the responsive layout engine panels.</p>
+                </div>
+            </div>
+
+            <!-- DAY 9 -->
+            <div class="diary-node" id="day9">
+                <div class="node-header">
+                    <h2 class="node-day">Day 9 <span>06-07-2026</span></h2>
+                    <span class="node-hours">10:00 AM - 04:00 PM</span>
+                </div>
+                <div class="field-block">
+                    <h3 class="field-title"><i class="fas fa-tasks"></i> Task Performed</h3>
+                    <p class="field-text">Observed the online class management process in the IT Department and assisted in monitoring live classes through the Ajmal IAS Academy App. Checked whether live sessions were running smoothly, identified technical issues during classes, and informed the concerned team whenever required.</p>
+                </div>
+                <div class="field-block">
+                    <h3 class="field-title"><i class="fas fa-graduation-cap"></i> Knowledge Acquired</h3>
+                    <ul class="matrix-list">
+                        <li>Learned online class distribution patterns over proprietary application frames.</li>
+                        <li>Understood real-time stream optimization, bitrates, and viewer bandwidth pipelines.</li>
+                    </ul>
+                </div>
+                <div class="field-block">
+                    <h3 class="field-title"><i class="fas fa-tools"></i> Skills Learned</h3>
+                    <ul class="matrix-list">
+                        <li>Live application control system dashboard manipulation.</li>
+                        <li>Identified latency vectors and mastered swift communication channels to dispatch support groups.</li>
+                    </ul>
+                </div>
+                <div class="field-block">
+                    <h3 class="field-title"><i class="fas fa-heart"></i> Observed Attitude & Gained Values</h3>
+                    <ul class="matrix-list">
+                        <li>High vigilance and immediate accountability during operational breakdowns.</li>
+                        <li>Acquired deep reliance and teamwork coordination metrics alongside specialized core technicians.</li>
+                    </ul>
+                </div>
+                <div class="field-block">
+                    <h3 class="field-title"><i class="fas fa-exclamation-triangle"></i> Challenges Faced</h3>
+                    <p class="field-text">Concurrently watching multi-lecture transmission feeds to track structural dropouts without missing lag reports in the group chat channels.</p>
+                </div>
+            </div>
+
+            <!-- DAY 10 -->
+            <div class="diary-node" id="day10">
+                <div class="node-header">
+                    <h2 class="node-day">Day 10 <span>07-07-2026</span></h2>
+                    <span class="node-hours">10:00 AM - 04:00 PM</span>
+                </div>
+                <div class="field-block">
+                    <h3 class="field-title"><i class="fas fa-tasks"></i> Task Performed</h3>
+                    <p class="field-text">Prepared daily quiz-based questions for students using Canva. Designed and formatted objective-type question papers for the weekly mock tests.</p>
+                </div>
+                <div class="field-block">
+                    <h3 class="field-title"><i class="fas fa-graduation-cap"></i> Knowledge Acquired</h3>
+                    <ul class="matrix-list">
+                        <li>Gained specialized insights into educational asset branding layout techniques.</li>
+                        <li>Learned cognitive structural models for developing accessible educational micro-graphics.</li>
+                    </ul>
+                </div>
+                <div class="field-block">
+                    <h3 class="field-title"><i class="fas fa-tools"></i> Skills Learned</h3>
+                    <ul class="matrix-list">
+                        <li>Graphic design typography layout creation inside Canva web suites.</li>
+                        <li>High precision spacing, template customization, and raster exporting frameworks.</li>
+                    </ul>
+                </div>
+                <div class="field-block">
+                    <h3 class="field-title"><i class="fas fa-heart"></i> Observed Attitude & Gained Values</h3>
+                    <ul class="matrix-list">
+                        <li>Developed a keen eye for balanced layout distributions and visual neatness.</li>
+                        <li>Learned strict time management discipline to hit daily publication thresholds.</li>
+                    </ul>
+                </div>
+                <div class="field-block">
+                    <h3 class="field-title"><i class="fas fa-exclamation-triangle"></i> Challenges Faced</h3>
+                    <p class="field-text">Wrapping extensive textual option strings inside minimal vector block spaces without compressing font readability.</p>
+                </div>
+            </div>
+
+            <!-- DAY 11 -->
+            <div class="diary-node" id="day11">
+                <div class="node-header">
+                    <h2 class="node-day">Day 11 <span>08-07-2026</span></h2>
+                    <span class="node-hours">10:00 AM - 04:00 PM</span>
+                </div>
+                <div class="field-block">
+                    <h3 class="field-title"><i class="fas fa-tasks"></i> Task Performed</h3>
+                    <p class="field-text">Created a teacher feedback form using Google Forms, collected students' responses, analyzed the feedback data, and prepared a report based on the findings. Edited academic videos and published the finalized videos on YouTube Studio under the guidance of the IT team.</p>
+                </div>
+                <div class="field-block">
+                    <h3 class="field-title"><i class="fas fa-graduation-cap"></i> Knowledge Acquired</h3>
+                    <ul class="matrix-list">
+                        <li>Understood qualitative data aggregation and metrics evaluation metrics using online tools.</li>
+                        <li>Mastered metadata indexing, description configuration, and tag mapping on YouTube Studio.</li>
+                    </ul>
+                </div>
+                <div class="field-block">
+                    <h3 class="field-title"><i class="fas fa-tools"></i> Skills Learned</h3>
+                    <ul class="matrix-list">
+                        <li>Survey structure formulation, data classification, and diagnostic report generation.</li>
+                        <li>Non-linear timeline clip optimization, sound balancing, and digital publishing pipelines.</li>
+                    </ul>
+                </div>
+                <div class="field-block">
+                    <h3 class="field-title"><i class="fas fa-heart"></i> Observed Attitude & Gained Values</h3>
+                    <ul class="matrix-list">
+                        <li>Maintained objective focus while evaluating feedback records.</li>
+                        <li>Committed to ensuring high-quality control bars for learning material releases.</li>
+                    </ul>
+                </div>
+                <div class="field-block">
+                    <h3 class="field-title"><i class="fas fa-exclamation-triangle"></i> Challenges Faced</h3>
+                    <p class="field-text">Parsing extensive feedback responses into a concise report while keeping processing speeds high during intensive video adjustments.</p>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <footer>
+        <p><strong>Ajmal IAS Academy Interns</strong> | Political Science Department | © 2026 All Rights Reserved</p>
+    </footer>
+
+    <script>
+        const hamburgerBtn = document.getElementById('hamburgerBtn');
+        const navMenu = document.getElementById('navMenu');
+        
+        hamburgerBtn.addEventListener('click', (e) => { 
+            e.stopPropagation();
+            navMenu.classList.toggle('open'); 
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!navMenu.contains(e.target) && !hamburgerBtn.contains(e.target)) {
+                navMenu.classList.remove('open');
+            }
+        });
+    </script>
 </body>
-
 </html>

@@ -1,400 +1,226 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact | AJMALian Hub</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root { 
+            --primary: #5C1D2B; 
+            --secondary: #F8F5F2; 
+            --accent: #D4AF37; 
+            --text-dark: #222222; 
+            --text-muted: #555555;
+            --font-heading: 'Cinzel', serif; 
+            --font-body: 'Poppins', sans-serif; 
+            --glass-border: rgba(92, 29, 43, 0.12);
+        }
 
-<meta charset="UTF-8">
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: var(--font-body); color: var(--text-dark); padding-top: 100px; background: #faf8f7; overflow-x: hidden; }
+        
+        /* FIXED STICKY NAVIGATION */
+        header { position: fixed; top: 0; left: 0; width: 100%; padding: 15px 6%; display: flex; justify-content: space-between; align-items: center; background: #fff; box-shadow: 0 2px 20px rgba(0,0,0,0.05); border-bottom: 1px solid var(--glass-border); z-index:1000; height: 90px; }
+        .logo-text { font-family: var(--font-heading); font-weight:700; color:var(--primary); font-size: 1.2rem; }
+        .nav-menu { display: flex; list-style: none; gap: 20px; }
+        .nav-link { text-decoration: none; color: var(--text-dark); font-size: 0.85rem; font-weight: 500; transition: color 0.3s ease; }
+        .nav-link.active, .nav-link:hover { color: var(--primary); }
+        
+        /* HAMBURGER TRIGGER BUTTON STYLE */
+        .hamburger { display: none; cursor: pointer; background: none; border: none; font-size: 1.4rem; color: var(--primary); padding: 5px; z-index: 1002; }
 
-<meta name="viewport"
-content="width=device-width, initial-scale=1.0">
+        /* FLOATING WHATSAPP INTERACTION WIDGET */
+        .whatsapp-widget { position: fixed; bottom: 30px; right: 30px; background-color: #25D366; color: white; width: 55px; height: 55px; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 1.8rem; z-index:9999; text-decoration:none; box-shadow: 0 4px 15px rgba(0,0,0,0.15); transition: transform 0.3s ease; }
+        .whatsapp-widget:hover { transform: scale(1.1); }
 
-<title>
-Contact | Internship Portfolio
-</title>
+        /* HERO INTRO HEADER */
+        .contact-intro { text-align: center; max-width: 700px; margin: 40px auto 10px auto; padding: 0 20px; }
+        .contact-intro h1 { font-family: var(--font-heading); color: var(--primary); font-size: 2.2rem; margin-bottom: 10px; }
+        .contact-intro p { font-size: 0.95rem; color: var(--text-muted); }
 
-<link rel="stylesheet"
-href="style.css">
+        /* MAIN TWO-COLUMN CONTAINER */
+        .container { max-width: 1200px; margin: 20px auto 60px auto; padding: 0 20px; display: grid; grid-template-columns: 1.1fr 1fr; gap: 40px; }
+        
+        /* LEFT COLUMN: FORM STYLING */
+        .form-container { background: #ffffff; border: 1px solid var(--glass-border); padding: 20px; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.02); }
+        .form-frame { width: 100%; height: 560px; border: none; border-radius: 8px; }
+        
+        /* RIGHT COLUMN: INFRASTRUCTURE BOXES */
+        .info-panel { display: flex; flex-direction: column; gap: 25px; }
+        
+        .details-box { background: #ffffff; padding: 30px; border-radius: 12px; border: 1px solid var(--glass-border); border-left: 4px solid var(--primary); box-shadow: 0 10px 30px rgba(0,0,0,0.02); }
+        .details-box h3 { font-family: var(--font-heading); color: var(--primary); margin-bottom: 15px; font-size: 1.15rem; display: flex; align-items: center; gap: 10px; }
+        .details-box h3 i { color: var(--accent); font-size: 1rem; }
+        .details-box p { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 6px; line-height: 1.5; }
+        .details-box strong { color: var(--text-dark); }
 
-<link rel="preconnect"
-href="https://fonts.googleapis.com">
+        /* COHORT TEAM DIRECTORY MATRIX */
+        .team-grid { display: flex; flex-direction: column; gap: 15px; margin-top: 10px; }
+        .team-card { background: var(--secondary); padding: 15px 20px; border-radius: 8px; border: 1px solid rgba(92, 29, 43, 0.05); transition: transform 0.2s ease; }
+        .team-card:hover { transform: translateX(4px); }
+        .team-name { font-size: 0.95rem; font-weight: 600; color: var(--primary); margin-bottom: 4px; }
+        .team-meta { font-size: 0.85rem; color: var(--text-muted); display: flex; flex-direction: column; gap: 2px; }
+        .team-meta a { color: var(--primary); text-decoration: none; font-weight: 500; }
+        .team-meta a:hover { text-decoration: underline; }
 
-<link rel="preconnect"
-href="https://fonts.gstatic.com"
-crossorigin>
+        /* RESPONSIVE LAYOUT CALIBRATION */
+        @media(max-width: 992px) { 
+            .container { grid-template-columns: 1fr; } 
+            .form-frame { height: 500px; }
+        }
+        @media(max-width: 768px) {
+            .contact-intro h1 { font-size: 1.8rem; }
+            
+            /* SHOW THE THREE LINES IN MOBILE VIEW */
+            .hamburger { display: block !important; }
+            nav { display: flex; align-items: center; }
+            
+            .nav-menu { 
+                position: fixed; 
+                top: 90px; 
+                right: -100%; 
+                width: 260px; 
+                height: calc(100vh - 90px); 
+                background: #ffffff; 
+                flex-direction: column; 
+                padding: 30px; 
+                gap: 15px; 
+                box-shadow: -5px 5px 15px rgba(0,0,0,0.05); 
+                transition: right 0.4s cubic-bezier(0.25, 0.8, 0.25, 1); 
+                display: flex !important; /* Force layout state override over hidden selectors */
+                z-index: 1001;
+            }
+            .nav-menu.open { right: 0; }
+        }
 
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Poppins:wght@300;400;500;600;700;800&display=swap"
-rel="stylesheet">
-
+        footer { background: var(--primary); color: #fff; text-align: center; padding: 25px 0; font-size: 0.85rem; border-top: 2px solid var(--accent); margin-top: auto; }
+        footer strong { font-family: var(--font-heading); color: var(--accent); }
+    </style>
 </head>
-
 <body>
 
-<!-- LOADER -->
-
-<div class="loader">
-
-<div class="loader-text">
-
-CONTACT
-
-</div>
-
-</div>
-
-<!-- NAVBAR -->
-
-<nav class="navbar">
-
-<div class="logo-section">
-
-<img src="HAAMlogo.png"
-alt="School Logo">
-
-<div class="logo-text">
-
-<h2>
-Internship
-</h2>
-
-<p>
-Academic Excellence 2026
-</p>
-
-</div>
-
-</div>
-
-<ul class="nav-links">
-
-<li><a href="index.html">Home</a></li>
-
-<li><a href="about.html">About</a></li>
-
-<li><a href="rankholders.html">Rank Holders</a></li>
-
-<li><a href="gallery.html">Gallery</a></li>
-
-<li><a href="diary.html">Daily Diary</a></li>
-
-<li><a href="resources.html">Resources</a></li>
-
-<li><a href="testimonials.html">Testimonials</a></li>
-
-<li><a href="achievements.html">Achievements</a></li>
-
-<li><a href="faq.html">FAQ</a></li>
-
-<li><a href="contact.html"
-class="active">Contact</a></li>
-
-</ul>
-
-<div class="menu-btn">
-
-☰
-
-</div>
-
-</nav>
-
-<!-- HERO SECTION -->
-
-<section class="contact-hero">
-
-<div class="contact-overlay"></div>
-
-<div class="contact-hero-content">
-
-<p class="hero-small">
-
-Educational Communication
-
-</p>
-
-<h1>
-
-Contact
-
-</h1>
-
-<h2>
-
-Official Educational Contact Form
-
-</h2>
-
-<p class="hero-description">
-
-For educational communication,
-internship related information,
-and academic discussion,
-please use the official contact form below.
-
-</p>
-
-</div>
-
-</section>
-
-<!-- INTRO SECTION -->
-
-<section class="contact-intro-section">
-
-<div class="section-title">
-
-<h2>
-Get In Touch
-</h2>
-
-<div class="line"></div>
-
-</div>
-
-<p class="contact-intro-text">
-
-Visitors,
-students,
-and educational participants
-can communicate through the official internship contact form.
-
-</p>
-
-</section>
-
-<!-- CONTACT FORM -->
-
-<section class="form-section">
-
-<div class="section-title">
-
-<h2>
-Official Contact Form
-</h2>
-
-<div class="line"></div>
-
-</div>
-
-<div class="form-container">
-
-<iframe
-src="https://docs.google.com/forms/d/e/1FAIpQLSc1s4otOEDxQesf31Fue0kWiwEYNRbdiapyv-kFO-C3Ua6YPg/viewform?embedded=true"
-width="100%"
-height="1200"
-frameborder="0"
-marginheight="0"
-marginwidth="0">
-
-Loading…
-
-</iframe>
-
-</div>
-
-</section>
-
-<!-- SCHOOL SECTION -->
-
-<section class="school-section">
-
-<div class="section-title">
-
-<h2>
-Internship School
-</h2>
-
-<div class="line"></div>
-
-</div>
-
-<div class="school-container">
-
-<div class="school-content full-width">
-
-<h3>
-
-Haji Ajmal Ali Memorial Senior Secondary School
-
-</h3>
-
-<p>
-
-Kapashbari,
-Hojai,
-Assam
-
-</p>
-
-<p>
-
-Educational internship activities
-were conducted through classroom participation,
-teaching practice,
-and student interaction.
-
-</p>
-
-<div class="school-details">
-
-<div class="school-detail-box">
-
-<h4>
-Principal
-</h4>
-
-<p>
-
-Faizul Islam
-
-</p>
-
-</div>
-
-<div class="school-detail-box">
-
-<h4>
-Supervisor
-</h4>
-
-<p>
-
-Faizul Islam
-
-</p>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</section>
-
-<!-- EDUCATIONAL INFORMATION -->
-
-<section class="highlight-section">
-
-<div class="section-title">
-
-<h2>
-Educational Highlights
-</h2>
-
-<div class="line"></div>
-
-</div>
-
-<div class="statistics-grid">
-
-<div class="statistics-card">
-
-<h2 class="counter"
-data-target="120">
-
-0
-
-</h2>
-
-<p>
-Internship Hours
-</p>
-
-</div>
-
-<div class="statistics-card">
-
-<h2 class="counter"
-data-target="10">
-
-0
-
-</h2>
-
-<p>
-Educational Activities
-</p>
-
-</div>
-
-<div class="statistics-card">
-
-<h2 class="counter"
-data-target="400">
-
-0
-
-</h2>
-
-<p>
-Student Interaction
-</p>
-
-</div>
-
-<div class="statistics-card">
-
-<h2 class="counter"
-data-target="2026">
-
-0
-
-</h2>
-
-<p>
-Academic Session
-</p>
-
-</div>
-
-</div>
-
-</section>
-
-<!-- MOTIVATIONAL SECTION -->
-
-<section class="motivation-banner">
-
-<div class="motivation-content">
-
-<h2>
-
-“Educational communication strengthens
-learning,
-guidance,
-and understanding.”
-
-</h2>
-
-<p>
-
-Professional interaction and educational participation
-develop knowledge,
-confidence,
-and academic growth.
-
-</p>
-
-</div>
-
-</section>
-
-<!-- FOOTER -->
-
-<footer class="simple-footer">
-
-<p>
-
-© 2026 Newaj Ahmed |
-Internship Portfolio Website
-
-</p>
-
-</footer>
-
-<script src="script.js"></script>
-
+    <header>
+        <div class="logo-text">AJMALian COHORT</div>
+        <nav>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="about.html" class="nav-link">About Interns</a></li>
+                <li><a href="academy.html" class="nav-link">Academy Profile</a></li>
+                <li><a href="activities.html" class="nav-link">Activities</a></li>
+                <li><a href="gallery.html" class="nav-link">Gallery</a></li>
+                <li><a href="diary.html" class="nav-link">Daily Diary</a></li>
+                <li><a href="documents.html" class="nav-link">Documents</a></li>
+                <li><a href="contact.html" class="nav-link active">Contact</a></li>
+            </ul>
+        </nav>
+        <button class="hamburger" id="hamburgerBtn" aria-label="Toggle navigation Menu">
+            <i class="fas fa-bars"></i>
+        </button>
+    </header>
+
+    <a href="https://wa.me/919387127176" class="whatsapp-widget" target="_blank" rel="noopener noreferrer">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <section class="contact-intro">
+        <h1>Communication Gateways</h1>
+        <p>Connect with our field unit operations desk, submit active reports, or reach out directly to the cohort representatives.</p>
+    </section>
+
+    <div class="container">
+        
+        <!-- LEFT PANEL: SECURE CONTACT FORM -->
+        <div class="form-container">
+            <iframe class="form-frame" src="https://docs.google.com/forms/d/e/1FAIpQLSc1s4otOEDxQesf31Fue0kWiwEYNRbdiapyv-kFO-C3Ua6YPg/viewform?embedded=true">Loading Form Interface...</iframe>
+        </div>
+        
+        <!-- RIGHT PANEL: REGISTRY DATA & DIRECTORY -->
+        <div class="info-panel">
+            
+            <!-- LOCATION & GENERAL LOGS -->
+            <div class="details-box">
+                <h3><i class="fas fa-map-marker-alt"></i> Deployment Hub</h3>
+                <p><strong>Academic and Administrative Team</strong></p>
+                <p>Hojai, Assam, India</p>
+                <p style="margin-top: 15px; border-top: 1px dashed rgba(0,0,0,0.1); padding-top: 12px;">
+                    <strong>Official Registry Email:</strong><br>
+                    <span style="color: var(--primary); font-weight: 500;">newaja35@gmail.com</span>
+                </p>
+            </div>
+            
+            <!-- TEAM DESK REGISTRY -->
+            <div class="details-box" style="border-left-color: var(--accent);">
+                <h3><i class="fas fa-users"></i> Cohort Contacts</h3>
+                
+                <div class="team-grid">
+                    <!-- Newaj Ahmed -->
+                    <div class="team-card" style="border-left: 3px solid #5C1D2B;">
+                        <div class="team-name">Newaj Ahmed</div>
+                        <div class="team-meta">
+                            <span><i class="fas fa-phone-alt"></i> Call: <a href="tel:+919387127176">9387127176</a></span>
+                            <span><i class="fas fa-envelope"></i> Email: <a href="mailto:newaja35@gmail.com">newaja35@gmail.com</a></span>
+                        </div>
+                    </div>
+
+                    <!-- Arif Arman -->
+                    <div class="team-card">
+                        <div class="team-name">Arif Arman</div>
+                        <div class="team-meta">
+                            <span><i class="fas fa-phone-alt"></i> Call: <a href="tel:+917099969635">70999 69635</a></span>
+                        </div>
+                    </div>
+
+                    <!-- Shekh Farid -->
+                    <div class="team-card">
+                        <div class="team-name">Shekh Farid</div>
+                        <div class="team-meta">
+                            <span><i class="fas fa-phone-alt"></i> Call: <a href="tel:+919864164399">98641 64399</a></span>
+                        </div>
+                    </div>
+
+                    <!-- Nuruz Zaman -->
+                    <div class="team-card">
+                        <div class="team-name">Nuruz Zaman</div>
+                        <div class="team-meta">
+                            <span><i class="fas fa-phone-alt"></i> Call: <a href="tel:+919395165532">93951 65532</a></span>
+                        </div>
+                    </div>
+
+                    <!-- Zaid Hussain -->
+                    <div class="team-card">
+                        <div class="team-name">Zaid Hussain</div>
+                        <div class="team-meta">
+                            <span><i class="fas fa-phone-alt"></i> Call: <a href="tel:+919954732021">99547 32021</a></span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        
+    </div>
+
+    <footer><p>© 2026 Integrated Desk Gateway | Powered by <strong>Newaj Ahmed</strong></p></footer>
+
+    <script>
+        const hamburgerBtn = document.getElementById('hamburgerBtn');
+        const navMenu = document.getElementById('navMenu');
+        
+        hamburgerBtn.addEventListener('click', (e) => { 
+            e.stopPropagation();
+            navMenu.classList.toggle('open'); 
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!navMenu.contains(e.target) && !hamburgerBtn.contains(e.target)) {
+                navMenu.classList.remove('open');
+            }
+        });
+    </script>
 </body>
-
 </html>

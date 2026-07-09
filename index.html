@@ -3,333 +3,349 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Internship Portfolio | Newaj Ahmed</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Political Science Intern Cohort | Ajmal IAS Academy</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;800&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #5C1D2B;      /* Premium Dark Maroon */
+            --secondary: #F8F5F2;    /* Cream Academic White */
+            --accent: #D4AF37;       /* Soft Gold */
+            --bg-main: #FFFFFF;
+            --text-dark: #222222;
+            --text-muted: #555555;
+            --glass-border: rgba(92, 29, 43, 0.1);
+            --font-heading: 'Cinzel', serif;
+            --font-body: 'Poppins', sans-serif;
+            --transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        * { 
+            margin: 0; 
+            padding: 0; 
+            box-sizing: border-box; 
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body { 
+            font-family: var(--font-body); 
+            background-color: var(--bg-main); 
+            color: var(--text-dark); 
+            line-height: 1.6; 
+            padding-top: 90px; 
+        }
+
+        /* FIXED STICKY NAVIGATION */
+        header { 
+            position: fixed; 
+            top: 0; 
+            left: 0; 
+            width: 100%; 
+            padding: 15px 6%; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            z-index: 1000; 
+            background: #ffffff; 
+            box-shadow: 0 2px 20px rgba(0,0,0,0.05); 
+            border-bottom: 1px solid var(--glass-border); 
+            height: 90px;
+        }
+        
+        .logo-text { 
+            font-family: var(--font-heading); 
+            font-weight: 700; 
+            font-size: 1.1rem; 
+            color: var(--primary); 
+            letter-spacing: 0.5px; 
+            line-height: 1.2; 
+        }
+        
+        .logo-text span { 
+            display: block; 
+            font-size: 0.75rem; 
+            font-family: var(--font-body); 
+            font-weight: 400; 
+            color: var(--text-muted); 
+        }
+        
+        .nav-menu { 
+            display: flex; 
+            list-style: none; 
+            gap: 15px; 
+        }
+        
+        .nav-link { 
+            text-decoration: none; 
+            color: var(--text-dark); 
+            font-size: 0.82rem; 
+            font-weight: 500; 
+            transition: var(--transition); 
+            padding: 6px 10px; 
+            border-radius: 4px; 
+        }
+        
+        .nav-link:hover, .nav-link.active { 
+            color: var(--primary); 
+            background: var(--secondary); 
+        }
+        
+        .hamburger { 
+            display: none; 
+            cursor: pointer; 
+            background: none; 
+            border: none; 
+            font-size: 1.3rem; 
+            color: var(--primary); 
+            padding: 5px;
+        }
+
+        /* FLOATING WHATSAPP INTERACTION WIDGET */
+        .whatsapp-widget { 
+            position: fixed; 
+            bottom: 30px; 
+            right: 30px; 
+            background-color: #25D366; 
+            color: white; 
+            width: 55px; 
+            height: 55px; 
+            border-radius: 50%; 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            font-size: 1.8rem; 
+            box-shadow: 0 4px 15px rgba(0,0,0,0.15); 
+            z-index: 999; 
+            text-decoration: none; 
+            transition: var(--transition); 
+        }
+        
+        .whatsapp-widget:hover { 
+            transform: scale(1.1); 
+            background-color: #20ba5a; 
+        }
+
+        /* HERO ZONE */
+        .hero { 
+            min-height: 65vh; 
+            display: flex; 
+            align-items: center; 
+            padding: 40px 8%; 
+            background: linear-gradient(135deg, #ffffff 50%, var(--secondary) 100%); 
+        }
+        
+        .hero-content { 
+            max-width: 800px; 
+        }
+        
+        .badge { 
+            display: inline-block; 
+            padding: 6px 14px; 
+            background: var(--secondary); 
+            border-left: 3px solid var(--accent); 
+            color: var(--primary); 
+            font-family: var(--font-heading); 
+            font-size: 0.8rem; 
+            letter-spacing: 1px; 
+            margin-bottom: 20px; 
+        }
+        
+        .hero-title { 
+            font-family: var(--font-heading); 
+            font-size: 2.8rem; 
+            color: var(--primary); 
+            line-height: 1.2; 
+            margin-bottom: 15px; 
+            font-weight: 700; 
+        }
+        
+        .hero-desc { 
+            color: var(--text-muted); 
+            font-size: 1.05rem; 
+            margin-bottom: 35px; 
+            text-align: justify; 
+        }
+
+        /* INTERN PANEL GRIDS */
+        .team-section { 
+            padding: 80px 8%; 
+            background: #ffffff; 
+            text-align: center; 
+        }
+        
+        .section-title { 
+            font-family: var(--font-heading); 
+            color: var(--primary); 
+            font-size: 2rem; 
+            margin-bottom: 40px; 
+            position: relative; 
+        }
+        
+        .section-title::after { 
+            content: ''; 
+            display: block; 
+            width: 60px; 
+            height: 3px; 
+            background: var(--accent); 
+            margin: 10px auto 0 auto; 
+        }
+        
+        .team-grid { 
+            display: grid; 
+            grid-template-columns: repeat(5, 1fr); 
+            gap: 20px; 
+        }
+        
+        .team-card { 
+            background: var(--secondary); 
+            border: 1px solid var(--glass-border); 
+            border-radius: 8px; 
+            padding: 25px 15px; 
+            transition: var(--transition); 
+            text-align: center; 
+        }
+        
+        .team-card:hover { 
+            transform: translateY(-5px); 
+            background: #ffffff; 
+            border-color: var(--accent); 
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05); 
+        }
+        
+        .team-card i { 
+            font-size: 2.2rem; 
+            color: var(--primary); 
+            margin-bottom: 15px; 
+        }
+        
+        .team-card h3 { 
+            font-family: var(--font-heading); 
+            color: var(--primary); 
+            font-size: 1rem; 
+            margin-bottom: 5px; 
+        }
+        
+        .team-card p { 
+            font-size: 0.78rem; 
+            color: var(--text-muted); 
+            font-weight: 500; 
+            text-transform: uppercase; 
+            letter-spacing: 0.5px; 
+        }
+
+        /* FOOTER MODULE */
+        footer { 
+            background: var(--primary); 
+            color: rgba(255,255,255,0.8); 
+            text-align: center; 
+            padding: 35px 0; 
+            border-top: 3px solid var(--accent); 
+            font-size: 0.85rem; 
+        }
+        
+        footer strong { 
+            color: #ffffff; 
+            font-family: var(--font-heading); 
+        }
+
+        @media (max-width: 1200px) { 
+            .team-grid { grid-template-columns: repeat(3, 1fr); } 
+        }
+        
+        @media (max-width: 768px) {
+            .hero-title { font-size: 2rem; }
+            .team-grid { grid-template-columns: repeat(2, 1fr); }
+            .hamburger { display: block; }
+            .nav-menu { 
+                position: fixed; 
+                top: 90px; 
+                right: -100%; 
+                width: 260px; 
+                height: calc(100vh - 90px); 
+                background: #ffffff; 
+                flex-direction: column; 
+                padding: 30px; 
+                gap: 15px; 
+                box-shadow: -5px 5px 15px rgba(0,0,0,0.05); 
+                transition: var(--transition); 
+            }
+            .nav-menu.open { right: 0; }
+        }
+        
+        @media (max-width: 480px) {
+            .team-grid { grid-template-columns: 1fr; }
+        }
+    </style>
 </head>
 <body>
-<div id="launch-screen">
 
-    <div class="launch-box">
-
-        <h1>Website Coming Soon</h1>
-
-        <h2>Launch Date</h2>
-
-        <p>01 July 2026 • 09:00 AM</p>
-
-        <div id="countdown">
-
-            <div class="time-box">
-                <span id="days">0</span>
-                <small>Days</small>
-            </div>
-
-            <div class="time-box">
-                <span id="hours">0</span>
-                <small>Hours</small>
-            </div>
-
-            <div class="time-box">
-                <span id="minutes">0</span>
-                <small>Minutes</small>
-            </div>
-
-            <div class="time-box">
-                <span id="seconds">0</span>
-                <small>Seconds</small>
-            </div>
-
-        </div>
-
-    </div>
-
-</div>
-    <div class="loader">
-        <div class="loader-text">INTERNSHIP</div>
-    </div>
-
-    <nav class="navbar">
-        <div class="logo-section">
-            <img src="HAAMlogo.png" alt="HAAM Logo">
-            <div class="logo-text">
-                <h2>Internship</h2>
-                <p>Academic Excellence 2026</p>
-            </div>
-        </div>
-
-        <ul class="nav-links">
-            <li><a href="index.html" class="active">Home</a></li>
-            <li><a href="about.html">About</a></li>
-            <li><a href="rankholders.html">Rank Holders</a></li>
-            <li><a href="gallery.html">Gallery</a></li>
-            <li><a href="diary.html">Daily Diary</a></li>
-            <li><a href="resources.html">Resources</a></li>
-            <li><a href="testimonials.html">Testimonials</a></li>
-            <li><a href="achievements.html">Achievements</a></li>
-            <li><a href="faq.html">FAQ</a></li>
-            <li><a href="contact.html">Contact</a></li>
-        </ul>
-
-        <div class="menu-btn">☰</div>
-    </nav>
-
-    <header class="hero">
-        <div class="hero-overlay"></div>
-        <div class="hero-content">
-            <p class="hero-small">Educational Internship Portfolio</p>
-            <h1>INTERNSHIP</h1>
-            <h2>Newaj Ahmed</h2>
-            <h3 class="typing-text"></h3>
-            <p class="hero-description">
-                Political Science Intern Teacher from Nazir Ajmal Memorial College of Education, affiliated to Gauhati University.
-            </p>
-            <div class="hero-buttons">
-                <a href="about.html" class="primary-btn">About Me</a>
-                <a href="gallery.html" class="secondary-btn">View Gallery</a>
-            </div>
-        </div>
+    <header>
+        <div class="logo-text">AJMALian COHORT<span>Political Science Field Track</span></div>
+        <nav>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html" class="nav-link active">Home</a></li>
+                <li><a href="about.html" class="nav-link">About Interns</a></li>
+                <li><a href="academy.html" class="nav-link">Academy Profile</a></li>
+                <li><a href="activities.html" class="nav-link">Activities</a></li>
+                <li><a href="gallery.html" class="nav-link">Gallery</a></li>
+                <li><a href="diary.html" class="nav-link">Daily Diary</a></li>
+                <li><a href="documents.html" class="nav-link">Documents</a></li>
+                <li><a href="contact.html" class="nav-link">Contact</a></li>
+            </ul>
+        </nav>
+        <button class="hamburger" id="hamburgerBtn" aria-label="Toggle navigation Menu">
+            <i class="fas fa-bars"></i>
+        </button>
     </header>
 
-    <section class="welcome-section">
-        <div class="section-title">
-            <h2>Welcome</h2>
-            <div class="line"></div>
-        </div>
+    <!-- Secured external dynamic layout target with rel tags -->
+    <a href="https://wa.me/919387127176" class="whatsapp-widget" target="_blank" rel="noopener noreferrer" title="Chat via WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
 
-        <div class="welcome-container">
-            <div class="welcome-content">
-                <h3>Helping Students Learn Better</h3>
-                <p>
-                    This internship portfolio represents educational experiences, classroom communication, student interaction, and practical teaching activities during the internship journey.
-                </p>
-                <p>
-                    The internship was conducted at Haji Ajmal Ali Memorial Senior Secondary School, Kapashbari, Hojai, Assam.
-                </p>
-
-                <div class="welcome-info-grid">
-                    <div class="info-box">
-                        <h4>College</h4>
-                        <p>Nazir Ajmal Memorial College of Education</p>
-                    </div>
-                    <div class="info-box">
-                        <h4>University</h4>
-                        <p>Gauhati University</p>
-                    </div>
-                    <div class="info-box">
-                        <h4>Specialization</h4>
-                        <p>Political Science</p>
-                    </div>
-                    <div class="info-box">
-                        <h4>Internship Duration</h4>
-                        <p>120 Hours</p>
-                    </div>
-                </div>
-            </div>
+    <section class="hero">
+        <div class="hero-content">
+            <div class="badge">Official Field Placement Portfolio Hub</div>
+            <h1 class="hero-title">Joint Institutional Field Internship</h1>
+            <p class="hero-desc">This platform centralizes the collaborative operational performance of five specialized political science student interns. Stationed across administrative clusters at the Ajmal IAS Academy, this digital layout logs real workflows, procedural support architectures, and structural training modules.</p>
         </div>
     </section>
 
-    <section class="quote-section">
-        <div class="quote-box">
-            <h2>“Education creates confidence, discipline, and a better future.”</h2>
-            <p>Teaching is not only sharing knowledge, it is inspiring growth and learning.</p>
-        </div>
-    </section>
-
-    <section class="teaching-section">
-        <div class="section-title">
-            <h2>Why Teaching Matters</h2>
-            <div class="line"></div>
-        </div>
-
-        <div class="teaching-grid">
-            <div class="teaching-card">
-                <div class="teaching-icon">📚</div>
-                <h3>Knowledge Development</h3>
-                <p>Teaching improves understanding, critical thinking, and educational growth among students.</p>
-            </div>
-
-            <div class="teaching-card">
-                <div class="teaching-icon">🎓</div>
-                <h3>Student Guidance</h3>
-                <p>Educational interaction develops confidence, discipline, and communication skills.</p>
-            </div>
-
-            <div class="teaching-card">
-                <div class="teaching-icon">⭐</div>
-                <h3>Future Building</h3>
-                <p>Teachers inspire students towards academic success and positive development.</p>
-            </div>
-        </div>
-    </section>
-
-    <section class="highlight-section">
-        <div class="section-title">
-            <h2>Internship Highlights</h2>
-            <div class="line"></div>
-        </div>
-
-        <div class="statistics-grid">
-            <div class="statistics-card">
-                <h2 class="counter" data-target="120">0</h2>
-                <p>Internship Hours</p>
-            </div>
-            <div class="statistics-card">
-                <h2 class="counter" data-target="400">0</h2>
-                <p>Student Interaction</p>
-            </div>
-            <div class="statistics-card">
-                <h2 class="counter" data-target="10">0</h2>
-                <p>Educational Activities</p>
-            </div>
-            <div class="statistics-card">
-                <h2 class="counter" data-target="2026">0</h2>
-                <p>Academic Session</p>
-            </div>
-        </div>
-    </section>
-
-    <section class="top-student-section">
-        <div class="section-title">
-            <h2>Top Student Preview</h2>
-            <div class="line"></div>
-        </div>
-
-        <div class="students-grid">
-            <div class="student-card gold-card">
-                <div class="student-rank">#1</div>
-                <h3>Mehnan Ahmed</h3>
-                <p>Class XII</p>
-                <h2>88%</h2>
-                <span>Class Topper</span>
-            </div>
-
-            <div class="student-card silver-card">
-                <div class="student-rank">#2</div>
-                <h3>Sadia Firdus</h3>
-                <p>Class XI</p>
-                <h2>95%</h2>
-                <span>Highest Attendance</span>
-            </div>
-
-            <div class="student-card bronze-card">
-                <div class="student-rank">#3</div>
-                <h3>Fahima Begum</h3>
-                <p>Class XII</p>
-                <h2>97%</h2>
-                <span>School Topper</span>
-            </div>
-        </div>
-
-        <div class="student-button-area">
-            <a href="rankholders.html" class="primary-btn">View Full Rank Holders</a>
-        </div>
-    </section>
-
-    <section class="school-section">
-        <div class="section-title">
-            <h2>Internship School</h2>
-            <div class="line"></div>
-        </div>
-
-        <div class="school-container">
-            <div class="school-content full-width">
-                <h3>Haji Ajmal Ali Memorial Senior Secondary School</h3>
-                <p>
-                    The internship activities were conducted at HAAM Senior Secondary School, Kapashbari, Hojai, Assam.
-                </p>
-                <p>
-                    The school environment provided practical classroom experience, student communication, discipline, and educational understanding.
-                </p>
-
-                <div class="school-details">
-                    <div class="school-detail-box">
-                        <h4>Principal</h4>
-                        <p>Faizul Islam</p>
-                    </div>
-                    <div class="school-detail-box">
-                        <h4>Supervisor</h4>
-                        <p>Faizul Islam</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="quick-access-section">
-        <div class="section-title">
-            <h2>Quick Access</h2>
-            <div class="line"></div>
-        </div>
-
-        <div class="resource-grid">
-            <a href="diary.html" class="resource-card">
-                <div class="resource-icon">🛤️</div>
-                <h3>Daily Diary</h3>
-                <p>Educational experiences, daily work, and practical learning diary.</p>
-            </a>
-
-            <a href="resources.html" class="resource-card">
-                <div class="resource-icon">📖</div>
-                <h3>Educational Resources</h3>
-                <p>Notes, assignments, study materials, and learning support.</p>
-            </a>
-
-            <a href="achievements.html" class="resource-card">
-                <div class="resource-icon">🏆</div>
-                <h3>Achievements</h3>
-                <p>Certificates, participation, workshops, and educational success.</p>
-            </a>
-
-            <a href="contact.html" class="resource-card">
-                <div class="resource-icon">📞</div>
-                <h3>Contact</h3>
-                <p>Educational communication and internship information.</p>
-            </a>
+    <section class="team-section">
+        <h2 class="section-title">Verified Student Interns</h2>
+        <div class="team-grid">
+            <div class="team-card"><i class="fas fa-user-tie"></i><h3>Newaj Ahmed</h3><p>Academic Coordination</p></div>
+            <div class="team-card"><i class="fas fa-user-tie"></i><h3>Arif Arman</h3><p>Academic Coordination</p></div>
+            <div class="team-card"><i class="fas fa-user-tie"></i><h3>Nuruz Zaman</h3><p>Academic Coordination</p></div>
+            <div class="team-card"><i class="fas fa-user-tie"></i><h3>Shekh Farid</h3><p>Academic Coordination</p></div>
+            <div class="team-card"><i class="fas fa-user-tie"></i><h3>Zaid Hussain</h3><p>Academic Coordination</p></div>
         </div>
     </section>
 
     <footer>
-        <div class="footer-container">
-            <div class="footer-about">
-                <h2>Internship Portfolio</h2>
-                <p>
-                    Educational internship website showcasing teaching experience, student interaction, and academic activities.
-                </p>
-            </div>
-
-            <div class="footer-links">
-                <h3>Quick Links</h3>
-                <a href="index.html">Home</a>
-                <a href="about.html">About</a>
-                <a href="gallery.html">Gallery</a>
-                <a href="contact.html">Contact</a>
-            </div>
-
-            <div class="footer-contact">
-                <h3>Contact</h3>
-                <p>Phone: 9387127176</p>
-                <p>Email: newaja35@gmail.com</p>
-                <p>Kapashbari, Hojai, Assam</p>
-            </div>
-        </div>
-
-        <div class="footer-bottom">
-            <p>© 2026 Newaj Ahmed | Internship Portfolio Website</p>
-        </div>
+        <p><strong>Ajmal IAS Academy Interns</strong> | Political Science Department | © 2026 All Rights Reserved</p>
     </footer>
 
-    <div class="social-icons">
-        <a href="https://wa.me/919387127176" target="_blank">
-            <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="WhatsApp">
-        </a>
-        <a href="https://instagram.com/newaj_ahmad" target="_blank">
-            <img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="Instagram">
-        </a>
-    </div>
+    <script>
+        const hamburgerBtn = document.getElementById('hamburgerBtn');
+        const navMenu = document.getElementById('navMenu');
+        
+        hamburgerBtn.addEventListener('click', (e) => { 
+            e.stopPropagation();
+            navMenu.classList.toggle('open'); 
+        });
 
-    <script src="script.js"></script>
+        // Closes side tray if clicked anywhere outside on small breakpoints
+        document.addEventListener('click', (e) => {
+            if (!navMenu.contains(e.target) && !hamburgerBtn.contains(e.target)) {
+                navMenu.classList.remove('open');
+            }
+        });
+    </script>
 </body>
 </html>
